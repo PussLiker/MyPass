@@ -1,0 +1,15 @@
+D:\App\mypass\bin\Debug\mypass.exe.config
+D:\App\mypass\bin\Debug\mypass.exe
+D:\App\mypass\bin\Debug\mypass.pdb
+D:\App\mypass\obj\Debug\mypass.csproj.AssemblyReference.cache
+D:\App\mypass\obj\Debug\MainWindow.g.cs
+D:\App\mypass\obj\Debug\App.g.cs
+D:\App\mypass\obj\Debug\mypass_MarkupCompile.cache
+D:\App\mypass\obj\Debug\mypass_MarkupCompile.lref
+D:\App\mypass\obj\Debug\MainWindow.baml
+D:\App\mypass\obj\Debug\mypass.g.resources
+D:\App\mypass\obj\Debug\mypass.Properties.Resources.resources
+D:\App\mypass\obj\Debug\mypass.csproj.GenerateResource.cache
+D:\App\mypass\obj\Debug\mypass.csproj.CoreCompileInputs.cache
+D:\App\mypass\obj\Debug\mypass.exe
+D:\App\mypass\obj\Debug\mypass.pdb
