@@ -4,19 +4,6 @@
              xmlns:local="clr-namespace:mypass"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary>
-            
-            <ResourceDictionary.MergedDictionaries>
-                
-            <ResourceDictionary Source="View/Styles/Button.xaml" />
-            <ResourceDictionary Source="View/Styles/Images.xaml" />
-            <ResourceDictionary Source="View/Styles/Page.xaml" />
-            <ResourceDictionary Source="View/Styles/Text.xaml" />
-            <ResourceDictionary Source="Utilities/DataTemplate.xaml" />
-                
-            </ResourceDictionary.MergedDictionaries>
-            
-        </ResourceDictionary>
-            
+         
     </Application.Resources>
 </Application>
