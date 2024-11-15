@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                   
+                    xmlns:vm="clr-namespace:mypass.ViewModel"
+                    xmlns:view="clr-namespace:mypass.View">
+
+    <DataTemplate DataType="{x:Type vm:AccountsVM}">
+        <view:Accounts/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:AllPassesVM}">
+        <view:AllPasses/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:CardsVM}">
+        <view:Cards/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:MainMenu}">
+        <view:MainMenu/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:PassCheckVM}">
+        <view:PassCheck/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:PassGenVM}">
+        <view:PassGen/>
+    </DataTemplate>
+
+</ResourceDictionary>
