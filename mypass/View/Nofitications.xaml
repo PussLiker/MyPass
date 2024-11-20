@@ -13,12 +13,7 @@
     </UserControl.DataContext>
 
     <Grid>
-
         <Border CornerRadius="0,20,20,0" Background="#1a1a1d" />
         <TextBlock Text="sex" Style="{StaticResource TextStyle}" />
-
-        <Border Background="#1a1a1d" />
-        <TextBlock Text="toje xz" Style="{StaticResource TextStyle}" />
-
     </Grid>
 </UserControl>
