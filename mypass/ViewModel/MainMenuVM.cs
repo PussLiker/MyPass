@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace mypass.ViewModel
 {
-    internal class MainMenu
+    internal class MainMenuVM
     {
     }
 }

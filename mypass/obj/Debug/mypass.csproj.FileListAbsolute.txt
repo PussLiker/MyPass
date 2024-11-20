@@ -2,6 +2,7 @@ D:\App\mypass\bin\Debug\mypass.exe.config
 D:\App\mypass\bin\Debug\mypass.exe
 D:\App\mypass\bin\Debug\mypass.pdb
 D:\App\mypass\obj\Debug\mypass.csproj.AssemblyReference.cache
+D:\App\mypass\obj\Debug\Utilities\DataTemplate.baml
 D:\App\mypass\obj\Debug\View\Styles\Button.baml
 D:\App\mypass\obj\Debug\View\Styles\Images.baml
 D:\App\mypass\obj\Debug\View\Styles\Page.baml
@@ -9,7 +10,9 @@ D:\App\mypass\obj\Debug\View\Styles\Text.baml
 D:\App\mypass\obj\Debug\View\AllPasses.g.cs
 D:\App\mypass\obj\Debug\View\Cards.g.cs
 D:\App\mypass\obj\Debug\MainWindow.g.cs
+D:\App\mypass\obj\Debug\View\Emails.g.cs
 D:\App\mypass\obj\Debug\View\MainMenu.g.cs
+D:\App\mypass\obj\Debug\View\Nofitications.g.cs
 D:\App\mypass\obj\Debug\View\PassCheck.g.cs
 D:\App\mypass\obj\Debug\View\Accounts.g.cs
 D:\App\mypass\obj\Debug\View\PassGen.g.cs
@@ -17,11 +20,12 @@ D:\App\mypass\obj\Debug\App.g.cs
 D:\App\mypass\obj\Debug\mypass_MarkupCompile.cache
 D:\App\mypass\obj\Debug\mypass_MarkupCompile.lref
 D:\App\mypass\obj\Debug\App.baml
-D:\App\mypass\obj\Debug\Utilities\DataTemplate.baml
 D:\App\mypass\obj\Debug\View\AllPasses.baml
 D:\App\mypass\obj\Debug\View\Cards.baml
 D:\App\mypass\obj\Debug\MainWindow.baml
+D:\App\mypass\obj\Debug\View\Emails.baml
 D:\App\mypass\obj\Debug\View\MainMenu.baml
+D:\App\mypass\obj\Debug\View\Nofitications.baml
 D:\App\mypass\obj\Debug\View\PassCheck.baml
 D:\App\mypass\obj\Debug\View\Accounts.baml
 D:\App\mypass\obj\Debug\View\PassGen.baml

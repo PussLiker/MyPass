@@ -61,14 +61,23 @@
     <Compile Include="ViewModel\AccountsVM.cs" />
     <Compile Include="ViewModel\AllPassesVM.cs" />
     <Compile Include="ViewModel\CardsVM.cs" />
-    <Compile Include="ViewModel\MainMenu.cs" />
+    <Compile Include="ViewModel\EmailsVM.cs" />
+    <Compile Include="ViewModel\MainMenuVM.cs" />
+    <Compile Include="ViewModel\NavigationVM.cs" />
+    <Compile Include="ViewModel\NofiticationsVM.cs" />
     <Compile Include="ViewModel\PassCheckVM.cs" />
     <Compile Include="ViewModel\PassGenVM.cs" />
     <Compile Include="View\Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Emails.xaml.cs">
+      <DependentUpon>Emails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Nofitications.xaml.cs">
+      <DependentUpon>Nofitications.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PassCheck.xaml.cs">
       <DependentUpon>PassCheck.xaml</DependentUpon>
@@ -107,7 +116,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Emails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Nofitications.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,17 +175,57 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Model\MyPass.db" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="View\Resource\Fonts\Mariupol-Bold.ttf" />
+    <Resource Include="View\Resource\Fonts\Mariupol-Medium.ttf" />
+    <Resource Include="View\Resource\Fonts\Mariupol-Regular.ttf" />
+    <Resource Include="View\Resource\Fonts\MariupolSymbols.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\Resource\Fonts\" />
-    <Folder Include="View\Resource\Images\" />
+    <Resource Include="View\Resource\Images\pictures\photo_1_2024-11-18_20-02-52.jpg" />
+    <Resource Include="View\Resource\Images\pictures\photo_2_2024-11-18_20-02-52.jpg" />
+    <Resource Include="View\Resource\Images\pictures\photo_3_2024-11-18_20-02-52.jpg" />
+    <Resource Include="View\Resource\Images\pictures\photo_4_2024-11-18_20-02-52.jpg" />
+    <Resource Include="View\Resource\Images\pictures\photo_5_2024-11-18_20-02-52.jpg" />
+    <Resource Include="View\Resource\Images\pictures\photo_6_2024-11-18_20-02-52.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\icons\account.png" />
+    <Resource Include="View\Resource\Images\icons\all.png" />
+    <Resource Include="View\Resource\Images\icons\card.png" />
+    <Resource Include="View\Resource\Images\icons\checkpass.png" />
+    <Resource Include="View\Resource\Images\icons\emails.png" />
+    <Resource Include="View\Resource\Images\icons\home.png" />
+    <Resource Include="View\Resource\Images\icons\keyinhand.png" />
+    <Resource Include="View\Resource\Images\icons\lamp.png" />
+    <Resource Include="View\Resource\Images\icons\loupe.png" />
+    <Resource Include="View\Resource\Images\icons\pass.png" />
+    <Resource Include="View\Resource\Images\icons\passgen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\pictures\photo_1_2024-11-18_20-07-10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\inverted\account.png" />
+    <Resource Include="View\Resource\Images\inverted\all.png" />
+    <Resource Include="View\Resource\Images\inverted\card.png" />
+    <Resource Include="View\Resource\Images\inverted\checkpass.png" />
+    <Resource Include="View\Resource\Images\inverted\emails.png" />
+    <Resource Include="View\Resource\Images\inverted\home.png" />
+    <Resource Include="View\Resource\Images\inverted\lamp.png" />
+    <Resource Include="View\Resource\Images\inverted\loupe.png" />
+    <Resource Include="View\Resource\Images\inverted\notific.png" />
+    <Resource Include="View\Resource\Images\inverted\pass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\icons\notific.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:mypass"
+        xmlns:vm="clr-namespace:mypass.ViewModel"
+        xmlns:Menu="clr-namespace:mypass.Utilities"
         mc:Ignorable="d"
         WindowStyle="None"
         Title="MainWindow" Height="680" Width="1080" 
@@ -13,25 +14,132 @@
     <Window.Resources>
 
         <SolidColorBrush x:Key="Background" Color="#1a1a1d" />
-        <SolidColorBrush x:Key="TextColor" Color="#4e4e50" />
-        <SolidColorBrush x:Key="DarkPink" Color="#6f2232" />
+        <SolidColorBrush x:Key="TextColor" Color="#212124" />
+        
         <SolidColorBrush x:Key="Pink" Color="#950740" />
         <SolidColorBrush x:Key="lightPink" Color="#c3073f" />
 
     </Window.Resources>
-    
+
+    <Window.DataContext>
+        <vm:NavigationVM />
+    </Window.DataContext>
+
     <Grid>
-        <Border Background="{DynamicResource Background}" CornerRadius="10"/>
+        <Border Background="{DynamicResource Background}" 
+                BorderThickness="0" CornerRadius="20"/>
 
         <Grid>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="270" />
                 <ColumnDefinition Width="3*" />
-                
+
             </Grid.ColumnDefinitions>
-            
+
+
+            <Grid HorizontalAlignment="Left" Width="270">
+
+                <Border Background="#202020"
+                        CornerRadius="20,0,0,20" 
+                        BorderThickness="0"/>
+
+                <StackPanel Height="350" Width="270" Margin="10,0,0,0">
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding MainMenuCommand}"
+                              IsChecked="True">
+
+                        <Grid>
+
+                            <Image Source="/View/Resource/Images/inverted/home.png"
+                                   Style="{StaticResource ImageStyle}" 
+                                   HorizontalAlignment="Left"/>
+                            <TextBlock Text="Главная"
+                                       Style="{StaticResource TextStyle}" 
+                                       HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Menu:Btn>
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding AllPassesCommand}"
+                              >
+
+                        <Grid>
+                            <Image Source="/View/Resource/Images/inverted/all.png"
+                                Style="{StaticResource ImageStyle}" 
+                                HorizontalAlignment="Left"/>
+                            <TextBlock Text="Все записи"
+                                Style="{StaticResource TextStyle}" 
+                                HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Menu:Btn>
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding AccountsCommand}"
+                              >
+
+                        <Grid Margin="20,0,0,0">
+                            <Image Source="/View/Resource/Images/inverted/account.png"
+                            Style="{StaticResource ImageStyle}" 
+                            HorizontalAlignment="Left"/>
+                            <TextBlock Text="Аккаунты"
+                            Style="{StaticResource TextStyle}" 
+                            HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Menu:Btn>
+                    
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding EmailsCommand}"
+                              >
+
+                        <Grid Margin="20,0,0,0">
+                            <Image Source="/View/Resource/Images/inverted/emails.png"
+                            Style="{StaticResource ImageStyle}" 
+                            HorizontalAlignment="Left"/>
+                            <TextBlock Text="Почты"
+                            Style="{StaticResource TextStyle}" 
+                            HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Menu:Btn>
+                    
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding CardsCommand}"
+                              >
+
+                        <Grid Margin="20,0,0,0">
+                            <Image Source="/View/Resource/Images/inverted/card.png"
+                            Style="{StaticResource ImageStyle}" 
+                            HorizontalAlignment="Left"/>
+                            <TextBlock Text="Аккаунты"
+                            Style="{StaticResource TextStyle}" 
+                            HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Menu:Btn>
+                    
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding NotificationsCommand}"
+                              >
+
+                        <Grid>
+                            <Image Source="/View/Resource/Images/icons/notific.png"
+                                Style="{StaticResource ImageStyle}" 
+                                HorizontalAlignment="Left"/>
+                            <TextBlock Text="Уведомления"
+                                Style="{StaticResource TextStyle}" 
+                                HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Menu:Btn>
+                    
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <ContentControl x:Name="Pages" 
+                                Content="{Binding CurrentView}" />
+            </Grid>
         </Grid>
-        
+
     </Grid>
 </Window>

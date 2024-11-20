@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace mypass.Utilities
 {
-    internal class RelayCommand : ICommand
+    class RelayCommand : ICommand
     {
         private readonly Action<object> _execute;
         private readonly Func<object, bool> _canExecute;
@@ -17,7 +17,7 @@ namespace mypass.Utilities
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute)
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;
