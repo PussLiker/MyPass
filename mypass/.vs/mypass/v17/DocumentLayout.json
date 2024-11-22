@@ -1,78 +1,58 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\project\\mypass\\",
+  "WorkspaceRootPath": "D:\\App\\mypass\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|c:\\project\\mypass\\view\\passgen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\passgen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\view\\passcheck.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\passcheck.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\view\\nofitications.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\nofitications.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\view\\mainmenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\mainmenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\view\\emails.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\emails.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\view\\cards.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\cards.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\view\\allpasses.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\allpasses.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\view\\accounts.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\accounts.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\view\\styles\\text.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\styles\\text.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\view\\styles\\page.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\styles\\page.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|c:\\project\\mypass\\view\\styles\\images.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\styles\\images.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|c:\\project\\mypass\\view\\styles\\button.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|D:\\App\\mypass\\view\\styles\\button.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\styles\\button.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|c:\\project\\mypass\\model\\passwordgeneration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:model\\passwordgeneration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|d:\\app\\mypass\\view\\styles\\text.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\styles\\text.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|c:\\project\\mypass\\model\\encryptionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:model\\encryptionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|c:\\project\\mypass\\model\\pagemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:model\\pagemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|C:\\project\\mypass\\utilities\\btn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|d:\\app\\mypass\\utilities\\btn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:utilities\\btn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|D:\\App\\mypass\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|d:\\app\\mypass\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|D:\\App\\mypass\\view\\passcheck.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\passcheck.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|D:\\App\\mypass\\view\\styles\\page.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\styles\\page.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|D:\\App\\mypass\\view\\accounts.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\accounts.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|D:\\App\\mypass\\view\\nofitications.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\nofitications.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|D:\\App\\mypass\\view\\mainmenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\mainmenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|D:\\App\\mypass\\view\\cards.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\cards.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|D:\\App\\mypass\\view\\allpasses.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\allpasses.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|D:\\App\\mypass\\view\\emails.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7F21CDA3-DFB8-45BA-BA53-C4415D56492C}|mypass.csproj|solutionrelative:view\\emails.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -82,123 +62,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Accounts.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\Accounts.xaml",
-              "RelativeDocumentMoniker": "View\\Accounts.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\Accounts.xaml",
-              "RelativeToolTip": "View\\Accounts.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-18T18:09:01.634Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Text.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\Styles\\Text.xaml",
-              "RelativeDocumentMoniker": "View\\Styles\\Text.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\Styles\\Text.xaml",
-              "RelativeToolTip": "View\\Styles\\Text.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-19T21:59:10.236Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AllPasses.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\AllPasses.xaml",
-              "RelativeDocumentMoniker": "View\\AllPasses.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\AllPasses.xaml",
-              "RelativeToolTip": "View\\AllPasses.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-18T18:09:13.899Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Cards.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\Cards.xaml",
-              "RelativeDocumentMoniker": "View\\Cards.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\Cards.xaml",
-              "RelativeToolTip": "View\\Cards.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-18T18:09:22.331Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Emails.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\Emails.xaml",
-              "RelativeDocumentMoniker": "View\\Emails.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\Emails.xaml",
-              "RelativeToolTip": "View\\Emails.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-18T18:09:26.656Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainMenu.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\MainMenu.xaml",
-              "RelativeDocumentMoniker": "View\\MainMenu.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\MainMenu.xaml",
-              "RelativeToolTip": "View\\MainMenu.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-18T18:07:28.121Z",
+              "DocumentIndex": 2,
+              "Title": "Btn.cs",
+              "DocumentMoniker": "D:\\App\\mypass\\Utilities\\Btn.cs",
+              "RelativeDocumentMoniker": "Utilities\\Btn.cs",
+              "ToolTip": "D:\\App\\mypass\\Utilities\\Btn.cs",
+              "RelativeToolTip": "Utilities\\Btn.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T00:02:31.101Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Nofitications.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\Nofitications.xaml",
-              "RelativeDocumentMoniker": "View\\Nofitications.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\Nofitications.xaml",
-              "RelativeToolTip": "View\\Nofitications.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-18T18:09:32.722Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PassCheck.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\PassCheck.xaml",
-              "RelativeDocumentMoniker": "View\\PassCheck.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\PassCheck.xaml",
-              "RelativeToolTip": "View\\PassCheck.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-18T18:09:36.544Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PassGen.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\PassGen.xaml",
-              "RelativeDocumentMoniker": "View\\PassGen.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\PassGen.xaml",
-              "RelativeToolTip": "View\\PassGen.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-22T20:22:44.958Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "App.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\App.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "C:\\project\\mypass\\App.xaml",
+              "ToolTip": "D:\\App\\mypass\\App.xaml",
               "RelativeToolTip": "App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-19T23:39:04.208Z",
@@ -206,23 +91,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\project\\mypass\\MainWindow.xaml*",
-              "RelativeToolTip": "MainWindow.xaml*",
+              "DocumentIndex": 1,
+              "Title": "Text.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\View\\Styles\\Text.xaml",
+              "RelativeDocumentMoniker": "View\\Styles\\Text.xaml",
+              "ToolTip": "D:\\App\\mypass\\View\\Styles\\Text.xaml",
+              "RelativeToolTip": "View\\Styles\\Text.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-18T18:06:22.428Z",
+              "WhenOpened": "2024-11-19T21:59:10.236Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 0,
+              "Title": "Button.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\View\\Styles\\Button.xaml",
+              "RelativeDocumentMoniker": "View\\Styles\\Button.xaml",
+              "ToolTip": "D:\\App\\mypass\\View\\Styles\\Button.xaml",
+              "RelativeToolTip": "View\\Styles\\Button.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-18T18:14:08.449Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Page.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\Styles\\Page.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\View\\Styles\\Page.xaml",
               "RelativeDocumentMoniker": "View\\Styles\\Page.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\Styles\\Page.xaml",
+              "ToolTip": "D:\\App\\mypass\\View\\Styles\\Page.xaml",
               "RelativeToolTip": "View\\Styles\\Page.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-18T18:10:34.367Z",
@@ -230,82 +127,94 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PassCheck.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\View\\PassCheck.xaml",
+              "RelativeDocumentMoniker": "View\\PassCheck.xaml",
+              "ToolTip": "D:\\App\\mypass\\View\\PassCheck.xaml",
+              "RelativeToolTip": "View\\PassCheck.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-18T18:09:36.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Nofitications.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\View\\Nofitications.xaml",
+              "RelativeDocumentMoniker": "View\\Nofitications.xaml",
+              "ToolTip": "D:\\App\\mypass\\View\\Nofitications.xaml",
+              "RelativeToolTip": "View\\Nofitications.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-18T18:09:32.722Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "Images.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\Styles\\Images.xaml",
-              "RelativeDocumentMoniker": "View\\Styles\\Images.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\Styles\\Images.xaml",
-              "RelativeToolTip": "View\\Styles\\Images.xaml",
+              "Title": "Emails.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\View\\Emails.xaml",
+              "RelativeDocumentMoniker": "View\\Emails.xaml",
+              "ToolTip": "D:\\App\\mypass\\View\\Emails.xaml",
+              "RelativeToolTip": "View\\Emails.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-22T21:37:49.684Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "WhenOpened": "2024-11-18T18:09:26.656Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "PasswordGeneration.cs",
-              "DocumentMoniker": "C:\\project\\mypass\\Model\\PasswordGeneration.cs",
-              "RelativeDocumentMoniker": "Model\\PasswordGeneration.cs",
-              "ToolTip": "C:\\project\\mypass\\Model\\PasswordGeneration.cs",
-              "RelativeToolTip": "Model\\PasswordGeneration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T19:20:54.802Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "EncryptionModel.cs",
-              "DocumentMoniker": "C:\\project\\mypass\\Model\\EncryptionModel.cs",
-              "RelativeDocumentMoniker": "Model\\EncryptionModel.cs",
-              "ToolTip": "C:\\project\\mypass\\Model\\EncryptionModel.cs",
-              "RelativeToolTip": "Model\\EncryptionModel.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAgwA0AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T17:38:09.734Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "PageModel.cs",
-              "DocumentMoniker": "C:\\project\\mypass\\Model\\PageModel.cs",
-              "RelativeDocumentMoniker": "Model\\PageModel.cs",
-              "ToolTip": "C:\\project\\mypass\\Model\\PageModel.cs",
-              "RelativeToolTip": "Model\\PageModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T17:40:47.863Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Btn.cs",
-              "DocumentMoniker": "C:\\project\\mypass\\Utilities\\Btn.cs",
-              "RelativeDocumentMoniker": "Utilities\\Btn.cs",
-              "ToolTip": "C:\\project\\mypass\\Utilities\\Btn.cs",
-              "RelativeToolTip": "Utilities\\Btn.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T00:02:31.101Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Button.xaml",
-              "DocumentMoniker": "C:\\project\\mypass\\View\\Styles\\Button.xaml",
-              "RelativeDocumentMoniker": "View\\Styles\\Button.xaml",
-              "ToolTip": "C:\\project\\mypass\\View\\Styles\\Button.xaml",
-              "RelativeToolTip": "View\\Styles\\Button.xaml",
+              "DocumentIndex": 10,
+              "Title": "Cards.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\View\\Cards.xaml",
+              "RelativeDocumentMoniker": "View\\Cards.xaml",
+              "ToolTip": "D:\\App\\mypass\\View\\Cards.xaml",
+              "RelativeToolTip": "View\\Cards.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-18T18:14:08.449Z",
+              "WhenOpened": "2024-11-18T18:09:22.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AllPasses.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\View\\AllPasses.xaml",
+              "RelativeDocumentMoniker": "View\\AllPasses.xaml",
+              "ToolTip": "D:\\App\\mypass\\View\\AllPasses.xaml",
+              "RelativeToolTip": "View\\AllPasses.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-18T18:09:13.899Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Accounts.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\View\\Accounts.xaml",
+              "RelativeDocumentMoniker": "View\\Accounts.xaml",
+              "ToolTip": "D:\\App\\mypass\\View\\Accounts.xaml",
+              "RelativeToolTip": "View\\Accounts.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-18T18:09:01.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainMenu.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\View\\MainMenu.xaml",
+              "RelativeDocumentMoniker": "View\\MainMenu.xaml",
+              "ToolTip": "D:\\App\\mypass\\View\\MainMenu.xaml",
+              "RelativeToolTip": "View\\MainMenu.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-18T18:07:28.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\App\\mypass\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "D:\\App\\mypass\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-18T18:06:22.428Z",
               "EditorCaption": ""
             }
           ]
