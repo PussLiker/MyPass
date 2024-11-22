@@ -3,17 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:mypass.View"
+             xmlns:vm="clr-namespace:mypass.ViewModel"
+             xmlns:Menu="clr-namespace:mypass.Utilities"
              mc:Ignorable="d" 
-<<<<<<< Updated upstream
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-=======
              d:DesignHeight="300" d:DesignWidth="400">
-
+    
     <UserControl.DataContext>
-        <vm:PassGenVM />
+        <vm:PassGenVM/>
     </UserControl.DataContext>
 
     <Grid >
@@ -28,8 +24,8 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row ="1" Name="PassBlock">
-                    
-                <StackPanel Orientation="Horizontal" Margin="5">
+
+                    <StackPanel Orientation="Horizontal" Margin="5">
                         <TextBlock Text="{Binding Text}" x:Name="hui" 
                                    Margin="20,0,0,0" Width="270" Height="36" FontSize="30" Foreground="White"
                                    Style="{StaticResource TextStyle}" 
@@ -37,27 +33,26 @@
                                    TextWrapping="NoWrap" 
                                    TextTrimming="CharacterEllipsis">
                     <!-- Используем InputBinding для команды -->
-                                    <TextBlock.InputBindings>
-                                      <MouseBinding Command="{Binding CopyTextCommand}" 
+                            <TextBlock.InputBindings>
+                                <MouseBinding Command="{Binding CopyTextCommand}" 
                                                     CommandParameter="{Binding Text}" 
                                       MouseAction="LeftClick" />
-                                    </TextBlock.InputBindings>
+                            </TextBlock.InputBindings>
                         </TextBlock>
 
                         <Grid Name="CreatePassBtn" Margin="10,0,0,6">
 
                             <Border Background="#3f3f40" Height="30" Width="30" CornerRadius="8">
-                                
+
                                 <Button Height="30" Width="30" Command="{Binding PasswordGenerateCommand}" Background="Transparent"
                                         BorderThickness="0"/>
                             </Border>
                         </Grid>
-                    
+
                     </StackPanel>
+                </Grid>
             </Grid>
-        </Grid>
 
         </Border>
->>>>>>> Stashed changes
     </Grid>
 </UserControl>
