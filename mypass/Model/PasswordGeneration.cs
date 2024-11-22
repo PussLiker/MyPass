@@ -19,7 +19,7 @@ namespace mypass.Model
         }
         //Генерация пароля
         public static string PasswordGenerate(int size, bool isNeedUpcase, bool isNeedLowercase,
-        bool isNeedNumber, bool isNeedSpecialSymbol, string specialSymbols = null)
+    bool isNeedNumber, bool isNeedSpecialSymbol, string specialSymbols = null)
         {
 
             const string upCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -61,7 +61,4 @@ namespace mypass.Model
             return new string(chars);
         }
     }
-
 }
-
-
