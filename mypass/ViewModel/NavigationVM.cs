@@ -33,7 +33,10 @@ namespace mypass.ViewModel
         private void MainMenu(object obj) => CurrentView = new MainMenuVM();
         private void Notifications(object obj) => CurrentView = new NofiticationsVM();
         private void PassCheck(object obj) => CurrentView = new PassCheckVM();
-        private void PassGen(object obj) => CurrentView = new PassGenVM();
+        private void PassGen(object obj) {
+            PassGenWindow passGenWindow = new PassGenWindow();
+            passGenWindow.Show();
+        }
 
         public NavigationVM()
         {

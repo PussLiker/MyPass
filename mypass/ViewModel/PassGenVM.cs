@@ -9,12 +9,15 @@ using mypass.View;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
+using System.Threading;
+using System.Windows.Media;
 
 namespace mypass.ViewModel
 {
     internal class PassGenVM : Utilities.ViewModelBase
     {
         private readonly PageModel _pageModel;
+        private CancellationTokenSource _cancellationTokenSource;
         public ICommand CopyTextCommand { get; }
         public ICommand PasswordGenerateCommand { get; }
 
@@ -31,8 +34,8 @@ namespace mypass.ViewModel
                 }
             }
         }
-<<<<<<< Updated upstream
-=======
+
+
         private Brush _textColor = Brushes.White;
         public Brush TextColor
         {
@@ -133,7 +136,7 @@ namespace mypass.ViewModel
             }
         }
 
->>>>>>> Stashed changes
+
 
         public PassGenVM()
         {
@@ -142,16 +145,6 @@ namespace mypass.ViewModel
             PasswordGenerateCommand = new RelayCommand(SetPass);
             _pageModel = new PageModel();
 
-<<<<<<< Updated upstream
-        }
-        private void SetPass(object sender)
-        {
-            // Пример инициализации текста
-            Text = PasswordGeneration.PasswordGenerate(10, true, false, true, false, "!");
-
-        }
-=======
-           
             // Пример инициализации текста
             PasswordGenerateCommand = new RelayCommand(ExecutePasswordAnimation);
             ExecutePasswordAnimation(new object());
@@ -159,7 +152,15 @@ namespace mypass.ViewModel
             IncreasePasswordLengthCommand = new RelayCommand(_ => PasswordLength++, _ => PasswordLength < 99);
             DecreasePasswordLengthCommand = new RelayCommand(_ => PasswordLength--, _ => PasswordLength > 4);
 
+
         }
+        private void SetPass(object sender)
+        {
+            // Пример инициализации текста
+            Text = PasswordGeneration.PasswordGenerate(10, true, false, true, false, "!");
+
+        }
+
         private async void ExecutePasswordAnimation(object obj)
         {
             _cancellationTokenSource?.Cancel();
@@ -171,13 +172,13 @@ namespace mypass.ViewModel
             }
             catch (TaskCanceledException)
             {
-                
+
             }
         }
 
         private async Task AnimatePasswordGeneration(CancellationToken cancellationToken)
         {
-            
+
 
             for (int i = 0; i < 6; i++)
             {
@@ -195,8 +196,8 @@ namespace mypass.ViewModel
             Text = PasswordGeneration.PasswordGenerate(PasswordLength, IncludeUppercase, IncludeLowercase, IncludeDigits, IncludeSpecialCharacters, SpecialCharacters);
             TextColor = Brushes.White;
         }
-        
->>>>>>> Stashed changes
+
+
         private void CopyTextToClipboard(object text)
         {
             if (!string.IsNullOrWhiteSpace(text?.ToString()))
@@ -206,4 +207,8 @@ namespace mypass.ViewModel
         }
 
     }
+
+
 }
+        
+
