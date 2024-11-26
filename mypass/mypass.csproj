@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-	<Compile Include="Model\EncryptionModel.cs" />
+    <Compile Include="Model\EncryptionModel.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
     <Compile Include="Utilities\Btn.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
@@ -89,6 +89,9 @@
     </Compile>
     <Compile Include="View\PassGen.xaml.cs">
       <DependentUpon>PassGen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PassGenWindow.xaml.cs">
+      <DependentUpon>PassGenWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Utilities\DataTemplate.xaml">
       <SubType>Designer</SubType>
@@ -139,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PassGen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PassGenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,6 +235,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resource\Images\icons\notific.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\inverted\стрелка_влево.png" />
+    <Resource Include="View\Resource\Images\inverted\стрелка_вправо.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\inverted\стрелка_влево_hover.png" />
+    <Resource Include="View\Resource\Images\inverted\стрелка_вправо_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\pressed\стрелка_влево_pressed.png" />
+    <Resource Include="View\Resource\Images\pressed\стрелка_вправо_pressed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
