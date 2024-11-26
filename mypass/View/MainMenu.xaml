@@ -13,13 +13,13 @@
     </UserControl.DataContext>
 
     <Grid>
-
+ 
         <Border CornerRadius="0,20,20,0" Background="#1a1a1d" />
         <TextBlock Text="kuni" Style="{StaticResource TextStyle}" />
-
+ 
         <Border Background="#1a1a1d" />
         <TextBlock Text="fkjshdfjweb" Style="{StaticResource TextStyle}" />
-
+ 
 
     </Grid>
 </UserControl>

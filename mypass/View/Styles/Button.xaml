@@ -114,7 +114,6 @@
 
 
 
-
     
     <Style x:Key="AnimatedButtonStyle" TargetType="Border">
         <Setter Property="Background" Value="#202020" />
@@ -249,5 +248,5 @@
     </Style>
 
 
-
+ 
 </ResourceDictionary>
