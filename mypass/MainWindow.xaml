@@ -15,9 +15,11 @@
 
         <SolidColorBrush x:Key="Background" Color="#1a1a1d" />
         <SolidColorBrush x:Key="TextColor" Color="#212124" />
+
         
         <SolidColorBrush x:Key="Pink" Color="#950740" />
         <SolidColorBrush x:Key="lightPink" Color="#c3073f" />
+
 
     </Window.Resources>
 
@@ -59,6 +61,7 @@
                                        Style="{StaticResource TextStyle}" 
                                        HorizontalAlignment="Left"/>
                         </Grid>
+
                     </Menu:Btn>
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
@@ -88,7 +91,7 @@
                             HorizontalAlignment="Left"/>
                         </Grid>
                     </Menu:Btn>
-                    
+
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding EmailsCommand}"
                               >
@@ -102,7 +105,7 @@
                             HorizontalAlignment="Left"/>
                         </Grid>
                     </Menu:Btn>
-                    
+
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding CardsCommand}"
                               >
@@ -111,12 +114,17 @@
                             <Image Source="/View/Resource/Images/inverted/card.png"
                             Style="{StaticResource ImageStyle}" 
                             HorizontalAlignment="Left"/>
+ 
                             <TextBlock Text="Аккаунты"
-                            Style="{StaticResource TextStyle}" 
+                            Style="{StaticResource TextStyle}" /> 
+ 
+                            <TextBlock Text="Банковские карты"
+                            Style="{StaticResource TextStyleBtn}" 
+ 
                             HorizontalAlignment="Left"/>
                         </Grid>
                     </Menu:Btn>
-                    
+
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding NotificationsCommand}"
                               >
@@ -130,8 +138,38 @@
                                 HorizontalAlignment="Left"/>
                         </Grid>
                     </Menu:Btn>
-                    
+
                 </StackPanel>
+ 
+ 
+                <StackPanel  Width="260" Margin="10,30,0,50" VerticalAlignment="Bottom">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" >
+
+                        <Grid>
+                            <Image Source="/View/Resource/Images/inverted/checkpass.png" 
+                                   Style="{StaticResource ImageStyle}"
+                                   HorizontalAlignment="Left"/>
+                            <TextBlock Text="Проверка паролей" 
+                                       Style="{StaticResource TextStyleBtn}" 
+                                       HorizontalAlignment="Left" />
+                        </Grid>
+                    </Menu:Btn>
+                    <Menu:Btn Style="{StaticResource BtnStyle}" 
+                              Command="{Binding PassGenCommand}"
+                              >
+
+                        <Grid>
+                            <Image Source="/View/Resource/Images/inverted/lamp.png" 
+                                   Style="{StaticResource ImageStyle}"
+                                   HorizontalAlignment="Left"/>
+                            <TextBlock Text="Генератор паролей" 
+                                       Style="{StaticResource TextStyleBtn}" 
+                                       HorizontalAlignment="Left" />
+                        </Grid>
+                    </Menu:Btn>
+
+                </StackPanel>
+ 
             </Grid>
 
             <Grid Grid.Column="1">

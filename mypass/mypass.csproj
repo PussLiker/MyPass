@@ -229,5 +229,36 @@
   <ItemGroup>
     <Resource Include="View\Resource\Images\icons\notific.png" />
   </ItemGroup>
+<<<<<<< Updated upstream
+=======
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\white\account.png" />
+    <Resource Include="View\Resource\Images\white\all.png" />
+    <Resource Include="View\Resource\Images\white\card.png" />
+    <Resource Include="View\Resource\Images\white\checkpass.png" />
+    <Resource Include="View\Resource\Images\white\emails.png" />
+    <Resource Include="View\Resource\Images\white\home.png" />
+    <Resource Include="View\Resource\Images\white\lamp.png" />
+    <Resource Include="View\Resource\Images\white\loupe.png" />
+    <Resource Include="View\Resource\Images\white\notific.png" />
+    <Resource Include="View\Resource\Images\white\pass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\inverted\checkpass.png" />
+    <Resource Include="View\Resource\Images\inverted\lamp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\inverted\стрелка_влево.png" />
+    <Resource Include="View\Resource\Images\inverted\стрелка_вправо.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\white\стрелка_влево_pressed.png" />
+    <Resource Include="View\Resource\Images\white\стрелка_вправо_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resource\Images\inverted\стрелка_влево_hover.png" />
+    <Resource Include="View\Resource\Images\inverted\стрелка_вправо_hover.png" />
+  </ItemGroup>
+>>>>>>> Stashed changes
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
