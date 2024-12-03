@@ -11,11 +11,14 @@
     <UserControl.DataContext>
         <vm:AllPassesVM/>
     </UserControl.DataContext>
-
+    
     <Grid>
+<<<<<<< Updated upstream
         <Border CornerRadius="0,20,20,0" Background="#1a1a1d" />
         <TextBlock Text="pisun" Style="{StaticResource TextStyle}" />
+=======
         <Border Background="#1a1a1d" />
         <TextBlock Text="All passes" Style="{StaticResource TextStyle}" />
+>>>>>>> Stashed changes
     </Grid>
 </UserControl>

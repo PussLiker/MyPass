@@ -4,15 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:mypass.ViewModel"
-
+<<<<<<< Updated upstream
              xmlns:Menu="clr-namespace:mypass.Utilities"
-
+=======
              xmlns:local="clr-namespace:mypass.Utilities"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-
+>>>>>>> Stashed changes
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400">
-
+    
     <UserControl.DataContext>
         <vm:PassGenVM/>
     </UserControl.DataContext>
@@ -31,54 +31,74 @@
                 <Grid Grid.Row ="1" Name="PassBlock">
 
                     <StackPanel Orientation="Horizontal" Margin="5">
+<<<<<<< Updated upstream
+                        <TextBlock Text="{Binding Text}" x:Name="hui" 
+                                   Margin="20,0,0,0" Width="270" Height="36" FontSize="30" Foreground="White"
+=======
                         <TextBlock Text="{Binding Text}" 
-                           Margin="20,0,0,0" Width="250" Height="36" FontSize="30" 
-                           Foreground="{Binding TextColor}"
-                           Style="{StaticResource TextStyle}" 
-                           Cursor="Hand"
-                           TextWrapping="NoWrap" 
-                           TextTrimming="CharacterEllipsis">
+                                   Margin="20,0,0,0" Width="250" Height="36" FontSize="30" 
+                                   Foreground="{Binding TextColor}"
+>>>>>>> Stashed changes
+                                   Style="{StaticResource TextStyle}" 
+                                   Cursor="Hand"
+                                   TextWrapping="NoWrap" 
+                                   TextTrimming="CharacterEllipsis">
+<<<<<<< Updated upstream
+                    <!-- Используем InputBinding для команды -->
+                            <TextBlock.InputBindings>
+                                <MouseBinding Command="{Binding CopyTextCommand}" 
+                                                    CommandParameter="{Binding Text}" 
+                                      MouseAction="LeftClick" />
+                            </TextBlock.InputBindings>
+                        </TextBlock>
 
+                        <Grid Name="CreatePassBtn" Margin="10,0,0,6">
+
+                            <Border Background="#3f3f40" Height="30" Width="30" CornerRadius="8">
+
+                                <Button Height="30" Width="30" Command="{Binding PasswordGenerateCommand}" Background="Transparent"
+                                        BorderThickness="0"/>
+=======
                         <!-- Используем InputBinding для команды -->
                             <TextBlock.InputBindings>
                                 <MouseBinding Command="{Binding CopyTextCommand}" 
-                                              CommandParameter="{Binding Text}" 
-                                              MouseAction="LeftClick" />
+                                                      CommandParameter="{Binding Text}" 
+                                                      MouseAction="LeftClick" />
                             </TextBlock.InputBindings>
                         </TextBlock>
 
                         <Grid Name="CreatePassBtn" Margin="20,0,20,6">
                             <Border Name="GenBorder"
-                            Style="{StaticResource AnimatedButtonStyle}"
-                            Height="30" Width="30" CornerRadius="8">
+                                    Style="{StaticResource AnimatedButtonStyle}"
+                                    Height="30" Width="30" CornerRadius="8">
 
                                 <!-- Кнопка внутри бордера -->
                                 <Button Command="{Binding PasswordGenerateCommand}"
-                            Opacity="0"
-                            BorderThickness="0"
-                            Cursor="Hand"
-                            IsDefault="True">
+                                    Opacity="0"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    IsDefault="True">
                                 </Button>
                             </Border>
                         </Grid>
 
                         <Grid Name="CopyBtn" Margin="0,0,20,6">
                             <Border Style="{StaticResource AnimatedButtonStyleCopy}"
-                            Height="30" Width="30" 
-                            >
+                                    Height="30" Width="30" 
+                                    >
                                 <Button Command="{Binding CopyTextCommand}"
-                                CommandParameter="{Binding Text}"
-                                Opacity="0" Cursor="Hand" />
+                                        CommandParameter="{Binding Text}"
+                                        Opacity="0" Cursor="Hand" />
 
-
+>>>>>>> Stashed changes
                             </Border>
                         </Grid>
 
                     </StackPanel>
                 </Grid>
-
-
-
+<<<<<<< Updated upstream
+            </Grid>
+=======
 
                 <Grid Grid.Row="3" Name="CheckBoxes" Margin="25">
                     <Grid.RowDefinitions>
@@ -88,18 +108,18 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Выберите длину пароля:" Style="{StaticResource DefTextStyle}"
-                           Foreground="White"
-                           PreviewTextInput="NumberValidationTextBox"
-                           
-                           />
+                        <TextBlock Text="Выберите длину пароля:" Style="{StaticResource TextStyle}"
+                                   Foreground="White"
+                                   PreviewTextInput="NumberValidationTextBox"
+                                   
+                                   />
 
                         <Border Margin="20,0,0,0" Name="PassLengthBox" Style="{StaticResource ForBorderPassLen}"
-                        Height="30" Width="66">
+                                Height="30" Width="66">
                             <StackPanel Orientation="Horizontal">
                                 <!-- Левая стрелка -->
                                 <Button Command="{Binding DecreasePasswordLengthCommand}" 
-                                Background="Transparent" BorderThickness="0" Margin="2,0,0,0">
+                                        Background="Transparent" BorderThickness="0" Margin="2,0,0,0">
                                     <Button.Template>
                                         <ControlTemplate TargetType="Button">
                                             <Image Width="15" Height="15">
@@ -111,7 +131,7 @@
                                                                 <Setter Property="Source" Value="/View/Resource/Images/inverted/стрелка_влево_hover.png" />
                                                             </Trigger>
                                                             <Trigger Property="Button.IsPressed" Value="True">
-                                                                <Setter Property="Source" Value="/View/Resource/Images/pressed/стрелка_влево_pressed.png" />
+                                                                <Setter Property="Source" Value="/View/Resource/Images/white/стрелка_влево_pressed.png" />
                                                             </Trigger>
                                                         </Style.Triggers>
                                                     </Style>
@@ -123,10 +143,10 @@
 
                                 <!-- Поле ввода длины пароля -->
                                 <TextBox Text="{Binding PasswordLength, UpdateSourceTrigger=PropertyChanged}" 
-                                 x:Name="PasswordTextBox"
-                                 Background="Transparent" BorderThickness="0" MaxLength="2" Height="30" Width="30"
-                                 FontFamily="/View/Resource/Fonts/#Mariupol" 
-                                 FontSize="24" TextAlignment="Center" VerticalContentAlignment="Center">
+                                         x:Name="PasswordTextBox"
+                                         Background="Transparent" BorderThickness="0" MaxLength="2" Height="30" Width="30"
+                                         FontFamily="/View/Resource/Fonts/#Mariupol" 
+                                         FontSize="24" TextAlignment="Center" VerticalContentAlignment="Center">
                                     <TextBox.Style>
                                         <Style TargetType="TextBox">
                                             <Setter Property="Foreground" Value="#636364" />
@@ -158,7 +178,7 @@
                                                                 <Setter Property="Source" Value="/View/Resource/Images/inverted/стрелка_вправо_hover.png" />
                                                             </Trigger>
                                                             <Trigger Property="Button.IsPressed" Value="True">
-                                                                <Setter Property="Source" Value="/View/Resource/Images/pressed/стрелка_вправо_pressed.png" />
+                                                                <Setter Property="Source" Value="/View/Resource/Images/white/стрелка_вправо_pressed.png" />
                                                             </Trigger>
                                                         </Style.Triggers>
                                                     </Style>
@@ -175,40 +195,44 @@
                     <StackPanel Grid.Row="1" Orientation="Horizontal">
                         <!-- Чекбокс для больших букв -->
                         <CheckBox Content="A-Z" 
-                          Style="{StaticResource CustomCheckBoxStyle}" 
-                          IsChecked="{Binding IncludeUppercase}" />
+                                  Style="{StaticResource CustomCheckBoxStyle}" 
+                                  IsChecked="{Binding IncludeUppercase}" />
                         <!-- Чекбокс для маленьких букв -->
                         <CheckBox Content="a-z" Margin="10,0,10,0"
-                          Style="{StaticResource CustomCheckBoxStyle}" 
-                          IsChecked="{Binding IncludeLowercase}" />
+                                  Style="{StaticResource CustomCheckBoxStyle}" 
+                                  IsChecked="{Binding IncludeLowercase}" />
 
                         <!-- Чекбокс для цифр -->
                         <CheckBox Content=" 0-9" 
-                          Style="{StaticResource CustomCheckBoxStyle}" 
-                          IsChecked="{Binding IncludeDigits}" />
+                                  Style="{StaticResource CustomCheckBoxStyle}" 
+                                  IsChecked="{Binding IncludeDigits}" />
 
-
-
+                        
+                    
                     </StackPanel>
 
                     <!-- Чекбокс для спецсимволов -->
                     <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
                         <CheckBox Content="Спецсимволы:" 
-                          Style="{StaticResource CustomCheckBoxStyle}" 
-                          IsChecked="{Binding IncludeSpecialCharacters}" />
+                                  Style="{StaticResource CustomCheckBoxStyle}" 
+                                  IsChecked="{Binding IncludeSpecialCharacters}" />
 
                         <TextBox Text="{Binding SpecialCharacters, UpdateSourceTrigger=PropertyChanged}" 
-                         FontFamily="/View/Resource/Fonts/#Mariupol" VerticalContentAlignment="Center"
-                         FontSize="16"
-                         Width="150" Height="24" Margin="10,0,0,0" Padding="4,0,0,0"
-                         Background="Transparent" Foreground="White"
-                         BorderBrush="#3f3f40" BorderThickness="1" >
+                                 FontFamily="/View/Resource/Fonts/#Mariupol" VerticalContentAlignment="Center"
+                                 FontSize="16"
+                                 Width="150" Height="24" Margin="10,0,0,0" Padding="4,0,0,0"
+                                 Background="Transparent" Foreground="White"
+                                 BorderBrush="#3f3f40" BorderThickness="1" >
                         </TextBox>
                     </StackPanel>
 
                 </Grid>
 
             </Grid>
+
+>>>>>>> Stashed changes
+
         </Border>
+
     </Grid>
 </UserControl>
