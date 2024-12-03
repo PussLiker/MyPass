@@ -24,10 +24,5 @@ namespace mypass.View
         {
             InitializeComponent();
         }
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !int.TryParse(e.Text, out _);
-        }
-
     }
 }
