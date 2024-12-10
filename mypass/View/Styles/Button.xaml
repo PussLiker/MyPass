@@ -1,4 +1,4 @@
-﻿    <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     >
 
@@ -111,4 +111,143 @@
         <Setter Property="Margin" Value="0,5,0,0" />
 
     </Style>
+
+
+
+
+    
+    <Style x:Key="AnimatedButtonStyle" TargetType="Border">
+        <Setter Property="Background" Value="#202020" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation 
+                        Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" 
+                        From="#202020" 
+                        To="#3f3f40" 
+                        Duration="0:0:0.1" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation 
+                        Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" 
+                        From="#3f3f40" 
+                        To="#202020" 
+                        Duration="0:0:0.1" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="AnimatedButtonStyleCopy" TargetType="Border">
+        <Setter Property="Background" Value="#3f3f40" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation 
+                        Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" 
+                        From="#3f3f40" 
+                        To="#202020" 
+                        Duration="0:0:0.1" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation 
+                        Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" 
+                        From="#202020" 
+                        To="#3f3f40" 
+                        Duration="0:0:0.1" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ForBorderPassLen" TargetType="Border">
+        <Setter Property="BorderBrush" Value="#636364" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+        
+        <Style.Triggers>
+            
+            
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="CustomCheckBoxStyle" TargetType="CheckBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Кастомный фон для галочки -->
+                        <Border x:Name="CheckMarkBorder"
+                            Width="20" Height="20" CornerRadius="5"
+                            BorderThickness="2" 
+                            BorderBrush="#3f3f40" 
+                            Background="Transparent"
+                            VerticalAlignment="Center">
+                            <Path x:Name="CheckMark"
+                              Visibility="Collapsed"
+                              Data="M 3 10 L 8 15 L 15 5"
+                              Stroke="White"
+                              StrokeThickness="2" 
+                              StrokeLineJoin="Round" />
+                        </Border>
+
+                        <!-- Текст рядом с галочкой -->
+                        <TextBlock Text="{TemplateBinding Content}"
+                               FontFamily="/View/Resource/Fonts/#Mariupol"
+                               Foreground="White" 
+                               VerticalAlignment="Center"
+                               FontSize="16"
+                               Margin="10,0,0,0"/>
+                    </StackPanel>
+
+                    <!-- Триггеры для визуального взаимодействия -->
+                    <ControlTemplate.Triggers>
+                        <!-- При наведении -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="#636364" />
+                        </Trigger>
+
+                        <!-- При нажатии -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="CheckMarkBorder" Property="Background" Value="#3f3f40" />
+                        </Trigger>
+
+                        <!-- При выборе -->
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="CheckMarkBorder" Property="Background" Value="#202020" />
+                            <Setter TargetName="CheckMarkBorder" Property="BorderBrush" Value="#202020" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="CheckMark"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         From="0" To="1" Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
 </ResourceDictionary>

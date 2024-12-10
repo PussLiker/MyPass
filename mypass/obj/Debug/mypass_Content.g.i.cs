@@ -8,6 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("view/resource/images/pictures/photo_6_2024-11-18_20-02-52.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("view/resource/images/white/%d1%81%d1%82%d1%80%d0%b5%d0%bb%d0%ba%d0%b0_%d0%b2%d0%b" +
+    "b%d0%b5%d0%b2%d0%be_pressed.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("view/resource/images/white/%d1%81%d1%82%d1%80%d0%b5%d0%bb%d0%ba%d0%b0_%d0%b2%d0%b" +
+    "f%d1%80%d0%b0%d0%b2%d0%be_pressed.png")]
 
 

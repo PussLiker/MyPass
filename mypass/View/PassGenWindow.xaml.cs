@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace mypass.View
 {
     /// <summary>
-    /// Логика взаимодействия для PassGen.xaml
+    /// Логика взаимодействия для PassGenWindow.xaml
     /// </summary>
-    public partial class PassGen : UserControl
+    public partial class PassGenWindow : Window
     {
-        public PassGen()
+        public PassGenWindow()
         {
             InitializeComponent();
         }
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !int.TryParse(e.Text, out _);
-        }
-
     }
 }

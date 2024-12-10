@@ -74,3 +74,5 @@ D:\Repositorys\MyPass\mypass\obj\Debug\mypass.csproj.GenerateResource.cache
 D:\Repositorys\MyPass\mypass\obj\Debug\mypass.csproj.CoreCompileInputs.cache
 D:\Repositorys\MyPass\mypass\obj\Debug\mypass.exe
 D:\Repositorys\MyPass\mypass\obj\Debug\mypass.pdb
+D:\Repositorys\MyPass\mypass\obj\Debug\View\PassGenWindow.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\View\PassGenWindow.baml
