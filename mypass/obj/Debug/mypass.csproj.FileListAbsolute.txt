@@ -1,0 +1,120 @@
+D:\App\mypass\obj\Debug\mypass.csproj.AssemblyReference.cache
+D:\App\mypass\obj\Debug\View\Styles\Button.baml
+D:\App\mypass\obj\Debug\View\Styles\Images.baml
+D:\App\mypass\obj\Debug\View\Styles\Page.baml
+D:\App\mypass\obj\Debug\View\Styles\Text.baml
+D:\App\mypass\obj\Debug\View\AllPasses.g.cs
+D:\App\mypass\obj\Debug\View\Cards.g.cs
+D:\App\mypass\obj\Debug\MainWindow.g.cs
+D:\App\mypass\obj\Debug\View\Emails.g.cs
+D:\App\mypass\obj\Debug\View\MainMenu.g.cs
+D:\App\mypass\obj\Debug\View\Nofitications.g.cs
+D:\App\mypass\obj\Debug\View\PassCheck.g.cs
+D:\App\mypass\obj\Debug\View\Accounts.g.cs
+D:\App\mypass\obj\Debug\View\PassGen.g.cs
+D:\App\mypass\obj\Debug\App.g.cs
+D:\App\mypass\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\App\mypass\obj\Debug\mypass_MarkupCompile.cache
+D:\App\mypass\obj\Debug\mypass_MarkupCompile.lref
+D:\App\mypass\bin\Debug\mypass.exe.config
+D:\App\mypass\bin\Debug\mypass.exe
+D:\App\mypass\bin\Debug\mypass.pdb
+D:\App\mypass\obj\Debug\App.baml
+D:\App\mypass\obj\Debug\Utilities\DataTemplate.baml
+D:\App\mypass\obj\Debug\View\AllPasses.baml
+D:\App\mypass\obj\Debug\View\Cards.baml
+D:\App\mypass\obj\Debug\MainWindow.baml
+D:\App\mypass\obj\Debug\View\Emails.baml
+D:\App\mypass\obj\Debug\View\MainMenu.baml
+D:\App\mypass\obj\Debug\View\Nofitications.baml
+D:\App\mypass\obj\Debug\View\PassCheck.baml
+D:\App\mypass\obj\Debug\View\Accounts.baml
+D:\App\mypass\obj\Debug\View\PassGen.baml
+D:\App\mypass\obj\Debug\mypass.g.resources
+D:\App\mypass\obj\Debug\mypass.Properties.Resources.resources
+D:\App\mypass\obj\Debug\mypass.csproj.GenerateResource.cache
+D:\App\mypass\obj\Debug\mypass.csproj.CoreCompileInputs.cache
+D:\App\mypass\obj\Debug\mypass.exe
+D:\App\mypass\obj\Debug\mypass.pdb
+D:\App\mypass\obj\Debug\View\PassGenWindow.g.cs
+D:\App\mypass\obj\Debug\View\PassGenWindow.baml
+D:\App — копия\mypass\bin\Debug\mypass.exe.config
+D:\App — копия\mypass\bin\Debug\mypass.exe
+D:\App — копия\mypass\bin\Debug\mypass.pdb
+D:\App — копия\mypass\obj\Debug\mypass.csproj.AssemblyReference.cache
+D:\App — копия\mypass\obj\Debug\View\Styles\Button.baml
+D:\App — копия\mypass\obj\Debug\View\Styles\Images.baml
+D:\App — копия\mypass\obj\Debug\View\Styles\Page.baml
+D:\App — копия\mypass\obj\Debug\View\Styles\Text.baml
+D:\App — копия\mypass\obj\Debug\View\AllPasses.g.cs
+D:\App — копия\mypass\obj\Debug\View\Cards.g.cs
+D:\App — копия\mypass\obj\Debug\MainWindow.g.cs
+D:\App — копия\mypass\obj\Debug\View\Emails.g.cs
+D:\App — копия\mypass\obj\Debug\View\MainMenu.g.cs
+D:\App — копия\mypass\obj\Debug\View\Nofitications.g.cs
+D:\App — копия\mypass\obj\Debug\View\PassCheck.g.cs
+D:\App — копия\mypass\obj\Debug\View\Accounts.g.cs
+D:\App — копия\mypass\obj\Debug\View\PassGen.g.cs
+D:\App — копия\mypass\obj\Debug\View\PassGenWindow.g.cs
+D:\App — копия\mypass\obj\Debug\App.g.cs
+D:\App — копия\mypass\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\App — копия\mypass\obj\Debug\mypass_MarkupCompile.cache
+D:\App — копия\mypass\obj\Debug\mypass_MarkupCompile.lref
+D:\App — копия\mypass\obj\Debug\App.baml
+D:\App — копия\mypass\obj\Debug\Utilities\DataTemplate.baml
+D:\App — копия\mypass\obj\Debug\View\AllPasses.baml
+D:\App — копия\mypass\obj\Debug\View\Cards.baml
+D:\App — копия\mypass\obj\Debug\MainWindow.baml
+D:\App — копия\mypass\obj\Debug\View\Emails.baml
+D:\App — копия\mypass\obj\Debug\View\MainMenu.baml
+D:\App — копия\mypass\obj\Debug\View\Nofitications.baml
+D:\App — копия\mypass\obj\Debug\View\PassCheck.baml
+D:\App — копия\mypass\obj\Debug\View\Accounts.baml
+D:\App — копия\mypass\obj\Debug\View\PassGen.baml
+D:\App — копия\mypass\obj\Debug\View\PassGenWindow.baml
+D:\App — копия\mypass\obj\Debug\mypass.g.resources
+D:\App — копия\mypass\obj\Debug\mypass.Properties.Resources.resources
+D:\App — копия\mypass\obj\Debug\mypass.csproj.GenerateResource.cache
+D:\App — копия\mypass\obj\Debug\mypass.csproj.CoreCompileInputs.cache
+D:\App — копия\mypass\obj\Debug\mypass.exe
+D:\App — копия\mypass\obj\Debug\mypass.pdb
+D:\Repositorys\MyPass\mypass\bin\Debug\mypass.exe.config
+D:\Repositorys\MyPass\mypass\bin\Debug\mypass.exe
+D:\Repositorys\MyPass\mypass\bin\Debug\mypass.pdb
+D:\Repositorys\MyPass\mypass\obj\Debug\mypass.csproj.AssemblyReference.cache
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Styles\Button.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Styles\Images.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Styles\Page.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Styles\Text.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\AllPasses.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Cards.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\MainWindow.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Emails.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\View\MainMenu.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Nofitications.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\View\PassCheck.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Accounts.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\View\PassGen.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\View\PassGenWindow.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\App.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\mypass_MarkupCompile.cache
+D:\Repositorys\MyPass\mypass\obj\Debug\mypass_MarkupCompile.lref
+D:\Repositorys\MyPass\mypass\obj\Debug\App.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\Utilities\DataTemplate.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\AllPasses.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Cards.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\MainWindow.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Emails.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\MainMenu.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Nofitications.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\PassCheck.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Accounts.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\PassGen.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\PassGenWindow.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\mypass.g.resources
+D:\Repositorys\MyPass\mypass\obj\Debug\mypass.Properties.Resources.resources
+D:\Repositorys\MyPass\mypass\obj\Debug\mypass.csproj.GenerateResource.cache
+D:\Repositorys\MyPass\mypass\obj\Debug\mypass.csproj.CoreCompileInputs.cache
+D:\Repositorys\MyPass\mypass\obj\Debug\mypass.exe
+D:\Repositorys\MyPass\mypass\obj\Debug\mypass.pdb

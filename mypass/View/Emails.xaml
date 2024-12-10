@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="mypass.View.Emails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                          xmlns:vm="clr-namespace:mypass.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="680" d:DesignWidth="810"
+             Style="{StaticResource PageStyle}">
+
+    <UserControl.DataContext>
+        <vm:EmailsVM/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <Border CornerRadius="0,20,20,0" Background="#1a1a1d" />
+        <TextBlock Text="hui" Style="{StaticResource TextStyle}" />
+
+        <Border Background="#1a1a1d" />
+        <TextBlock Text="papapewa" Style="{StaticResource TextStyle}" />
+
+    </Grid>
+</UserControl>
