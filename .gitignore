@@ -2,3 +2,5 @@
 /mypass/.vs
 /mypass/.vs
 *.json
+/mypass/obj/Debug
+/mypass/bin/Debug
