@@ -21,6 +21,7 @@
 
     </Window.Resources>
 
+    
     <Window.DataContext>
         <vm:NavigationVM />
     </Window.DataContext>
@@ -135,7 +136,7 @@
                               >
 
                         <Grid>
-                            
+
                             <TextBlock Text="Проверка паролей"
                                        Style="{StaticResource TextStyle}" 
                                        HorizontalAlignment="Left"/>
@@ -155,13 +156,28 @@
 
                 </StackPanel>
             </Grid>
-
             <Grid Grid.Column="1">
 
                 <ContentControl x:Name="Pages" 
                                 Content="{Binding CurrentView}" />
             </Grid>
+            <!-- Top Bar for Drag and Control Buttons -->
+            <Grid Grid.ColumnSpan="2" VerticalAlignment="Top" Height="40" MouseLeftButtonDown="TopBar_MouseLeftButtonDown">
+                <Border Background="#222" CornerRadius="20,20,0,0" />
+                <Grid Margin="10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- Control Buttons -->
+                    <StackPanel Orientation="Horizontal" Grid.Column="1">
+                        <Button Content="_" Width="30" Height="30" Margin="5,5" Command="{Binding MinimizeCommand}"/>
+                        <Button Content="☐" Width="30" Height="30" Margin="5,5" Command="{Binding MaximizeCommand}"/>
+                        <Button Content="X" Width="30" Height="30" Margin="5,5" Command="{Binding CloseCommand}"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
         </Grid>
-
     </Grid>
 </Window>
