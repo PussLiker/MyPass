@@ -4,3 +4,7 @@
 *.json
 /bin/Debug
 /obj/Debug
+/.vs/App
+/.vs
+/mypass/bin/Debug
+/mypass/obj/Debug
