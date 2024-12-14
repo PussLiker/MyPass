@@ -14,11 +14,6 @@
     <Window.Resources>
 
         <SolidColorBrush x:Key="Background" Color="#1a1a1d" />
-        <SolidColorBrush x:Key="TextColor" Color="#212124" />
-
-        <SolidColorBrush x:Key="Pink" Color="#950740" />
-        <SolidColorBrush x:Key="lightPink" Color="#c3073f" />
-
     </Window.Resources>
 
     
@@ -162,7 +157,7 @@
                                 Content="{Binding CurrentView}" />
             </Grid>
             <!-- Top Bar for Drag and Control Buttons -->
-            <Grid Grid.ColumnSpan="2" VerticalAlignment="Top" Height="40" MouseLeftButtonDown="TopBar_MouseLeftButtonDown">
+            <Grid Grid.ColumnSpan="2" VerticalAlignment="Top" Height="40" MouseLeftButtonDown="TopBar_MouseLeftButtonDown" Background="Transparent">
                 <Border Background="#222" CornerRadius="20,20,0,0" />
                 <Grid Margin="10,0">
                     <Grid.ColumnDefinitions>

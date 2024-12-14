@@ -13,11 +13,11 @@
     </UserControl.DataContext>
 
     <Grid>
-        <Border CornerRadius="0,20,20,0" Background="#1a1a1d" />
-        <TextBlock Text="hui" Style="{StaticResource TextStyle}" />
+        <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
 
-        <Border Background="#1a1a1d" />
-        <TextBlock Text="papapewa" Style="{StaticResource TextStyle}" />
+            <TextBlock Text="Emails" Style="{StaticResource TextStyle}" />
+
+        </Border>
 
     </Grid>
 </UserControl>
