@@ -2,3 +2,5 @@
 /mypass/.vs
 /mypass/.vs
 *.json
+/bid/Debug
+/obj/Debug
