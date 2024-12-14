@@ -134,6 +134,9 @@
     <Compile Include="View\PassGenWindow.xaml.cs">
       <DependentUpon>PassGenWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Vhod.xaml.cs">
+      <DependentUpon>Vhod.xaml</DependentUpon>
+    </Compile>
     <Page Include="Utilities\DataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -205,6 +208,10 @@
     <Page Include="View\Styles\Text.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Vhod.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

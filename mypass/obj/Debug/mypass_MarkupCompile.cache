@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\project\mypass\obj\Debug\
+D:\Repositorys\MyPass\mypass\obj\Debug\
 mypass
 none
 false
 DEBUG;TRACE
-C:\project\mypass\App.xaml
-15946083782
+D:\Repositorys\MyPass\mypass\App.xaml
+16-1925480674
 
-32-1376491582
-130870764853
-Utilities\DataTemplate.xaml;View\AllPasses.xaml;View\Cards.xaml;View\MainWindow.xaml;View\Emails.xaml;View\MainMenu.xaml;View\Nofitications.xaml;View\PassCheck.xaml;View\Accounts.xaml;View\PassGen.xaml;View\PassGenWindow.xaml;View\Styles\Button.xaml;View\Styles\Images.xaml;View\Styles\Page.xaml;View\Styles\Text.xaml;
+33-793589958
+130-59900869
+Utilities\DataTemplate.xaml;View\AllPasses.xaml;View\Cards.xaml;View\MainWindow.xaml;View\Emails.xaml;View\MainMenu.xaml;View\Nofitications.xaml;View\PassCheck.xaml;View\Accounts.xaml;View\PassGen.xaml;View\PassGenWindow.xaml;View\Styles\Button.xaml;View\Styles\Images.xaml;View\Styles\Page.xaml;View\Styles\Text.xaml;View\Vhod.xaml;
 
 False
 

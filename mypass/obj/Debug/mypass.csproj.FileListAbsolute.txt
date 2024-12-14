@@ -88,7 +88,6 @@ D:\Repositorys\MyPass\mypass\obj\Debug\View\Styles\Page.baml
 D:\Repositorys\MyPass\mypass\obj\Debug\View\Styles\Text.baml
 D:\Repositorys\MyPass\mypass\obj\Debug\View\AllPasses.g.cs
 D:\Repositorys\MyPass\mypass\obj\Debug\View\Cards.g.cs
-D:\Repositorys\MyPass\mypass\obj\Debug\MainWindow.g.cs
 D:\Repositorys\MyPass\mypass\obj\Debug\View\Emails.g.cs
 D:\Repositorys\MyPass\mypass\obj\Debug\View\MainMenu.g.cs
 D:\Repositorys\MyPass\mypass\obj\Debug\View\Nofitications.g.cs
@@ -104,7 +103,6 @@ D:\Repositorys\MyPass\mypass\obj\Debug\App.baml
 D:\Repositorys\MyPass\mypass\obj\Debug\Utilities\DataTemplate.baml
 D:\Repositorys\MyPass\mypass\obj\Debug\View\AllPasses.baml
 D:\Repositorys\MyPass\mypass\obj\Debug\View\Cards.baml
-D:\Repositorys\MyPass\mypass\obj\Debug\MainWindow.baml
 D:\Repositorys\MyPass\mypass\obj\Debug\View\Emails.baml
 D:\Repositorys\MyPass\mypass\obj\Debug\View\MainMenu.baml
 D:\Repositorys\MyPass\mypass\obj\Debug\View\Nofitications.baml
@@ -198,3 +196,7 @@ C:\project\mypass\obj\Debug\mypass.Properties.Resources.resources
 C:\project\mypass\obj\Debug\mypass.csproj.GenerateResource.cache
 C:\project\mypass\obj\Debug\mypass.csproj.CoreCompileInputs.cache
 C:\project\mypass\obj\Debug\mypass.csproj.Up2Date
+D:\Repositorys\MyPass\mypass\obj\Debug\View\MainWindow.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Vhod.g.cs
+D:\Repositorys\MyPass\mypass\obj\Debug\View\MainWindow.baml
+D:\Repositorys\MyPass\mypass\obj\Debug\View\Vhod.baml
