@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:mypass.View"
+        xmlns:local="clr-namespace:mypass.ViewModel"
         mc:Ignorable="d"
         Title="MyPass" Height="450" Width="400" WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="Transparent" AllowsTransparency="True">
@@ -41,7 +41,7 @@
 
                 <!-- Кнопка входа -->
                 <Button Content="Войти" Style="{StaticResource ButtonSimp}"  Width="250" Height="40" Command="{Binding LoginCommand}" Cursor="Hand">
-                  
+              
                 </Button> 
             </StackPanel>
         </Border>

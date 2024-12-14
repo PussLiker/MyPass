@@ -110,6 +110,7 @@
     <Compile Include="ViewModel\NofiticationsVM.cs" />
     <Compile Include="ViewModel\PassCheckVM.cs" />
     <Compile Include="ViewModel\PassGenVM.cs" />
+    <Compile Include="ViewModel\VhodVM.cs" />
     <Compile Include="View\Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
