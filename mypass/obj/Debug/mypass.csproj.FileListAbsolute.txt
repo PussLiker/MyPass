@@ -118,3 +118,8 @@ D:\Repositorys\MyPass\mypass\obj\Debug\mypass.csproj.GenerateResource.cache
 D:\Repositorys\MyPass\mypass\obj\Debug\mypass.csproj.CoreCompileInputs.cache
 D:\Repositorys\MyPass\mypass\obj\Debug\mypass.exe
 D:\Repositorys\MyPass\mypass\obj\Debug\mypass.pdb
+D:\App\mypass\bin\Debug\MahApps.Metro.IconPacks.Core.dll
+D:\App\mypass\bin\Debug\MahApps.Metro.IconPacks.Material.dll
+D:\App\mypass\bin\Debug\MahApps.Metro.IconPacks.Core.xml
+D:\App\mypass\bin\Debug\MahApps.Metro.IconPacks.Material.xml
+D:\App\mypass\obj\Debug\mypass.csproj.Up2Date
