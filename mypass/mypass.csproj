@@ -93,11 +93,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\DataBase %282%29.cs" />
+    <Compile Include="Model\AccountsDB.cs" />
+    <Compile Include="Model\DataBase.cs" />
     <Compile Include="Model\EncryptionModel.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
-    <Compile Include="Model\Program %282%29.cs" />
-    <Compile Include="Model\UserDB %282%29.cs" />
+    <Compile Include="Model\TagsAccountsDB.cs" />
+    <Compile Include="Model\TagsDB.cs" />
+    <Compile Include="Model\UserDB.cs" />
     <Compile Include="Utilities\Btn.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
@@ -232,7 +234,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Model\MyPass.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -39,21 +39,15 @@ namespace mypass.Model
         }
 
         // Конструктор для инициализации ID пользователя и строки подключения
-        public UsersDB(string databasePath, string password, int id, string name, string masterpasswordhash, string salt)
-            : base(databasePath, password)
-        {
-            _id = id;
-            _name = name;
-            _masterpasswordhash = masterpasswordhash;
-            _salt = salt;
-        }
+        public UsersDB(string databasePath, string password) : base(databasePath, password) { }
+
 
         // Метод для добавления нового пользователя
         public void AddUser(string name, string masterpasswordhash, string salt)
         {
             OpenConnection();
 
-            string query = "INSERT INTO 'Users' (Username, MasterPasswordHash, Salt) VALUES (@Username, @MasterPasswordHash, @Salt);";
+            string query = "INSERT INTO Users (Username, MasterPasswordHash, Salt) VALUES (@Username, @MasterPasswordHash, @Salt);";
 
             using (var command = _connection.CreateCommand())
             {
@@ -68,20 +62,23 @@ namespace mypass.Model
         }
 
         // Метод удаления нового пользователя
-        public void RemoveUser(string name)
+        public bool RemoveUser(string name)
         {
             OpenConnection();
 
             string query = "DELETE FROM Users WHERE Username = @Username;";
+            int affectedRows = 0;
 
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = query;
                 command.Parameters.AddWithValue("@Username", name);
-                command.ExecuteNonQuery();
+                affectedRows = command.ExecuteNonQuery();
             }
 
             CloseConnection();
+
+            return affectedRows > 0; // Возвращаем true, если пользователь был удалён
         }
 
         // Метод для получения полной информации о "Users"
@@ -116,6 +113,29 @@ namespace mypass.Model
 
             CloseConnection();
             return userDataDictionary;
+        }
+        // Метод для обновления данных пользователя
+        public bool UpdateUser(int iduser, string newName, string newPasswordHash, string newSalt)
+        {
+            OpenConnection();
+
+            string query = "UPDATE Users SET Username = @Username, MasterPasswordHash = @MasterPasswordHash, Salt = @Salt WHERE IdUser = @IdUser;";
+            int affectedRows;
+
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = query;
+                command.Parameters.AddWithValue("@IdUser", iduser);
+                command.Parameters.AddWithValue("@Username", newName);
+                command.Parameters.AddWithValue("@MasterPasswordHash", newPasswordHash);
+                command.Parameters.AddWithValue("@Salt", newSalt);
+
+                affectedRows = command.ExecuteNonQuery();
+            }
+
+            CloseConnection();
+
+            return affectedRows > 0; // Возвращает true, если обновление прошло успешно
         }
     }
 }
