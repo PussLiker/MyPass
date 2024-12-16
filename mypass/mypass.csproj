@@ -94,11 +94,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\AccountsDB.cs" />
+    <Compile Include="Model\ActionsDB.cs" />
     <Compile Include="Model\DataBase.cs" />
     <Compile Include="Model\EncryptionModel.cs" />
+    <Compile Include="Model\EventsDB.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
     <Compile Include="Model\TagsAccountsDB.cs" />
     <Compile Include="Model\TagsDB.cs" />
+    <Compile Include="Model\TypeEventsDB.cs" />
     <Compile Include="Model\UserDB.cs" />
     <Compile Include="Utilities\Btn.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
