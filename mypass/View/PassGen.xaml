@@ -6,7 +6,6 @@
              xmlns:vm="clr-namespace:mypass.ViewModel"
              xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:Menu="clr-namespace:mypass.Utilities"
-
              xmlns:local="clr-namespace:mypass.Utilities"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
 
@@ -66,7 +65,7 @@
                             Opacity="0"
                             BorderThickness="0"
                             Cursor="Hand"
-                            IsDefault="True" Click="Button_Click_1">
+                            IsDefault="True">
                                 </Button>
                             </Border>
                         </Grid>
@@ -77,7 +76,7 @@
                             >
                                 <Button Command="{Binding CopyTextCommand}"
                                 CommandParameter="{Binding Text}"
-                                Opacity="0" Cursor="Hand" Click="Button_Click" />
+                                Opacity="0" Cursor="Hand"/>
 
 
                             </Border>
