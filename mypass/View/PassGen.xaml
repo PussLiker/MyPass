@@ -4,9 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:mypass.ViewModel"
-
+             xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:Menu="clr-namespace:mypass.Utilities"
-
              xmlns:local="clr-namespace:mypass.Utilities"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
 
@@ -22,12 +21,21 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="35" />
+                    <RowDefinition Height="45" />
                     <RowDefinition Height="50" />
                     <RowDefinition Height="35" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
+                <Grid Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0">
+                        
+                        <Icons:PackIconMaterial Kind="CloseCircle" Height="25" Width="25" Margin="20,10,0,10"
+                                                 Foreground="#FFBFEBFE" HorizontalAlignment="Right" Cursor="Hand"
+                                                MouseLeftButtonDown="PackIconMaterial_MouseLeftButtonDown"
+                                                />
+                    </StackPanel>
+                </Grid>
                 <Grid Grid.Row ="1" Name="PassBlock">
 
                     <StackPanel Orientation="Horizontal" Margin="5">
@@ -68,7 +76,7 @@
                             >
                                 <Button Command="{Binding CopyTextCommand}"
                                 CommandParameter="{Binding Text}"
-                                Opacity="0" Cursor="Hand" />
+                                Opacity="0" Cursor="Hand"/>
 
 
                             </Border>
