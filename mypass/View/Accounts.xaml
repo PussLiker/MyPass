@@ -14,9 +14,10 @@
     
     <Grid>
 
+        <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
 
-        <Border CornerRadius="0,20,20,0" Background="#1a1a1d" />
-        <TextBlock Text="pizda" Style="{StaticResource TextStyle}" />
-        
+        <TextBlock Text="Accounts" Style="{StaticResource TextStyle}" />
+
+        </Border>
     </Grid>
 </UserControl>

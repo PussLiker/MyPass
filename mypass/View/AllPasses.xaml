@@ -11,9 +11,10 @@
     <UserControl.DataContext>
         <vm:AllPassesVM/>
     </UserControl.DataContext>
-    
+
     <Grid>
-        <Border CornerRadius="0,20,20,0" Background="#1a1a1d" />
-        <TextBlock Text="pisun" Style="{StaticResource TextStyle}" />
+        <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
+            
+        </Border>
     </Grid>
 </UserControl>

@@ -13,8 +13,12 @@
     </UserControl.DataContext>
 
     <Grid>
-        <Border CornerRadius="0,20,20,0" Background="#1a1a1d" />
-        <TextBlock Text="jopa" Style="{StaticResource TextStyle}" />
+        <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
+
+            <TextBlock Text="Cards" Style="{StaticResource TextStyle}" />
+
+        </Border>
+
     </Grid>
 </UserControl>
 

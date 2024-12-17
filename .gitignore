@@ -2,3 +2,8 @@
 /mypass/.vs
 /mypass/.vs
 *.json
+/mypass/obj/Debug
+/mypass/bin/Debug
+mypass/obj/Debug/MainWindow.baml
+mypass/obj/Debug/MainWindow.g.cs
+
