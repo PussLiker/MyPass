@@ -29,10 +29,5 @@ namespace mypass.View
             e.Handled = !int.TryParse(e.Text, out _);
         }
 
-        
-        private void PackIconMaterial_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
     }
 }
