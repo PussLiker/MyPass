@@ -74,35 +74,31 @@ namespace mypass.Model
         // Функция для открытия соединения
         public void OpenConnection()
         {
-            try
+
+            if (_connection == null)
             {
-                if (_connection == null)
+                _connection = new SQLiteConnection(_connectionString);
+            }
+
+            if (_connection.State != ConnectionState.Open)
+            {
+                _connection.Open();
+
+                using (var command = _connection.CreateCommand())
                 {
-                    _connection = new SQLiteConnection(_connectionString);
+                    command.CommandText = $"PRAGMA key = '{_password}';";
+                    command.ExecuteNonQuery();
                 }
 
-                if (_connection.State != ConnectionState.Open)
+                // Проверить доступность базы данных после установки пароля
+                using (var command = _connection.CreateCommand())
                 {
-                    _connection.Open();
-
-                    using (var command = _connection.CreateCommand())
-                    {
-                        command.CommandText = $"PRAGMA key = '{_password}';";
-                        command.ExecuteNonQuery();
-                    }
-
-                    // Проверить доступность базы данных после установки пароля
-                    using (var command = _connection.CreateCommand())
-                    {
-                        command.CommandText = "SELECT count(*) FROM sqlite_master;";
-                        command.ExecuteScalar();
-                    }
+                    command.CommandText = "SELECT count(*) FROM sqlite_master;";
+                    command.ExecuteScalar();
                 }
             }
-            catch (Exception ex)
-            {
-                // Ловим ошибку
-            }
+
+
         }
 
         // Функция для закрытия соединения
