@@ -34,6 +34,7 @@ namespace mypass.ViewModel
         public ICommand VhodStartCommand {  get; set; }
         public ICommand VhodButtonCommand {  get; set; }
 
+
         private void Accounts(object obj) => CurrentView = new AccountsVM();
         private void AllPasses(object obj) => CurrentView = new AllPassesVM();
         private void Cards(object obj) => CurrentView = new CardsVM();
