@@ -11,7 +11,6 @@ public static class DebugConfig
     private static string debugFolderPath; // Путь к папке Debug
 
     // Метод для загрузки настроек из файла
-    // Метод для загрузки настроек из файла
     public static void LoadConfig()
     {
         try

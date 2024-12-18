@@ -1,17 +1,17 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
 using System.Data;
-using System.Data.Common;
+//using System.Data.Common;
 using System.Data.SQLite;
 
-using Microsoft.Data.Sqlite;
-using System.Linq.Expressions;
-using System.Diagnostics;
+//using Microsoft.Data.Sqlite;
+//using System.Linq.Expressions;
+//using System.Diagnostics;
 
 namespace mypass.Model
 {
@@ -22,44 +22,45 @@ namespace mypass.Model
         public static void CreateEncryptedDatabase(string clientName, string password)
         {
             // !!!Для отладки использовать Manager!!!
-            //var Manager = new DataBaseManager();
-            //Manager.InitTransaction("Создание шифрованной бд");
+            var Manager = new DataBaseManager();
+            Manager.InitTransaction("Создание шифрованной бд");
             
             // Путь для создания папки Debug
             string targetPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\", "DataBase"));
-            //Manager.MessageError($"Перешёл в путь для создания папки DataBase: {targetPath}");
+            Manager.MessageError($"Перешёл в путь для создания папки DataBase: {targetPath}");
 
             // Проверяем и создаем папку, если её нет
             if (!Directory.Exists(targetPath))
             {
                 Directory.CreateDirectory(targetPath);
-                //Manager.MessageError("Создана папка DataBase");
+                Manager.MessageError("Создана папка DataBase");
             }
 
             // Финальный путь для создания файла
             string databasePath = Path.Combine(targetPath, $"{clientName}.db3");
-            //Manager.MessageError($"Создан путь к БД, а также сама БД: {databasePath}");
+            Manager.MessageError($"Создан путь к БД, а также сама БД: {databasePath}");
 
             // Если база данных уже существует, удалить её
             if (File.Exists(databasePath))
             {
                 File.Delete(databasePath);
-                //Manager.MessageError("Удаление базы данных");
+                Manager.MessageError("Удаление базы данных, если файл уже создан");
             }
 
             // Установить пароль шифрования
             using (var newConnection = new SQLiteConnection($"Data Source={databasePath};Version=3;"))
             {
                 newConnection.Open();
+                Manager.MessageError("Установка соединения с БД");
 
                 // Установить пароль шифрования
                 using (var command = newConnection.CreateCommand())
                 {
                     // Ставим пароль
                     command.CommandText = $"PRAGMA key = '{password}';";
+                    Manager.MessageError("Установление пароля в БД");
                     command.ExecuteNonQuery();
-
-                    //Manager.CloseTransaction($"Завершение создания бд: {clientName}");
+                    Manager.CloseTransaction($"Завершение создания бд: {clientName}");
                 }
             }
         }
@@ -85,6 +86,7 @@ namespace mypass.Model
             {
                 SQLiteConnection.CreateFile(_databasePath);
                 InitializeDatabase(); // Инициализация таблиц при создании файла БД
+                
             }
 
             string connectionString = $"Data Source={_databasePath};Version=3;Password={_password};";

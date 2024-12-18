@@ -46,7 +46,7 @@ namespace mypass.ViewModel
                 _passGenWindow.Closed += (s, args) => _passGenWindow = null;
                 _passGenWindow.Show();
 
-                // !!!!!!!!!!!!!!!!!!!!!!!!!
+                // Пример загрузки дебага + создания бд
                 //DebugConfig.LoadConfig();
                 //string namedb = "Dimka";
                 //string passworddb = "ofguh32tr72";
