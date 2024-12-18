@@ -103,12 +103,13 @@
     </ApplicationDefinition>
     <Compile Include="Model\AccountsDB.cs" />
     <Compile Include="Model\ActionsDB.cs" />
+    <Compile Include="Model\CommonPasswordsList.cs" />
     <Compile Include="Model\DataBase.cs" />
-    <Compile Include="Model\DebugConfig.cs" />
     <Compile Include="Model\EncryptionModel.cs" />
     <Compile Include="Model\EventsDB.cs" />
-    <Compile Include="Model\Logging.cs" />
+    <Compile Include="Model\PasswordDoublicateChecker.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
+    <Compile Include="Model\PasswordValidator.cs" />
     <Compile Include="Model\TagsAccountsDB.cs" />
     <Compile Include="Model\TagsDB.cs" />
     <Compile Include="Model\TypeEventsDB.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="ViewModel\NofiticationsVM.cs" />
     <Compile Include="ViewModel\PassCheckVM.cs" />
     <Compile Include="ViewModel\PassGenVM.cs" />
+    <Compile Include="ViewModel\VhodVM.cs" />
     <Compile Include="View\Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using mypass.Model;
 using mypass.Utilities;
 using mypass.View;
 
@@ -14,6 +13,8 @@ namespace mypass.ViewModel
     class NavigationVM : ViewModelBase
     {
         private object _currentView;
+        private Vhod _vhod;
+        private MainWindow _mainWindow;
         private PassGenWindow _passGenWindow; // Поле для хранения ссылки на окно
         public object CurrentView {
             get { return _currentView; }
@@ -29,8 +30,9 @@ namespace mypass.ViewModel
         public ICommand MainMenuCommand { get; set; }
         public ICommand NotificationsCommand { get; set; }
         public ICommand PassCheckCommand { get; set; }
-        public ICommand PassGenCommand { get; set; }
-        public PassGenWindow PassGenWindow { get => _passGenWindow; set => _passGenWindow = value; }
+        public ICommand PassGenCommand { get; set; }        
+        public ICommand VhodStartCommand {  get; set; }
+        public ICommand VhodButtonCommand {  get; set; }
 
         private void Accounts(object obj) => CurrentView = new AccountsVM();
         private void AllPasses(object obj) => CurrentView = new AllPassesVM();
@@ -39,18 +41,27 @@ namespace mypass.ViewModel
         private void MainMenu(object obj) => CurrentView = new MainMenuVM();
         private void Notifications(object obj) => CurrentView = new NofiticationsVM();
         private void PassCheck(object obj) => CurrentView = new PassCheckVM();
+        private void VhodStart(object obj)
+        {
+            if (_mainWindow == null)
+            {
+                _mainWindow = new MainWindow();
+                _mainWindow.Closed += (s, args) => _mainWindow = null;
+                _mainWindow.Show();
+            }
+            else
+                _mainWindow = new MainWindow();
+        }
+        private void VhodButton(object obj)
+        {
+            
+        }
         private void PassGen(object obj) {
             if (_passGenWindow == null)
             {
                 _passGenWindow = new PassGenWindow();
                 _passGenWindow.Closed += (s, args) => _passGenWindow = null;
                 _passGenWindow.Show();
-
-                // Пример загрузки дебага + создания бд
-                //DebugConfig.LoadConfig();
-                //string namedb = "Dimka";
-                //string passworddb = "ofguh32tr72";
-                //DataBaseManager.CreateEncryptedDatabase(namedb, passworddb);
             }
             else
             {
@@ -91,6 +102,7 @@ namespace mypass.ViewModel
             MinimizeCommand = new RelayCommand(Minimize);
             MaximizeCommand = new RelayCommand(Maximize);
             CloseCommand = new RelayCommand(Close);
+            VhodStartCommand = new RelayCommand(VhodStart);
             //начальная страница
             CurrentView = new MainMenuVM();
         }

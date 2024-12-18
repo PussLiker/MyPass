@@ -53,7 +53,7 @@ namespace mypass.ViewModel
         public ICommand IncreasePasswordLengthCommand { get; }
         public ICommand DecreasePasswordLengthCommand { get; }
 
-        private int _passwordLength = 14;
+        private int _passwordLength = 16;
         public int PasswordLength
         {
             get => _passwordLength;
@@ -122,7 +122,7 @@ namespace mypass.ViewModel
             }
         }
 
-        private string _specialCharacters = "!@#$%^&*()";
+        private string _specialCharacters = "~!@#$%^&*+-/.,\\{}[]();:?<>\"'_";
         public string SpecialCharacters
         {
             get => _specialCharacters;

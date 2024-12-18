@@ -36,4 +36,8 @@
         <view:Nofitications/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:VhodVM}">
+        <view:Vhod/>
+    </DataTemplate>
+    
 </ResourceDictionary>
