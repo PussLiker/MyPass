@@ -108,7 +108,6 @@
     <Compile Include="Model\EncryptionModel.cs" />
     <Compile Include="Model\EventsDB.cs" />
     <Compile Include="Model\PasswordDoublicateChecker.cs" />
-    <Compile Include="Model\PasswordCheckResult.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
     <Compile Include="Model\PasswordValidator.cs" />
     <Compile Include="Model\TagsAccountsDB.cs" />
