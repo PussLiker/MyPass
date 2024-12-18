@@ -8,6 +8,44 @@ namespace mypass.Model
 {
     public class AccountsDB : DataBase
     {
+        private int _idaccount;
+        public int IDAccount
+        {
+            get => _idaccount;
+            set => _idaccount = value;
+        }
+        private int _iduser;
+        public int IDUser
+        {
+            get => _iduser;
+            set => _iduser = value;
+        }
+        private string _servisename;
+        public string ServiseName
+        {
+            get => _servisename;
+            set => _servisename = value;
+        }
+        private string _url;
+        public string Url
+        {
+            get => _url;
+            set => _url = value;
+        }
+        private string _login;
+        public string Login
+        {
+            get => _login;
+            set => _login = value;
+        }
+        private string _password;
+        public string Password
+        {
+            get => _password;
+            set => _password = value;
+        }
+
+        // Инициализация конструктора
         public AccountsDB(string databasePath, string password) : base(databasePath, password) { }
 
         // Метод для создания нового аккаунта

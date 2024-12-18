@@ -1,46 +1,66 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
 using System.Data;
-using System.Data.Common;
+//using System.Data.Common;
 using System.Data.SQLite;
 
-using Microsoft.Data.Sqlite;
-using System.Linq.Expressions;
+//using Microsoft.Data.Sqlite;
+//using System.Linq.Expressions;
+//using System.Diagnostics;
 
 namespace mypass.Model
 {
     // Класс для создания БД
-    public static class DataBaseManager
+    public class DataBaseManager : LoggableDB
     {
         // Метод для создания новой базы данных с шифрованием
         public static void CreateEncryptedDatabase(string clientName, string password)
         {
-            // Формирование пути для создания файла бд !! !!
-            string databasePath = Path.Combine(Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + @"\..\..\..\"), $"{clientName}.db3");
+            // !!!Для отладки использовать Manager!!!
+            var Manager = new DataBaseManager();
+            Manager.InitTransaction("Создание шифрованной бд");
+            
+            // Путь для создания папки Debug
+            string targetPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\", "DataBase"));
+            Manager.MessageError($"Перешёл в путь для создания папки DataBase: {targetPath}");
+
+            // Проверяем и создаем папку, если её нет
+            if (!Directory.Exists(targetPath))
+            {
+                Directory.CreateDirectory(targetPath);
+                Manager.MessageError("Создана папка DataBase");
+            }
+
+            // Финальный путь для создания файла
+            string databasePath = Path.Combine(targetPath, $"{clientName}.db3");
+            Manager.MessageError($"Создан путь к БД, а также сама БД: {databasePath}");
 
             // Если база данных уже существует, удалить её
             if (File.Exists(databasePath))
             {
                 File.Delete(databasePath);
+                Manager.MessageError("Удаление базы данных, если файл уже создан");
             }
 
             // Установить пароль шифрования
             using (var newConnection = new SQLiteConnection($"Data Source={databasePath};Version=3;"))
             {
                 newConnection.Open();
+                Manager.MessageError("Установка соединения с БД");
 
                 // Установить пароль шифрования
                 using (var command = newConnection.CreateCommand())
                 {
                     // Ставим пароль
                     command.CommandText = $"PRAGMA key = '{password}';";
+                    Manager.MessageError("Установление пароля в БД");
                     command.ExecuteNonQuery();
-
+                    Manager.CloseTransaction($"Завершение создания бд: {clientName}");
                 }
             }
         }
@@ -49,6 +69,7 @@ namespace mypass.Model
     // Класс БД-шки
     public class DataBase
     {
+
         protected string _connectionString;
         protected SQLiteConnection _connection;
         private string _password;
@@ -65,6 +86,7 @@ namespace mypass.Model
             {
                 SQLiteConnection.CreateFile(_databasePath);
                 InitializeDatabase(); // Инициализация таблиц при создании файла БД
+                
             }
 
             string connectionString = $"Data Source={_databasePath};Version=3;Password={_password};";
@@ -74,31 +96,35 @@ namespace mypass.Model
         // Функция для открытия соединения
         public void OpenConnection()
         {
-
-            if (_connection == null)
+            try
             {
-                _connection = new SQLiteConnection(_connectionString);
-            }
-
-            if (_connection.State != ConnectionState.Open)
-            {
-                _connection.Open();
-
-                using (var command = _connection.CreateCommand())
+                if (_connection == null)
                 {
-                    command.CommandText = $"PRAGMA key = '{_password}';";
-                    command.ExecuteNonQuery();
+                    _connection = new SQLiteConnection(_connectionString);
                 }
 
-                // Проверить доступность базы данных после установки пароля
-                using (var command = _connection.CreateCommand())
+                if (_connection.State != ConnectionState.Open)
                 {
-                    command.CommandText = "SELECT count(*) FROM sqlite_master;";
-                    command.ExecuteScalar();
+                    _connection.Open();
+
+                    using (var command = _connection.CreateCommand())
+                    {
+                        command.CommandText = $"PRAGMA key = '{_password}';";
+                        command.ExecuteNonQuery();
+                    }
+
+                    // Проверить доступность базы данных после установки пароля
+                    using (var command = _connection.CreateCommand())
+                    {
+                        command.CommandText = "SELECT count(*) FROM sqlite_master;";
+                        command.ExecuteScalar();
+                    }
                 }
             }
+            catch (Exception)
+            {
 
-
+            }
         }
 
         // Функция для закрытия соединения
