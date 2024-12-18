@@ -10,7 +10,7 @@
         WindowStyle="None" Background="Transparent" AllowsTransparency="True" MaxHeight="300" MaxWidth="400">
     <Grid MouseDown="Grid_MouseDown" >
         <ContentControl>
-            <local:PassGen Loaded="PassGen_Loaded" />
+            <local:PassGen/>
         </ContentControl>
     </Grid>
 </Window>
