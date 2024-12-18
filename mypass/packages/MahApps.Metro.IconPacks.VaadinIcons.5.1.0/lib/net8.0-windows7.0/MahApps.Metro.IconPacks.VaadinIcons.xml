@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MahApps.Metro.IconPacks.VaadinIcons</name>
+    </assembly>
+    <members>
+        <member name="T:MahApps.Metro.IconPacks.PackIconVaadinIcons">
+            <summary>
+            Vaadin Icons are licensed under Creative Commons [CC-BY 4.0](<see><cref>https://github.com/vaadin/web-components/tree/main/packages/icons#license</cref></see>) license.
+            Contributions, corrections and requests can be made on GitHub <see><cref>https://github.com/vaadin/vaadin-icons</cref></see>.
+            </summary>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.PackIconVaadinIcons.Kind">
+            <summary>
+            Gets or sets the icon to display.
+            </summary>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.VaadinIconsCursorExtension.HotSpot">
+            <inheritdoc/>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.VaadinIconsCursorExtension.Width">
+            <inheritdoc/>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.VaadinIconsCursorExtension.Height">
+            <inheritdoc/>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.VaadinIconsCursorExtension.StrokeBrush">
+            <inheritdoc/>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.VaadinIconsCursorExtension.StrokeThickness">
+            <inheritdoc/>
+        </member>
+        <member name="M:MahApps.Metro.IconPacks.VaadinIconsImageExtension.GetPathData(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:MahApps.Metro.IconPacks.VaadinIconsImageExtension.GetScaleTransform(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:MahApps.Metro.IconPacks.PackIconVaadinIconsKind">
+            ******************************************
+            This code is auto generated. Do not amend.
+            ******************************************
+            <summary>
+            List of available icons for use with <see cref="T:MahApps.Metro.IconPacks.PackIconVaadinIcons" />.
+            </summary>
+            <remarks>
+            Vaadin Icons are licensed under Creative Commons [CC-BY 4.0](<see><cref>https://github.com/vaadin/web-components/tree/main/packages/icons#license</cref></see>) license.
+            Contributions, corrections and requests can be made on GitHub <see><cref>https://github.com/vaadin/vaadin-icons</cref></see>.
+            </remarks>
+        </member>
+        <member name="M:MahApps.Metro.IconPacks.Converter.PackIconVaadinIconsKindToImageConverter.GetPathData(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:MahApps.Metro.IconPacks.Converter.PackIconVaadinIconsKindToImageConverter.GetScaleTransform(System.Object)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

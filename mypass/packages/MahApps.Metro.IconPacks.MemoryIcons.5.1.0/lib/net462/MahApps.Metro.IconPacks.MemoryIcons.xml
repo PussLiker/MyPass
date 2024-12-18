@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MahApps.Metro.IconPacks.MemoryIcons</name>
+    </assembly>
+    <members>
+        <member name="T:MahApps.Metro.IconPacks.PackIconMemoryIcons">
+            <summary>
+            All icons sourced from Memory Icons <see><cref>https://pictogrammers.com/library/memory/</cref></see>
+            In accordance of <see><cref>https://github.com/Pictogrammers/Memory?tab=License-1-ov-file#readme</cref></see>.
+            </summary>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.PackIconMemoryIcons.Kind">
+            <summary>
+            Gets or sets the icon to display.
+            </summary>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.MemoryIconsCursorExtension.HotSpot">
+            <inheritdoc/>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.MemoryIconsCursorExtension.Width">
+            <inheritdoc/>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.MemoryIconsCursorExtension.Height">
+            <inheritdoc/>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.MemoryIconsCursorExtension.StrokeBrush">
+            <inheritdoc/>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.MemoryIconsCursorExtension.StrokeThickness">
+            <inheritdoc/>
+        </member>
+        <member name="M:MahApps.Metro.IconPacks.MemoryIconsImageExtension.GetPathData(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:MahApps.Metro.IconPacks.PackIconMemoryIconsKind">
+            ******************************************
+            This code is auto generated. Do not amend.
+            ******************************************
+            <summary>
+            List of available icons for use with <see cref="T:MahApps.Metro.IconPacks.PackIconMemoryIcons" />.
+            </summary>
+            <remarks>
+            All icons sourced from Memory Icons <see><cref>https://pictogrammers.com/library/memory/</cref></see>
+            In accordance of <see><cref>https://github.com/Pictogrammers/Memory?tab=License-1-ov-file#readme</cref></see>.
+            </remarks>
+        </member>
+        <member name="M:MahApps.Metro.IconPacks.Converter.PackIconMemoryIconsKindToImageConverter.GetPathData(System.Object)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

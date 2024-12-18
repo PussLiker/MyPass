@@ -56,7 +56,7 @@ namespace mypass.ViewModel
 
         public MainAuthWindowVM()
         {
-            PohujView = new RegistrationPageVM();
+            PohujView = new VhodVM();
 
             RegPageCommand = new RelayCommand(Registration);
             LoginPageCommand = new RelayCommand(Login);
