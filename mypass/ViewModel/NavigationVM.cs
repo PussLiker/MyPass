@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using mypass.Model;
 using mypass.Utilities;
 using mypass.View;
 
@@ -62,6 +63,12 @@ namespace mypass.ViewModel
                 _passGenWindow = new PassGenWindow();
                 _passGenWindow.Closed += (s, args) => _passGenWindow = null;
                 _passGenWindow.Show();
+
+                // Пример вызова отладки + содания бд (без таблиц)
+                //DebugConfig.LoadConfig();
+                //string name = "Dima";
+                //string password = "2984yt284y";
+                //DataBaseManager.CreateEncryptedDatabase(name, password);
             }
             else
             {

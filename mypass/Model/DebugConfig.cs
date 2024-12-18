@@ -5,7 +5,7 @@ using System.Linq;
 
 public static class DebugConfig
 {
-    public static bool IsDebugEnabled { get; private set; } = false; // По умолчанию false
+    public static bool IsDebugEnabled { get; private set; } = true; // По умолчанию false
     public static string LogFileName { get; private set; } = "Log.txt"; // Файл по умолчанию
 
     private static string debugFolderPath; // Путь к папке Debug
@@ -16,9 +16,7 @@ public static class DebugConfig
         try
         {
             // Путь для создания папки Debug
-            debugFolderPath = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-                "MyPass", "MyPass", "mypass", "Debug");
+            debugFolderPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\", "Debug"));
 
             // Проверяем и создаем папку, если её нет
             if (!Directory.Exists(debugFolderPath))
@@ -32,7 +30,7 @@ public static class DebugConfig
             // Проверяем и создаем файл DebugLoggingSetting.txt, если его нет
             if (!File.Exists(configFilePath))
             {
-                string defaultConfigContent = "IsDebugEnabled=false\nLogFileName=log.txt";
+                string defaultConfigContent = "IsDebugEnabled=true\nLogFileName=Log.txt";
                 File.WriteAllText(configFilePath, defaultConfigContent);
             }
 
