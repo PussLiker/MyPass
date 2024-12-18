@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:mypass.ViewModel"
-             xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:Menu="clr-namespace:mypass.Utilities"
              xmlns:local="clr-namespace:mypass.Utilities"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -17,23 +17,42 @@
     </UserControl.DataContext>
 
     <Grid >
+        
         <Border Background="#151517" CornerRadius="5">
-
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="45" />
+                    <RowDefinition Height="55" />
                     <RowDefinition Height="50" />
                     <RowDefinition Height="35" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5,25,5" Height="30">
                         
-                        <Icons:PackIconMaterial Kind="CloseCircle" Height="25" Width="25" Margin="20,10,0,10"
-                                                 Foreground="#FFBFEBFE" HorizontalAlignment="Right" Cursor="Hand"
-                                                MouseLeftButtonDown="PackIconMaterial_MouseLeftButtonDown"
-                                                />
+                            <Button Height="30" Width="30" Margin="0,0,0,0" BorderThickness="0"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid>
+                                        <Border x:Name="exitBprder" Height="30" Width="30" Style="{StaticResource ForBorderPassLen}"></Border>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <iconPacks:PackIconMaterial x:Name="exitButton" Kind="Close" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                                    Foreground="#3f3f40"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True" >
+                                            <Setter TargetName="exitButton" Property="Foreground" Value="White" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="exitBprder" Property="Background" Value="{StaticResource dark_gray_button}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                        
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Row ="1" Name="PassBlock">
@@ -56,18 +75,21 @@
                         </TextBlock>
 
                         <Grid Name="CreatePassBtn" Margin="20,0,20,6">
+
+                            
                             <Border Name="GenBorder"
-                            Style="{StaticResource AnimatedButtonStyle}"
-                            Height="30" Width="30" CornerRadius="8">
+                                    Style="{StaticResource AnimatedButtonStyleCopy}"
+                                    Height="30" Width="30" CornerRadius="8">
 
                                 <!-- Кнопка внутри бордера -->
                                 <Button Command="{Binding PasswordGenerateCommand}"
-                            Opacity="0"
-                            BorderThickness="0"
-                            Cursor="Hand"
-                            IsDefault="True">
+                                        Opacity="0"
+                                        BorderThickness="0"
+                                        Cursor="Hand"
+                                        IsDefault="True">
                                 </Button>
                             </Border>
+                            <iconPacks:PackIconMaterial Kind="Refresh" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
 
                         <Grid Name="CopyBtn" Margin="0,0,20,6">
@@ -77,9 +99,8 @@
                                 <Button Command="{Binding CopyTextCommand}"
                                 CommandParameter="{Binding Text}"
                                 Opacity="0" Cursor="Hand"/>
-
-
                             </Border>
+                            <iconPacks:PackIconMaterial Kind="ContentCopy" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                         </Grid>
 
                     </StackPanel>

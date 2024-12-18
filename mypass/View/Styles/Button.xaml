@@ -2,7 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     >
 
-    
+    <SolidColorBrush x:Key="light_gray_button" Color="#3F3F40" />
+    <SolidColorBrush x:Key="very_light_gray_button" Color="#636364" />
+    <SolidColorBrush x:Key="dark_gray_button" Color="#202020" />
+    <SolidColorBrush x:Key="back" Color="#3F3F40" />
+    <SolidColorBrush x:Key="page_back" Color="#1A1A1D" />
+
     <Style x:Key="BtnStyle" TargetType="RadioButton">
 
         <Setter Property="HorizontalAlignment" Value="Left" />
