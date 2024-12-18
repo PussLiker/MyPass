@@ -49,6 +49,9 @@ namespace mypass.Model
     // Класс БД-шки
     public class DataBase
     {
+
+        public bool LOGGING = true;
+
         protected string _connectionString;
         protected SQLiteConnection _connection;
         private string _password;

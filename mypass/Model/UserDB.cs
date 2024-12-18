@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace mypass.Model
 {
-    internal class UsersDB : DataBase
+    public class UsersDB : DataBase
     {
         private int _id;
         public int ID
@@ -19,11 +19,11 @@ namespace mypass.Model
             get => _id; // Проверить нужно ли return
             set => _id = value;
         }
-        private string _name;
-        public string Name
+        private string _usernamename;
+        public string UserName
         {
-            get => _name;
-            set => _name = value;
+            get => _usernamename;
+            set => _usernamename = value;
         }
         private string _masterpasswordhash;
         public string MasterPasswordHash
