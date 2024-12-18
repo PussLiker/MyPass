@@ -49,7 +49,7 @@
     </Reference>
     <Reference Include="SQLitePCLRaw.core, Version=2.1.10.2445, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
       <HintPath>packages\SQLitePCLRaw.core.2.1.10\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
-	</Reference>
+    </Reference>
     <Reference Include="MahApps.Metro.IconPacks.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
       <HintPath>packages\MahApps.Metro.IconPacks.Core.5.1.0\lib\net47\MahApps.Metro.IconPacks.Core.dll</HintPath>
     </Reference>
@@ -104,8 +104,10 @@
     <Compile Include="Model\AccountsDB.cs" />
     <Compile Include="Model\ActionsDB.cs" />
     <Compile Include="Model\DataBase.cs" />
+    <Compile Include="Model\DebugConfig.cs" />
     <Compile Include="Model\EncryptionModel.cs" />
     <Compile Include="Model\EventsDB.cs" />
+    <Compile Include="Model\Logging.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
     <Compile Include="Model\TagsAccountsDB.cs" />
     <Compile Include="Model\TagsDB.cs" />

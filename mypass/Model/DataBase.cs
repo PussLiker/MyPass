@@ -11,22 +11,40 @@ using System.Data.SQLite;
 
 using Microsoft.Data.Sqlite;
 using System.Linq.Expressions;
+using System.Diagnostics;
 
 namespace mypass.Model
 {
     // Класс для создания БД
-    public static class DataBaseManager
+    public class DataBaseManager : LoggableDB
     {
         // Метод для создания новой базы данных с шифрованием
         public static void CreateEncryptedDatabase(string clientName, string password)
         {
-            // Формирование пути для создания файла бд !! !!
-            string databasePath = Path.Combine(Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + @"\..\..\..\"), $"{clientName}.db3");
+            // !!!Для отладки использовать Manager!!!
+            //var Manager = new DataBaseManager();
+            //Manager.InitTransaction("Создание шифрованной бд");
+            
+            // Путь для создания папки Debug
+            string targetPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\", "DataBase"));
+            //Manager.MessageError($"Перешёл в путь для создания папки DataBase: {targetPath}");
+
+            // Проверяем и создаем папку, если её нет
+            if (!Directory.Exists(targetPath))
+            {
+                Directory.CreateDirectory(targetPath);
+                //Manager.MessageError("Создана папка DataBase");
+            }
+
+            // Финальный путь для создания файла
+            string databasePath = Path.Combine(targetPath, $"{clientName}.db3");
+            //Manager.MessageError($"Создан путь к БД, а также сама БД: {databasePath}");
 
             // Если база данных уже существует, удалить её
             if (File.Exists(databasePath))
             {
                 File.Delete(databasePath);
+                //Manager.MessageError("Удаление базы данных");
             }
 
             // Установить пароль шифрования
@@ -41,6 +59,7 @@ namespace mypass.Model
                     command.CommandText = $"PRAGMA key = '{password}';";
                     command.ExecuteNonQuery();
 
+                    //Manager.CloseTransaction($"Завершение создания бд: {clientName}");
                 }
             }
         }
@@ -49,8 +68,6 @@ namespace mypass.Model
     // Класс БД-шки
     public class DataBase
     {
-
-        public bool LOGGING = true;
 
         protected string _connectionString;
         protected SQLiteConnection _connection;
@@ -102,9 +119,9 @@ namespace mypass.Model
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                // Ловим ошибку
+
             }
         }
 

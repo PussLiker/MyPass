@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using mypass.Model;
 using mypass.Utilities;
 using mypass.View;
 
@@ -44,6 +45,12 @@ namespace mypass.ViewModel
                 _passGenWindow = new PassGenWindow();
                 _passGenWindow.Closed += (s, args) => _passGenWindow = null;
                 _passGenWindow.Show();
+
+                // !!!!!!!!!!!!!!!!!!!!!!!!!
+                //DebugConfig.LoadConfig();
+                //string namedb = "Dimka";
+                //string passworddb = "ofguh32tr72";
+                //DataBaseManager.CreateEncryptedDatabase(namedb, passworddb);
             }
             else
             {
