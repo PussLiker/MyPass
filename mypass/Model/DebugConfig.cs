@@ -5,7 +5,7 @@ using System.Linq;
 
 public static class DebugConfig
 {
-    public static bool IsDebugEnabled { get; private set; } = true; // По умолчанию false
+    public static bool IsDebugEnabled { get; private set; } = false; // По умолчанию false
     public static string LogFileName { get; private set; } = "Log.txt"; // Файл по умолчанию
 
     private static string debugFolderPath; // Путь к папке Debug
