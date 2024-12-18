@@ -8,7 +8,8 @@
                 <TranslateTransform X="0" Y="50" />
             </Setter.Value>
         </Setter>
-
+        <Setter Property="Background" Value="Transparent"/>
+        
         <Style.Triggers>
 
             <Trigger Property="Visibility" Value="Collapsed">

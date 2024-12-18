@@ -2,7 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     >
 
-    
+    <SolidColorBrush x:Key="light_gray_button" Color="#3F3F40" />
+    <SolidColorBrush x:Key="very_light_gray_button" Color="#636364" />
+    <SolidColorBrush x:Key="dark_gray_button" Color="#202020" />
+    <SolidColorBrush x:Key="back" Color="#3F3F40" />
+    <SolidColorBrush x:Key="page_back" Color="#1A1A1D" />
+
     <Style x:Key="BtnStyle" TargetType="RadioButton">
 
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -103,19 +108,7 @@
         </Setter>
 
     </Style>
-    <Style x:Key="xz" TargetType="RadioButton">
 
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Foreground" Value="PeachPuff" />
-        <Setter Property="Margin" Value="0,5,0,0" />
-
-    </Style>
-
-
-
-
-    
     <Style x:Key="AnimatedButtonStyle" TargetType="Border">
         <Setter Property="Background" Value="#202020" />
         <Setter Property="CornerRadius" Value="8" />
@@ -248,6 +241,35 @@
         </Setter>
     </Style>
 
-
-
+        <Style x:Key="ButtonSimp" TargetType="Button">
+            <Setter Property="Background" Value="#202020" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="/View/Resource/Fonts/#Mariupol" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="PeachPuff" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="buttonBorder" Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#3f3f40" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#636364" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 </ResourceDictionary>
