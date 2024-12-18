@@ -98,6 +98,8 @@
     <Compile Include="Model\PasswordGeneration.cs" />
     <Compile Include="Model\Program %282%29.cs" />
     <Compile Include="Model\UserDB %282%29.cs" />
+    <Compile Include="Model\TextToVisibilityConverter.cs" />
+    <Compile Include="Model\Vhod.cs" />
     <Compile Include="Utilities\Btn.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
@@ -105,17 +107,22 @@
     <Compile Include="ViewModel\AllPassesVM.cs" />
     <Compile Include="ViewModel\CardsVM.cs" />
     <Compile Include="ViewModel\EmailsVM.cs" />
+    <Compile Include="ViewModel\MainAuthWindowVM.cs" />
     <Compile Include="ViewModel\MainMenuVM.cs" />
     <Compile Include="ViewModel\NavigationVM.cs" />
     <Compile Include="ViewModel\NofiticationsVM.cs" />
     <Compile Include="ViewModel\PassCheckVM.cs" />
     <Compile Include="ViewModel\PassGenVM.cs" />
+    <Compile Include="ViewModel\RegistrationPageVM.cs" />
     <Compile Include="ViewModel\VhodVM.cs" />
     <Compile Include="View\Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Emails.xaml.cs">
       <DependentUpon>Emails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainAuthWindow.xaml.cs">
+      <DependentUpon>MainAuthWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
@@ -135,6 +142,9 @@
     <Compile Include="View\PassGenWindow.xaml.cs">
       <DependentUpon>PassGenWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Vhod.xaml.cs">
       <DependentUpon>Vhod.xaml</DependentUpon>
     </Compile>
@@ -147,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Cards.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainAuthWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PassGenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RegistrationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
