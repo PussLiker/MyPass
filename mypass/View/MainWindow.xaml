@@ -4,19 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:mypass.ViewModel"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:Menu="clr-namespace:mypass.Utilities"
         mc:Ignorable="d"
         WindowStyle="None"
         Title="MainWindow" Height="680" Width="1080" 
         WindowStartupLocation="CenterScreen" Background="Transparent"
-        AllowsTransparency="True"
+        AllowsTransparency="True" Icon="/2milniimolnii.jpg" 
         >
     <Window.Resources>
 
         <SolidColorBrush x:Key="Background" Color="#1a1a1d" />
     </Window.Resources>
 
-    
+
     <Window.DataContext>
         <vm:NavigationVM />
     </Window.DataContext>
@@ -40,7 +41,7 @@
                         CornerRadius="20,0,0,20" 
                         BorderThickness="0"/>
 
-                <StackPanel Height="500" Width="270" Margin="10,0,0,0">
+                <StackPanel  Width="270" Margin="10,0,0,0" VerticalAlignment="Center">
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding MainMenuCommand}"
@@ -48,7 +49,7 @@
 
                         <Grid>
 
-                            <Image Source="/View/Resource/Images/inverted/home.png"
+                            <iconPacks:PackIconMaterial Kind="Home"
                                    Style="{StaticResource ImageStyle}" 
                                    HorizontalAlignment="Left"/>
                             <TextBlock Text="Главная"
@@ -62,63 +63,23 @@
                               >
 
                         <Grid>
-                            <Image Source="/View/Resource/Images/inverted/all.png"
+                            <iconPacks:PackIconMaterial Kind="Note"
                                 Style="{StaticResource ImageStyle}" 
-                                HorizontalAlignment="Left"/>
+                                HorizontalAlignment="Left" Height="50" VerticalAlignment="Top"/>
                             <TextBlock Text="Все записи"
                                 Style="{StaticResource TextStyle}" 
                                 HorizontalAlignment="Left"/>
                         </Grid>
                     </Menu:Btn>
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding AccountsCommand}"
-                              >
-
-                        <Grid Margin="20,0,0,0">
-                            <Image Source="/View/Resource/Images/inverted/account.png"
-                            Style="{StaticResource ImageStyle}" 
-                            HorizontalAlignment="Left"/>
-                            <TextBlock Text="Аккаунты"
-                            Style="{StaticResource TextStyle}" 
-                            HorizontalAlignment="Left"/>
-                        </Grid>
-                    </Menu:Btn>
-
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding EmailsCommand}"
-                              >
-
-                        <Grid Margin="20,0,0,0">
-                            <Image Source="/View/Resource/Images/inverted/emails.png"
-                            Style="{StaticResource ImageStyle}" 
-                            HorizontalAlignment="Left"/>
-                            <TextBlock Text="Почты"
-                            Style="{StaticResource TextStyle}" 
-                            HorizontalAlignment="Left"/>
-                        </Grid>
-                    </Menu:Btn>
-
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding CardsCommand}"
-                              >
-
-                        <Grid Margin="20,0,0,0">
-                            <Image Source="/View/Resource/Images/inverted/card.png"
-                            Style="{StaticResource ImageStyle}" 
-                            HorizontalAlignment="Left"/>
-                            <TextBlock Text="Аккаунты"
-                            Style="{StaticResource TextStyle}" 
-                            HorizontalAlignment="Left"/>
-                        </Grid>
-                    </Menu:Btn>
+                                   
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding NotificationsCommand}"
                               >
 
                         <Grid>
-                            <Image Source="/View/Resource/Images/icons/notific.png"
+                            <iconPacks:PackIconMaterial Kind="Bell"
                                 Style="{StaticResource ImageStyle}" 
                                 HorizontalAlignment="Left"/>
                             <TextBlock Text="Уведомления"
@@ -131,7 +92,9 @@
                               >
 
                         <Grid>
-
+                            <iconPacks:PackIconMaterial Kind="ShieldKey"
+                                                        Style="{StaticResource ImageStyle}" 
+                                                        HorizontalAlignment="Left" Height="50" VerticalAlignment="Top"/>
                             <TextBlock Text="Проверка паролей"
                                        Style="{StaticResource TextStyle}" 
                                        HorizontalAlignment="Left"/>
@@ -142,7 +105,9 @@
                               >
 
                         <Grid>
-
+                            <iconPacks:PackIconMaterial Kind="AutoFix"
+                                                        Style="{StaticResource ImageStyle}" 
+                                                        HorizontalAlignment="Left" Height="50" VerticalAlignment="Top"/>
                             <TextBlock Text="Генерация паролей"
                                        Style="{StaticResource TextStyle}" 
                                        HorizontalAlignment="Left"/>
@@ -164,12 +129,110 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <!-- Control Buttons -->
                     <StackPanel Orientation="Horizontal" Grid.Column="1">
-                        <Button Content="_" Width="30" Height="30" Margin="5,5" Command="{Binding MinimizeCommand}"/>
-                        <Button Content="☐" Width="30" Height="30" Margin="5,5" Command="{Binding MaximizeCommand}"/>
-                        <Button Content="X" Width="30" Height="30" Margin="5,5" Command="{Binding CloseCommand}"/>
+                        <Button Height="30" Width="30" Margin="0,5" BorderThickness="0" Background="Transparent"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                Command="{Binding MinimizeCommand}" Cursor="Hand"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <!-- Граница кнопки -->
+                                        <Border x:Name="miniBorder" 
+                                                Height="30" Width="30" 
+                                                Style="{StaticResource ForBorderPassLen}" 
+                                                Background="Transparent" BorderThickness="0">
+                                        </Border>
+                                        <!-- Иконка кнопки -->
+                                        <iconPacks:PackIconMaterial x:Name="miniButton" 
+                                            Kind="WindowMinimize" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            Foreground="#3f3f40" />
+                                    </Grid>
+                                    <!-- Триггеры для кнопки -->
+                                    <ControlTemplate.Triggers>
+                                        <!-- Наведение -->
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="miniBorder" Property="Background" Value="#202020"/>
+                                            <Setter TargetName="miniButton" Property="Foreground" Value="#636364"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="miniBorder" Property="Background" Value="#636364"/>
+                                            <Setter TargetName="miniButton" Property="Foreground" Value="#202020"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Height="30" Width="30" Margin="5,5" BorderThickness="0" Background="Transparent"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                Command="{Binding MaximizeCommand}" Cursor="Hand"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <!-- Граница кнопки -->
+                                        <Border x:Name="maxBorder" 
+                                                Height="30" Width="30" 
+                                                Style="{StaticResource ForBorderPassLen}" 
+                                                Background="Transparent" BorderThickness="0">
+                                        </Border>
+                                        <!-- Иконка кнопки -->
+                                        <iconPacks:PackIconMaterial x:Name="maxButton" 
+                                            Kind="WindowMaximize" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            Foreground="#3f3f40" />
+                                    </Grid>
+                                    <!-- Триггеры для кнопки -->
+                                    <ControlTemplate.Triggers>
+                                        <!-- Наведение -->
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="maxBorder" Property="Background" Value="#202020"/>
+                                            <Setter TargetName="maxButton" Property="Foreground" Value="#636364"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="maxBorder" Property="Background" Value="#636364"/>
+                                            <Setter TargetName="maxButton" Property="Foreground" Value="#202020"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Height="30" Width="30" Margin="0" BorderThickness="0" Background="Transparent"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                Command="{Binding CloseCommand}" Cursor="Hand"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <!-- Граница кнопки -->
+                                        <Border x:Name="exitBorder" 
+                                                Height="30" Width="30" 
+                                                Style="{StaticResource ForBorderPassLen}" 
+                                                Background="Transparent" BorderThickness="0">
+                                        </Border>
+                                        <!-- Иконка кнопки -->
+                                        <iconPacks:PackIconMaterial x:Name="exitButton" 
+                                                                    Kind="Close" 
+                                                                    HorizontalAlignment="Center" 
+                                                                    VerticalAlignment="Center" 
+                                                                    Foreground="#3f3f40" />
+                                    </Grid>
+                                    <!-- Триггеры для кнопки -->
+                                    <ControlTemplate.Triggers>
+                                        <!-- Наведение -->
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="exitBorder" Property="Background" Value="#202020"/>
+                                            <Setter TargetName="exitButton" Property="Foreground" Value="#636364"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
                     </StackPanel>
                 </Grid>
             </Grid>

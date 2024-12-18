@@ -36,31 +36,44 @@
                     
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5,25,5" Height="30">
-                        
-                            <Button Height="30" Width="30" Margin="0,0,0,0" BorderThickness="0"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Grid>
-                                        <Border x:Name="exitBprder" Height="30" Width="30" Style="{StaticResource ForBorderPassLen}"></Border>
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                        <iconPacks:PackIconMaterial x:Name="exitButton" Kind="Close" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                                                    Foreground="#3f3f40"/>
+
+                        <Button Height="30" Width="30" Margin="0,0,0,0" BorderThickness="0" Background="Transparent"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding ExitCommand}" 
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <!-- Граница кнопки -->
+                                        <Border x:Name="exitBorder" 
+                                            Height="30" Width="30" 
+                                            Style="{StaticResource ForBorderPassLen}" 
+                                            Background="Transparent">
+                                        </Border>
+                                        <!-- Иконка кнопки -->
+                                        <iconPacks:PackIconMaterial x:Name="exitButton" 
+                                            Kind="Close" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            Foreground="#3f3f40" />
                                     </Grid>
+                                    <!-- Триггеры для кнопки -->
                                     <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True" >
-                                            <Setter TargetName="exitButton" Property="Foreground" Value="White" />
+                                        <!-- Наведение -->
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="exitBorder" Property="Background" Value="#202020"/>
+                                            <Setter TargetName="exitButton" Property="Foreground" Value="#636364"/>
                                         </Trigger>
                                         <Trigger Property="IsPressed" Value="True">
-                                            <Setter TargetName="exitBprder" Property="Background" Value="{StaticResource dark_gray_button}" />
+                                            <Setter TargetName="exitBorder" Property="Background" Value="#636364"/>
+                                            <Setter TargetName="exitButton" Property="Foreground" Value="#202020"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
 
 
-                        </StackPanel>
+                    </StackPanel>
                    
                     
                 </Grid>
@@ -86,33 +99,97 @@
 
                         <Grid Name="CreatePassBtn" Margin="20,0,20,6">
 
-                            
-                            <Border Name="GenBorder"
-                                    Style="{StaticResource AnimatedButtonStyleCopy}"
-                                    Height="30" Width="30" CornerRadius="8">
-
-                                <!-- Кнопка внутри бордера -->
+                            <Border Style="{StaticResource AnimatedButtonStyleCopy}" Height="30" Width="30">
+                                <!-- Кнопка -->
                                 <Button Command="{Binding PasswordGenerateCommand}"
-                                        Opacity="0"
-                                        BorderThickness="0"
-                                        Cursor="Hand"
-                                        IsDefault="True">
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Cursor="Hand">
+                                    <!-- Иконка внутри кнопки -->
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Grid>
+                                                <!-- Границы, связанные с триггерами -->
+                                                <Border x:Name="ButtonBorder" 
+                                                        Background="{TemplateBinding Background}" 
+                                                        CornerRadius="5">
+
+                                                </Border>
+                                                <!-- Иконка -->
+                                                <iconPacks:PackIconMaterial x:Name="Icon"
+                                                                            Kind="Refresh"
+                                                                            HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center"
+                                                                            Foreground="PeachPuff" />
+                                            </Grid>
+                                            <!-- Триггеры для наведения и нажатия -->
+                                            <ControlTemplate.Triggers>
+                                                <!-- Наведение -->
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="#636364"/>
+                                                    <Setter TargetName="Icon" Property="Foreground" Value="#202020"/>
+
+                                                </Trigger>
+                                                <!-- Нажатие -->
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="#202020"/>
+                                                    <Setter TargetName="Icon" Property="Foreground" Value="#636364"/>
+
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
                                 </Button>
                             </Border>
-                            <iconPacks:PackIconMaterial Kind="Refresh" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
 
                         <Grid Name="CopyBtn" Margin="0,0,20,6">
-                            <Border Style="{StaticResource AnimatedButtonStyleCopy}"
-                            Height="30" Width="30" 
-                            >
+                            <!-- Границы кнопки -->
+                            <Border Style="{StaticResource AnimatedButtonStyleCopy}" Height="30" Width="30">
+                                <!-- Кнопка -->
                                 <Button Command="{Binding CopyTextCommand}"
-                                CommandParameter="{Binding Text}"
-                                Opacity="0" Cursor="Hand"/>
-
+                                        CommandParameter="{Binding Text}"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Cursor="Hand">
+                                    <!-- Иконка внутри кнопки -->
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Grid>
+                                                <!-- Границы, связанные с триггерами -->
+                                                <Border x:Name="ButtonBorder" 
+                                                        Background="{TemplateBinding Background}" 
+                                                        CornerRadius="5">
+                                                    
+                                                </Border>
+                                                <!-- Иконка -->
+                                                <iconPacks:PackIconMaterial x:Name="Icon"
+                                                    Kind="ContentCopy"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="PeachPuff" />
+                                            </Grid>
+                                            <!-- Триггеры для наведения и нажатия -->
+                                            <ControlTemplate.Triggers>
+                                                <!-- Наведение -->
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="#636364"/>
+                                                    <Setter TargetName="Icon" Property="Foreground" Value="#202020"/>
+                                                    
+                                                </Trigger>
+                                                <!-- Нажатие -->
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="#202020"/>
+                                                    <Setter TargetName="Icon" Property="Foreground" Value="#636364"/>
+                                                    
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
                             </Border>
-                            <iconPacks:PackIconMaterial Kind="ContentCopy" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                         </Grid>
+
 
                     </StackPanel>
                 </Grid>
@@ -129,7 +206,6 @@
 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Выберите длину пароля:" Style="{StaticResource DefTextStyle}"
-                           Foreground="White"
                            PreviewTextInput="NumberValidationTextBox"
                            
                            />
@@ -235,7 +311,7 @@
                     <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
                         <CheckBox Content="Спецсимволы:" 
                           Style="{StaticResource CustomCheckBoxStyle}" 
-                          IsChecked="{Binding IncludeSpecialCharacters}" />
+                          IsChecked="{Binding IncludeSpecialCharacters}"/>
 
                         <TextBox Text="{Binding SpecialCharacters, UpdateSourceTrigger=PropertyChanged}" 
                          FontFamily="/View/Resource/Fonts/#Mariupol" VerticalContentAlignment="Center"

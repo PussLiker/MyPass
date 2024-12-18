@@ -7,7 +7,8 @@
         
         mc:Ignorable="d"
         Title="PassGenWindow" Height="300" Width="400" WindowStartupLocation="CenterScreen"
-        WindowStyle="None" Background="Transparent" AllowsTransparency="True" MaxHeight="300" MaxWidth="400">
+        WindowStyle="None" Background="Transparent" Icon="/2milniimolnii.jpg" 
+        AllowsTransparency="True" MaxHeight="300" MaxWidth="400">
     <Grid MouseDown="Grid_MouseDown" >
         <ContentControl>
             <local:PassGen/>

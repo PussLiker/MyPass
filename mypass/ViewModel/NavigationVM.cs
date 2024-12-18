@@ -16,7 +16,8 @@ namespace mypass.ViewModel
         private Vhod _vhod;
         private MainWindow _mainWindow;
         private PassGenWindow _passGenWindow; // Поле для хранения ссылки на окно
-        public object CurrentView {
+        public object CurrentView
+        {
             get { return _currentView; }
             set { _currentView = value; OnPropertyChanged(); }
         }
@@ -30,9 +31,9 @@ namespace mypass.ViewModel
         public ICommand MainMenuCommand { get; set; }
         public ICommand NotificationsCommand { get; set; }
         public ICommand PassCheckCommand { get; set; }
-        public ICommand PassGenCommand { get; set; }        
-        public ICommand VhodStartCommand {  get; set; }
-        public ICommand VhodButtonCommand {  get; set; }
+        public ICommand PassGenCommand { get; set; }
+        public ICommand VhodStartCommand { get; set; }
+        public ICommand VhodButtonCommand { get; set; }
 
 
         private void Accounts(object obj) => CurrentView = new AccountsVM();
@@ -44,20 +45,22 @@ namespace mypass.ViewModel
         private void PassCheck(object obj) => CurrentView = new PassCheckVM();
         private void VhodStart(object obj)
         {
-            if (_mainWindow == null)
+            if (obj is Window window)
             {
-                _mainWindow = new MainWindow();
-                _mainWindow.Closed += (s, args) => _mainWindow = null;
-                _mainWindow.Show();
+                if (_mainWindow == null)
+                {
+                    _mainWindow = new MainWindow();
+                    _mainWindow.Closed += (s, args) => _mainWindow = null;
+                    _mainWindow.Show();
+                }
+                else
+                    _mainWindow = new MainWindow();
+                window?.Close();
             }
-            else
-                _mainWindow = new MainWindow();
         }
-        private void VhodButton(object obj)
+        
+        private void PassGen(object obj)
         {
-            
-        }
-        private void PassGen(object obj) {
             if (_passGenWindow == null)
             {
                 _passGenWindow = new PassGenWindow();
@@ -71,23 +74,30 @@ namespace mypass.ViewModel
         }
         private void Minimize(object obj)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+
+            if (obj is Window window)
+            {
+                window.WindowState = WindowState.Minimized;
+            }
         }
         private void Maximize(object obj)
         {
-            var window = Application.Current.MainWindow;
-            if (window.WindowState == WindowState.Maximized)
+            if (obj is Window window)
             {
-                window.WindowState = WindowState.Normal; // Восстановить окно
-            }
-            else
-            {
-                window.WindowState = WindowState.Maximized; // Максимизировать окно
+                if (window.WindowState == WindowState.Maximized)
+                {
+                    window.WindowState = WindowState.Normal; // Восстановить окно
+                }
+                else
+                {
+                    window.WindowState = WindowState.Maximized; // Максимизировать окно
+                }
             }
         }
         private void Close(object obj)
         {
-            Application.Current.MainWindow.Close();
+            if (obj is Window window)
+            { window?.Close(); }
         }
 
         public NavigationVM()

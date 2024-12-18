@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:mypass.ViewModel"
         mc:Ignorable="d"
         Title="MyPass" Height="450" Width="400" WindowStartupLocation="CenterScreen"
-        WindowStyle="None" Background="Transparent" AllowsTransparency="True">
+        WindowStyle="None" Background="Transparent" AllowsTransparency="True" Icon="/2milniimolnii.jpg" >
 
 
     <Window.Resources>
@@ -40,7 +40,9 @@
                 </StackPanel>
 
                 <!-- Кнопка входа -->
-                <Button Content="Войти" Style="{StaticResource ButtonSimp}"  Width="250" Height="40" Command="{Binding VhodStartCommand}" Cursor="Hand">
+                <Button Content="Войти" Style="{StaticResource ButtonSimp}"  Width="250" Height="40" 
+                        Command="{Binding VhodStartCommand}" Cursor="Hand"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
                   
                 </Button> 
             </StackPanel>

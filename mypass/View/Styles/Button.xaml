@@ -221,7 +221,7 @@
                             <Path x:Name="CheckMark"
                               Visibility="Collapsed"
                               Data="M 3 10 L 8 15 L 15 5"
-                              Stroke="White"
+                              Stroke="PeachPuff"
                               StrokeThickness="2" 
                               StrokeLineJoin="Round" />
                         </Border>
