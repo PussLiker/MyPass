@@ -39,5 +39,9 @@
     <DataTemplate DataType="{x:Type vm:VhodVM}">
         <view:Vhod/>
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:RegistrationPageVM}">
+        <view:RegistrationPage/>
+    </DataTemplate>
     
 </ResourceDictionary>

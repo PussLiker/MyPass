@@ -50,12 +50,6 @@
     <Reference Include="SQLitePCLRaw.core, Version=2.1.10.2445, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
       <HintPath>packages\SQLitePCLRaw.core.2.1.10\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
     </Reference>
-    <Reference Include="MahApps.Metro.IconPacks.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
-      <HintPath>packages\MahApps.Metro.IconPacks.Core.5.1.0\lib\net47\MahApps.Metro.IconPacks.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MahApps.Metro.IconPacks.Material, Version=5.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
-      <HintPath>packages\MahApps.Metro.IconPacks.Material.5.1.0\lib\net47\MahApps.Metro.IconPacks.Material.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
@@ -81,8 +75,6 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -101,21 +93,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\AccountsDB.cs" />
-    <Compile Include="Model\ActionsDB.cs" />
-    <Compile Include="Model\CommonPasswordsList.cs" />
-    <Compile Include="Model\DataBase.cs" />
-    <Compile Include="Model\DebugConfig.cs" />
+    <Compile Include="Model\DataBase %282%29.cs" />
     <Compile Include="Model\EncryptionModel.cs" />
-    <Compile Include="Model\EventsDB.cs" />
-    <Compile Include="Model\Logging.cs" />
-    <Compile Include="Model\PasswordDoublicateChecker.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
-    <Compile Include="Model\PasswordValidator.cs" />
-    <Compile Include="Model\TagsAccountsDB.cs" />
-    <Compile Include="Model\TagsDB.cs" />
-    <Compile Include="Model\TypeEventsDB.cs" />
-    <Compile Include="Model\UserDB.cs" />
+    <Compile Include="Model\Program %282%29.cs" />
+    <Compile Include="Model\UserDB %282%29.cs" />
+    <Compile Include="Model\TextToVisibilityConverter.cs" />
+    <Compile Include="Model\Vhod.cs" />
     <Compile Include="Utilities\Btn.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
@@ -123,17 +107,22 @@
     <Compile Include="ViewModel\AllPassesVM.cs" />
     <Compile Include="ViewModel\CardsVM.cs" />
     <Compile Include="ViewModel\EmailsVM.cs" />
+    <Compile Include="ViewModel\MainAuthWindowVM.cs" />
     <Compile Include="ViewModel\MainMenuVM.cs" />
     <Compile Include="ViewModel\NavigationVM.cs" />
     <Compile Include="ViewModel\NofiticationsVM.cs" />
     <Compile Include="ViewModel\PassCheckVM.cs" />
     <Compile Include="ViewModel\PassGenVM.cs" />
+    <Compile Include="ViewModel\RegistrationPageVM.cs" />
     <Compile Include="ViewModel\VhodVM.cs" />
     <Compile Include="View\Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Emails.xaml.cs">
       <DependentUpon>Emails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainAuthWindow.xaml.cs">
+      <DependentUpon>MainAuthWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
@@ -153,6 +142,9 @@
     <Compile Include="View\PassGenWindow.xaml.cs">
       <DependentUpon>PassGenWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Vhod.xaml.cs">
       <DependentUpon>Vhod.xaml</DependentUpon>
     </Compile>
@@ -165,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Cards.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainAuthWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,6 +208,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Styles\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -251,6 +251,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Model\MyPass.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
