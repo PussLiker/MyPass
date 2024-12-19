@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
@@ -8,6 +7,7 @@ using System.IO;
 using System.Data;
 //using System.Data.Common;
 using System.Data.SQLite;
+using System.IO;
 
 //using Microsoft.Data.Sqlite;
 //using System.Linq.Expressions;
@@ -24,7 +24,7 @@ namespace mypass.Model
             // !!!Для отладки использовать Manager!!!
             var Manager = new DataBaseManager();
             Manager.InitTransaction("Создание шифрованной бд");
-            
+
             // Путь для создания папки Debug
             string targetPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\", "DataBase"));
             Manager.MessageError($"Перешёл в путь для создания папки DataBase: {targetPath}");
@@ -34,11 +34,11 @@ namespace mypass.Model
                 Manager.MessageError($"База данных {clientName}.db3 существует");
             }
             else
-            {   
+            {
                 // Создание директории DataBasw
                 Directory.CreateDirectory(targetPath);
                 Manager.MessageError("Создана папка DataBase");
-                
+
                 // Финальный путь для создания файла
                 string databasePath = Path.Combine(targetPath, $"{clientName}.db3");
                 Manager.MessageError($"Создан путь к БД, а также сама БД: {databasePath}");
@@ -84,7 +84,7 @@ namespace mypass.Model
             {
                 SQLiteConnection.CreateFile(_databasePath);
                 InitializeDatabase(); // Инициализация таблиц при создании файла БД
-                
+
             }
 
             string connectionString = $"Data Source={_databasePath};Version=3;Password={_password};";

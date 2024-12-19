@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using mypass.Model;
+﻿using mypass.Model;
 using mypass.Utilities;
-using mypass.View;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace mypass.ViewModel
@@ -49,7 +43,7 @@ namespace mypass.ViewModel
                 }
             }
         }
-        
+
         public ICommand IncreasePasswordLengthCommand { get; }
         public ICommand DecreasePasswordLengthCommand { get; }
 
@@ -210,5 +204,5 @@ namespace mypass.ViewModel
 
 
 }
-        
+
 

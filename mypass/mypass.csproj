@@ -226,6 +226,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\AccountsDB.cs" />
     <Compile Include="Model\ActionsDB.cs" />
+    <Compile Include="Model\BooleanToVisibilityConverter.cs" />
     <Compile Include="Model\CommonPasswordsList.cs" />
     <Compile Include="Model\DataBase.cs" />
     <Compile Include="Model\DebugConfig.cs" />

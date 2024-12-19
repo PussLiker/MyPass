@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using mypass.Utilities;
-using mypass.Model;
-using mypass.View;
+﻿using mypass.Utilities;
+using System;
 using System.Windows.Input;
-using System.Windows.Controls;
 
 namespace mypass.ViewModel
 {
     internal class MainAuthWindowVM : ViewModelBase
     {
-        private object _pohujView;
+        private object _pohujView = new VhodVM();
         private string _login;
         private string _password;
-        
+
 
         public string Logintext
         {
@@ -48,19 +41,17 @@ namespace mypass.ViewModel
         public object PohujView
         {
             get { return _pohujView; }
-            set { _pohujView = value; OnPropertyChanged();}
+            set { _pohujView = value; OnPropertyChanged(nameof(PohujView)); }
         }
 
-        public void Registration(object obj) => PohujView = new RegistrationPageVM();
+        public void Registration(object obj) { PohujView = new RegistrationPageVM(); Console.WriteLine(_pohujView); OnPropertyChanged(nameof(PohujView)); }
         public void Login(object obj) => PohujView = new VhodVM();
 
         public MainAuthWindowVM()
         {
-            PohujView = new VhodVM();
 
             RegPageCommand = new RelayCommand(Registration);
             LoginPageCommand = new RelayCommand(Login);
-
 
         }
     }

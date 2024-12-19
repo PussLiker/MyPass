@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace mypass.View
 {
@@ -19,9 +10,38 @@ namespace mypass.View
     /// </summary>
     public partial class RegistrationPage : UserControl
     {
+
+        private bool _isPasswordEmpty = true;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public bool IsPasswordEmpty
+        {
+            get => _isPasswordEmpty;
+            set
+            {
+                if (_isPasswordEmpty != value)
+                {
+                    _isPasswordEmpty = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public RegistrationPage()
         {
             InitializeComponent();
+            DataContext = this;
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            var passwordBox = sender as PasswordBox;
+            IsPasswordEmpty = string.IsNullOrEmpty(passwordBox.Password);
+        }
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

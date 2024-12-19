@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using mypass.Utilities;
+using mypass.View;
 using System.Windows;
 using System.Windows.Input;
-using mypass.Model;
-using mypass.Utilities;
-using mypass.View;
 
 namespace mypass.ViewModel
 {
@@ -17,7 +11,8 @@ namespace mypass.ViewModel
         private Vhod _vhod;
         private MainWindow _mainWindow;
         private PassGenWindow _passGenWindow; // Поле для хранения ссылки на окно
-        public object CurrentView {
+        public object CurrentView
+        {
             get { return _currentView; }
             set { _currentView = value; OnPropertyChanged(); }
         }
@@ -31,9 +26,9 @@ namespace mypass.ViewModel
         public ICommand MainMenuCommand { get; set; }
         public ICommand NotificationsCommand { get; set; }
         public ICommand PassCheckCommand { get; set; }
-        public ICommand PassGenCommand { get; set; }        
-        public ICommand VhodStartCommand {  get; set; }
-        public ICommand VhodButtonCommand {  get; set; }
+        public ICommand PassGenCommand { get; set; }
+        public ICommand VhodStartCommand { get; set; }
+        public ICommand VhodButtonCommand { get; set; }
 
         private void Accounts(object obj) => CurrentView = new AccountsVM();
         private void AllPasses(object obj) => CurrentView = new AllPassesVM();
@@ -55,9 +50,10 @@ namespace mypass.ViewModel
         }
         private void VhodButton(object obj)
         {
-            
+
         }
-        private void PassGen(object obj) {
+        private void PassGen(object obj)
+        {
             if (_passGenWindow == null)
             {
                 _passGenWindow = new PassGenWindow();

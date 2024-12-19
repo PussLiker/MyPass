@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using mypass.Model;
+﻿using mypass.Model;
 
-namespace mypass.ViewModel 
+namespace mypass.ViewModel
 {
     internal class NofiticationsVM : Utilities.ViewModelBase
     {

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:mypass.ViewModel"
+        Height="450" Width="400"
         mc:Ignorable="d"
         Background="Transparent">
 
@@ -42,13 +43,14 @@
                            Style="{StaticResource TextStyleText}" Foreground="OldLace" 
                            TextDecorations="Underline" Cursor="Hand" HorizontalAlignment="Left">
                         <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding RegPageCommand}"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.RegPageCommand, 
+                         RelativeSource={RelativeSource AncestorType=Window}}"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
                            
                 </StackPanel>
                 <!-- Кнопка входа -->
-                <Button Content="Войти" Style="{StaticResource ButtonSimp}"  Width="250" Height="40" Command="{Binding LoginCommand}" Cursor="Hand">
+                <Button Content="Войти" Style="{StaticResource ButtonSimp}"  Width="250" Height="40" Command=""  Cursor="Hand">
               
                 </Button> 
             </StackPanel>
