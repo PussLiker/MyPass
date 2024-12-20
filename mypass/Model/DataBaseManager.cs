@@ -3,9 +3,16 @@ using System.IO;
 
 using System.Data.SQLite;
 
+// Зачем нужен: этот класс нужен для упралвения созданием и установкой пароля для базы данных
+// Наследование: идёт в наследование путь к созданной бд (_databasePath) и пароль пользователя (_passwordDB)
+// Методы: 'CreateDataBase' - для создания БД, а также папки 'DataBase', если ранее не была создана и EncryptDataBase - для установки пользовательского пароля для бд
+
+// Пример использования: DataBaseManager.CreateDataBase('Nikita');
+//                       DataBaseManager.EncryptDataBase('230rt0450Tkkgji4'); - также можно вызывать много раз, тк с 59 по 62 строчку идёт проверка на уже имеющийся пароль
+
 namespace mypass.Model
 {
-    public class DataBaseManager : LoggableDB
+    public class DataBaseManager : Logging
     {
         // Переменные
         protected string _databasePath;

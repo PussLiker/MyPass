@@ -17,7 +17,7 @@ namespace mypass.Model
             get => _typeevent;
             set => _typeevent = value;
         }
-        public TypeEventsDB(string databasePath, string password) : base(databasePath, password) { }
+        public TypeEventsDB(string databasePath, string password) : base() { }
 
         public void AddTypeEvent(string typeEvent)
         {

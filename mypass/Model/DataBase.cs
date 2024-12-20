@@ -1,6 +1,15 @@
 ﻿using System;
-
 using System.Data.SQLite;
+
+// Зачем нужен: этот класс служит родительским классом для всех классов таблиц. Тут основные методы всей БД
+// Наследование: наследует от 'DataBaseManager' путь к файлу БД (_databasePath), а также пароль (_passwordDB)
+// Методы: OpenConnection - метод нужен для открытия соединения с БД, всегда открывать перед началом транзакции
+//         CloseConnection - метод нужен для закрытия соединения с БД
+//         InitializeDatabase - метод нужен для создания всех таблиц в БД
+
+// Пример использования: хз, потом напишу, мне лень
+
+
 
 namespace mypass.Model
 {
@@ -12,18 +21,22 @@ namespace mypass.Model
 
         public DataBase()
         {
+            InitTransaction("Вызов базы данных для заполнения атрибутов");
             if (string.IsNullOrEmpty(_databasePath) || string.IsNullOrEmpty(_passwordDB))
             {
+                MessageError("Ошибка: отстутствует путь и шифрование БД");
                 throw new InvalidOperationException("Необходимо сначала создать и зашифровать базу данных.");
             }
 
             _connectionString = $"Data Source={_databasePath};Version=3;Password={_passwordDB};";
             _connection = new SQLiteConnection(_connectionString);
+            CloseTransaction("Завершение изменения значений");
         }
 
         // Функция для открытия соединения
         public void OpenConnection()
         {
+            
             if (_connection == null)
             {
                 _connection = new SQLiteConnection(_connectionString);
@@ -32,6 +45,7 @@ namespace mypass.Model
             if (_connection.State != System.Data.ConnectionState.Open)
             {
                 _connection.Open();
+                MessageError("Установлено соединение с БД");
             }
         }
 
@@ -41,11 +55,14 @@ namespace mypass.Model
             if (_connection != null && _connection.State != System.Data.ConnectionState.Closed)
             {
                 _connection.Close();
+                MessageError("Соединение с БД закрыто");
             }
         }
         private void InitializeDatabase()
         {
+            InitTransaction("Вызов базы данных для создания таблиц");
             OpenConnection();
+
 
             string createUsersTable = @"CREATE TABLE IF NOT EXISTS Users (
                 IdUser INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -101,29 +118,37 @@ namespace mypass.Model
 
             using (var command = _connection.CreateCommand())
             {
+                MessageError("Создание таблицы 'Users'");
                 command.CommandText = createUsersTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'Accounts'");
                 command.CommandText = createAccountsTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'Tags'");
                 command.CommandText = createTagsTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'TagsAccounts'");
                 command.CommandText = createTagsAccountsTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'Events");
                 command.CommandText = createEventsTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'Actions'");
                 command.CommandText = createActionsTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'TypeEvents'");
                 command.CommandText = createTypeEventsTable;
                 command.ExecuteNonQuery();
             }
 
             CloseConnection();
+            CloseTransaction("Завершение создания таблиц");
         }
     }
 }
