@@ -17,7 +17,7 @@ namespace mypass.View
     /// <summary>
     /// Логика взаимодействия для Vhod.xaml
     /// </summary>
-    public partial class Vhod : Window
+    public partial class Vhod : UserControl
     {
         public Vhod()
         {
