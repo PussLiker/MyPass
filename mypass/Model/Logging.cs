@@ -1,21 +1,28 @@
 ﻿using System;
 using System.IO;
 
-// Чтобы вызвать дебаг необходимо сделать его родительским классом необходимого для дебага класса
-// Далее в начале метода необходимо инициализировать транзакцю, а в конце завершить
-// Сообщения для отладки вызывать методом "MessageError"
-// Чтобы работало необходимо  объявить о загрузке конфига примерно так: DebugConfig.LoadConfig()
-// Подключать можно к любым файлам с расширением типа .cs
-// Пример дебагинга можно увидеть в файле DataBase.cs, в классе DataBaseManager
+// Зачем нужен: Этот класс нужен для упралвения методами логирования
+// Наследование: косвенно получает значения из класса 'DebugConfig.cs': 'IsDebugEnabled' и 'LogFileName'
+// Методы: 'InitTransaction' - метод для начала транзакции логирования. Нужен для логического отделения логов
+//         'MessageError' - метод для ввода обычного сообщения в логи
+//         'CloseTransaction' - метод для логического завершения транзакции.
+
+// Пример использования: какой-то код
+//                       InitTransaction("Создание БД");
+//                       какой-то код
+//                       MessageError("Ваш текст для логов");
+//                       какой-то код
+//                       CloseTransaction("Завершение создания БД"); - необязательно указывать значение, тк есть значение по умолчанию
+
 
 namespace mypass.Model
 {
-    public abstract class LoggableDB
+    public abstract class Logging
     {
         private StreamWriter _logWriter;
 
         // Метод для инициализации транзакции и начала логирования
-        protected void InitTransaction(string transactionName)
+        public void InitTransaction(string transactionName)
         {
             if (DebugConfig.IsDebugEnabled)
             {
@@ -26,7 +33,7 @@ namespace mypass.Model
         }
 
         // Метод для записи ошибки в лог
-        protected void MessageError(string errorMessage)
+        public void MessageError(string errorMessage)
         {
             if (DebugConfig.IsDebugEnabled && _logWriter != null)
             {
@@ -36,7 +43,7 @@ namespace mypass.Model
         }
 
         // Метод для закрытия транзакции
-        protected void CloseTransaction(string message = "Транзакция завершена успешно")
+        public void CloseTransaction(string message = "Транзакция завершена успешно")
         {
             if (DebugConfig.IsDebugEnabled && _logWriter != null)
             {

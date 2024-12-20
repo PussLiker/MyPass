@@ -15,11 +15,19 @@ using System.Windows.Shapes;
 namespace mypass.View
 {
     /// <summary>
+<<<<<<<< HEAD:mypass/View/RegistrationPage.xaml.cs
     /// Логика взаимодействия для RegistrationPage.xaml
     /// </summary>
     public partial class RegistrationPage : UserControl
     {
         public RegistrationPage()
+========
+    /// Логика взаимодействия для Vhod.xaml
+    /// </summary>
+    public partial class Vhod : UserControl
+    {
+        public Vhod()
+>>>>>>>> DbTest:mypass/View/Vhod.xaml.cs
         {
             InitializeComponent();
         }
