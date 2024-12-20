@@ -228,6 +228,7 @@
     <Compile Include="Model\ActionsDB.cs" />
     <Compile Include="Model\CommonPasswordsList.cs" />
     <Compile Include="Model\DataBase.cs" />
+    <Compile Include="Model\DataBaseManager.cs" />
     <Compile Include="Model\DebugConfig.cs" />
     <Compile Include="Model\EncryptionModel.cs" />
     <Compile Include="Model\EventsDB.cs" />

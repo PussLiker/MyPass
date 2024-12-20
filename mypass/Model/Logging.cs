@@ -12,10 +12,10 @@ namespace mypass.Model
 {
     public abstract class LoggableDB
     {
-        private StreamWriter _logWriter;
+        public StreamWriter _logWriter;
 
         // Метод для инициализации транзакции и начала логирования
-        protected void InitTransaction(string transactionName)
+        public void InitTransaction(string transactionName)
         {
             if (DebugConfig.IsDebugEnabled)
             {
@@ -26,7 +26,7 @@ namespace mypass.Model
         }
 
         // Метод для записи ошибки в лог
-        protected void MessageError(string errorMessage)
+        public void MessageError(string errorMessage)
         {
             if (DebugConfig.IsDebugEnabled && _logWriter != null)
             {
@@ -36,7 +36,7 @@ namespace mypass.Model
         }
 
         // Метод для закрытия транзакции
-        protected void CloseTransaction(string message = "Транзакция завершена успешно")
+        public void CloseTransaction(string message = "Транзакция завершена успешно")
         {
             if (DebugConfig.IsDebugEnabled && _logWriter != null)
             {

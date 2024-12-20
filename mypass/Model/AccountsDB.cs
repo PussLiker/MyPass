@@ -38,7 +38,7 @@ namespace mypass.Model
             get => _login;
             set => _login = value;
         }
-        private string _password;
+        private new string _password;
         public string Password
         {
             get => _password;
@@ -46,7 +46,7 @@ namespace mypass.Model
         }
 
         // Инициализация конструктора
-        public AccountsDB(string databasePath, string password) : base(databasePath, password) { }
+        public AccountsDB(string databasePath, string password) : base() { }
 
         // Метод для создания нового аккаунта
         public void CreateAccount(int userId, string serviceName, string url, string login, string password)

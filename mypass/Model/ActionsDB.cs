@@ -10,8 +10,8 @@ namespace mypass.Model
         private int _idaction;
         public int IDAction
         {
-            get => _idaccount;
-            set => _idaccount = value;
+            get => _idaction;
+            set => _idaction = value;
         }
         private int _idaccount;
         public int IDAccount
@@ -33,7 +33,7 @@ namespace mypass.Model
         }
 
         // Инициализация конструктора
-        public ActionsDB(string databasePath, string password) : base(databasePath, password) { }
+        public ActionsDB(string databasePath, string password) : base() { }
 
         // Метод для добавления новой записи
         public void AddAction(int idAccount, int idEvent, DateTime timeEvent)

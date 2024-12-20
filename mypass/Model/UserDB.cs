@@ -16,7 +16,7 @@ namespace mypass.Model
         private int _id;
         public int ID
         {
-            get => _id; // Проверить нужно ли return
+            get => _id;
             set => _id = value;
         }
         private string _usernamename;
@@ -39,7 +39,7 @@ namespace mypass.Model
         }
 
         // Конструктор для инициализации ID пользователя и строки подключения
-        public UsersDB(string databasePath, string password) : base(databasePath, password) { }
+        public UsersDB(string databasePath, string password) : base() { }
 
 
         // Метод для добавления нового пользователя
