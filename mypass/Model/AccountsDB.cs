@@ -9,7 +9,7 @@ namespace mypass.Model
     public class AccountsDB : DataBase
     {
 
-        public AccountsDB(string databasePath, string password) : base(databasePath, password) { }
+        public AccountsDB(string databasePath, string password) : base() { }
 
         private int _idaccount;
         public int IDAccount
