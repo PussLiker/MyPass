@@ -21,7 +21,7 @@
     </UserControl.DataContext>
 
     <Grid >
-        
+
         <Border Background="#151517" CornerRadius="5">
             <Grid>
                 <Grid.RowDefinitions>
@@ -33,7 +33,7 @@
 
                 <Grid Grid.Row="0">
 
-                    
+
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5,25,5" Height="30">
 
@@ -74,10 +74,10 @@
 
 
                     </StackPanel>
-                   
-                    
+
+
                 </Grid>
-                    
+
                 <Grid Grid.Row ="1" Name="PassBlock">
 
                     <StackPanel Orientation="Horizontal" Margin="5">
@@ -160,7 +160,7 @@
                                                 <Border x:Name="ButtonBorder" 
                                                         Background="{TemplateBinding Background}" 
                                                         CornerRadius="5">
-                                                    
+
                                                 </Border>
                                                 <!-- Иконка -->
                                                 <iconPacks:PackIconMaterial x:Name="Icon"
@@ -175,13 +175,13 @@
                                                 <Trigger Property="IsMouseOver" Value="True">
                                                     <Setter TargetName="ButtonBorder" Property="Background" Value="#636364"/>
                                                     <Setter TargetName="Icon" Property="Foreground" Value="#202020"/>
-                                                    
+
                                                 </Trigger>
                                                 <!-- Нажатие -->
                                                 <Trigger Property="IsPressed" Value="True">
                                                     <Setter TargetName="ButtonBorder" Property="Background" Value="#202020"/>
                                                     <Setter TargetName="Icon" Property="Foreground" Value="#636364"/>
-                                                    
+
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>

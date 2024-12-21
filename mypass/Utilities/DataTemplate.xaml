@@ -1,13 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                   
                     xmlns:vm="clr-namespace:mypass.ViewModel"
-                    xmlns:view="clr-namespace:mypass.View"
-                    >
+                    xmlns:view="clr-namespace:mypass.View">
 
     <DataTemplate DataType="{x:Type vm:AccountsVM}">
         <view:Accounts />
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:AllPassesVM}">
         <view:AllPasses/>
     </DataTemplate>
@@ -24,9 +22,9 @@
         <view:PassCheck/>
     </DataTemplate>
 
-    <!--<DataTemplate DataType="{x:Type vm:PassGenVM}">
+    <DataTemplate DataType="{x:Type vm:PassGenVM}">
         <view:PassGen/>
-    </DataTemplate>-->
+    </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:EmailsVM}">
         <view:Emails />
@@ -41,7 +39,7 @@
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:RegistrationPageVM}">
-        <view:RegistrationPage/>
+        <view:RegistrationPage />
     </DataTemplate>
-    
+
 </ResourceDictionary>

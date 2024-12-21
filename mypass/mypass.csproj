@@ -293,6 +293,9 @@
     <Compile Include="View\Accounts.xaml.cs">
       <DependentUpon>Accounts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PassGen.xaml.cs">
+      <DependentUpon>PassGen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PassGenWindow.xaml.cs">
       <DependentUpon>PassGenWindow.xaml</DependentUpon>
     </Compile>
@@ -351,6 +354,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Accounts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PassGen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
