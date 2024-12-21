@@ -63,7 +63,8 @@
                            Style="{StaticResource TextStyleText}" Foreground="OldLace" 
                            TextDecorations="Underline" Cursor="Hand" HorizontalAlignment="Left">
                     <TextBlock.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding LoginPageCommand}" />
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.LoginPageCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=Window}}"/>
                     </TextBlock.InputBindings>
                 </TextBlock>
 
