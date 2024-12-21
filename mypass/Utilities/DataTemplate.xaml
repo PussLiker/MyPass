@@ -24,9 +24,9 @@
         <view:PassCheck/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:PassGenVM}">
+    <!--<DataTemplate DataType="{x:Type vm:PassGenVM}">
         <view:PassGen/>
-    </DataTemplate>
+    </DataTemplate>-->
 
     <DataTemplate DataType="{x:Type vm:EmailsVM}">
         <view:Emails />
@@ -38,6 +38,10 @@
 
     <DataTemplate DataType="{x:Type vm:VhodVM}">
         <view:Vhod/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:RegistrationPageVM}">
+        <view:RegistrationPage/>
     </DataTemplate>
     
 </ResourceDictionary>

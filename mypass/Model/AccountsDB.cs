@@ -8,10 +8,49 @@ namespace mypass.Model
 {
     public class AccountsDB : DataBase
     {
+
         public AccountsDB(string databasePath, string password) : base(databasePath, password) { }
 
+        private int _idaccount;
+        public int IDAccount
+        {
+            get => _idaccount;
+            set => _idaccount = value;
+        }
+        private int _iduser;
+        public int IDUser
+        {
+            get => _iduser;
+            set => _iduser = value;
+        }
+        private string _servisename;
+        public string ServiseName
+        {
+            get => _servisename;
+            set => _servisename = value;
+        }
+        private string _url;
+        public string Url
+        {
+            get => _url;
+            set => _url = value;
+        }
+        private string _login;
+        public string Login
+        {
+            get => _login;
+            set => _login = value;
+        }
+        private string _password;
+        public string Password
+        {
+            get => _password;
+            set => _password = value;
+        }
+
         // Метод для создания нового аккаунта
-        public void CreateAccount(int userId, string serviceName, string url, string login, string password)
+        public void AddAccount(int userId, string serviceName, string url, string login, string password)
+
         {
             OpenConnection();
             string query = @"INSERT INTO Accounts (IdUser, ServiceName, URL, Login, Password) 
@@ -30,6 +69,7 @@ namespace mypass.Model
             CloseConnection();
         }
 
+
         // Метод для удаления аккаунта
         public void DeleteAccount(int accountId)
         {
@@ -43,6 +83,7 @@ namespace mypass.Model
             }
             CloseConnection();
         }
+
 
         // Метод для обновления аккаунта
         public void UpdateAccount(int accountId, string serviceName, string url, string login, string password)
@@ -67,6 +108,7 @@ namespace mypass.Model
             }
             CloseConnection();
         }
+
 
         // Метод для получения всех данных об аккаунте в виде Dictionary<string, string>
         public Dictionary<string, string> GetAccountById(int accountId)

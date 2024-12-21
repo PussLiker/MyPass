@@ -5,7 +5,19 @@ namespace mypass.Model
 {
     public class TypeEventsDB : DataBase
     {
-        public TypeEventsDB(string databasePath, string password) : base(databasePath, password) { }
+        private int _id;
+        public int ID
+        {
+            get => _id;
+            set => _id = value;
+        }
+        private string _typeevent;
+        public string TypeEvent
+        {
+            get => _typeevent;
+            set => _typeevent = value;
+        }
+        public TypeEventsDB(string databasePath, string password) : base() { }
 
         public void AddTypeEvent(string typeEvent)
         {

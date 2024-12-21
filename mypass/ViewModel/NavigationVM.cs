@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using mypass.Model;
 using mypass.Utilities;
 using mypass.View;
 
@@ -16,8 +17,7 @@ namespace mypass.ViewModel
         private Vhod _vhod;
         private MainWindow _mainWindow;
         private PassGenWindow _passGenWindow; // Поле для хранения ссылки на окно
-        public object CurrentView
-        {
+        public object CurrentView {
             get { return _currentView; }
             set { _currentView = value; OnPropertyChanged(); }
         }
@@ -35,7 +35,6 @@ namespace mypass.ViewModel
         public ICommand VhodStartCommand { get; set; }
         public ICommand VhodButtonCommand { get; set; }
 
-
         private void Accounts(object obj) => CurrentView = new AccountsVM();
         private void AllPasses(object obj) => CurrentView = new AllPassesVM();
         private void Cards(object obj) => CurrentView = new CardsVM();
@@ -45,6 +44,7 @@ namespace mypass.ViewModel
         private void PassCheck(object obj) => CurrentView = new PassCheckVM();
         private void VhodStart(object obj)
         {
+
             if (obj is Window window)
             {
                 if (_mainWindow == null)
@@ -59,13 +59,19 @@ namespace mypass.ViewModel
             }
         }
         
-        private void PassGen(object obj)
-        {
+        
+        private void PassGen(object obj) {
             if (_passGenWindow == null)
             {
                 _passGenWindow = new PassGenWindow();
                 _passGenWindow.Closed += (s, args) => _passGenWindow = null;
                 _passGenWindow.Show();
+
+                // Пример вызова отладки + содания бд (без таблиц)
+                //DebugConfig.LoadConfig();
+                //string name = "Dima";
+                //string password = "2984yt284y";
+                //DataBaseManager.CreateEncryptedDatabase(name, password);
             }
             else
             {
@@ -74,7 +80,6 @@ namespace mypass.ViewModel
         }
         private void Minimize(object obj)
         {
-
             if (obj is Window window)
             {
                 window.WindowState = WindowState.Minimized;

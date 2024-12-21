@@ -7,7 +7,34 @@ namespace mypass.Model
 {
     public class ActionsDB : DataBase
     {
-        public ActionsDB(string databasePath, string password) : base(databasePath, password) { }
+        private int _idaction;
+        public int IDAction
+        {
+            get => _idaction;
+            set => _idaction = value;
+        }
+        private int _idaccount;
+        public int IDAccount
+        {
+            get => _idaccount;
+            set => _idaccount = value;
+        }
+        private int _idevent;
+        public int IDEvent
+        {
+            get => _idevent;
+            set => _idevent = value;
+        }
+        private DateTime _timeevent;
+        public DateTime TimeEvent
+        {
+            get => _timeevent;
+            set => _timeevent = value;
+        }
+
+        // Инициализация конструктора
+        public ActionsDB(string databasePath, string password) : base() { }
+
 
         // Метод для добавления новой записи
         public void AddAction(int idAccount, int idEvent, DateTime timeEvent)

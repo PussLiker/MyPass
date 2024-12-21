@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MahApps.Metro.IconPacks.MemoryIcons</name>
+    </assembly>
+    <members>
+        <member name="T:MahApps.Metro.IconPacks.PackIconMemoryIcons">
+            <summary>
+            All icons sourced from Memory Icons <see><cref>https://pictogrammers.com/library/memory/</cref></see>
+            In accordance of <see><cref>https://github.com/Pictogrammers/Memory?tab=License-1-ov-file#readme</cref></see>.
+            </summary>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.PackIconMemoryIcons.Kind">
+            <summary>
+            Gets or sets the icon to display.
+            </summary>
+        </member>
+        <member name="T:MahApps.Metro.IconPacks.PackIconMemoryIconsKind">
+            ******************************************
+            This code is auto generated. Do not amend.
+            ******************************************
+            <summary>
+            List of available icons for use with <see cref="T:MahApps.Metro.IconPacks.PackIconMemoryIcons" />.
+            </summary>
+            <remarks>
+            All icons sourced from Memory Icons <see><cref>https://pictogrammers.com/library/memory/</cref></see>
+            In accordance of <see><cref>https://github.com/Pictogrammers/Memory?tab=License-1-ov-file#readme</cref></see>.
+            </remarks>
+        </member>
+        <member name="T:MahApps.Metro.IconPacks.PathIconMemoryIcons">
+            <summary>
+            All icons sourced from Memory Icons <see><cref>https://pictogrammers.com/library/memory/</cref></see>
+            In accordance of <see><cref>https://github.com/Pictogrammers/Memory?tab=License-1-ov-file#readme</cref></see>.
+            </summary>
+        </member>
+        <member name="P:MahApps.Metro.IconPacks.PathIconMemoryIcons.Kind">
+            <summary>
+            Gets or sets the icon to display.
+            </summary>
+        </member>
+        <member name="T:MahApps.Metro.IconPacks.MahApps_Metro_IconPacks_MemoryIcons_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:MahApps.Metro.IconPacks.MahApps_Metro_IconPacks_MemoryIcons_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:MahApps.Metro.IconPacks.MahApps_Metro_IconPacks_MemoryIcons_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:MahApps.Metro.IconPacks.MahApps_Metro_IconPacks_MemoryIcons_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+    </members>
+</doc>

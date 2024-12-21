@@ -8,7 +8,31 @@ namespace mypass.Model
     // Класс для работы с таблицей TagsAccounts
     public class TagsAccountsDB : DataBase
     {
-        public TagsAccountsDB(string databasePath, string password) : base(databasePath, password) { }
+        private int _idtagsaccounts;
+        public int IdTagsAccounts
+        {
+            get => _idtagsaccounts;
+            set => _idtagsaccounts = value;
+        }
+        private int _idaccount;
+        public int IdAccount
+        {
+            get => _idaccount;
+            set => _idaccount = value;
+        }
+        private int _idtag;
+        public int IdTag
+        {
+            get => _idtag;
+            set => _idtag = value;
+        }
+        private DateTime _timetagging;
+        public DateTime TimeTagging
+        {
+            get => (DateTime)_timetagging;
+            set => _timetagging = value;
+        }
+        public TagsAccountsDB(string databasePath, string password) : base() { }
 
         // Метод для добавления связи между тегом и аккаунтом
         public void AddTagAccount(int idAccount, int idTag, DateTime timeTagging)

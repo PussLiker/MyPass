@@ -13,10 +13,8 @@
         AllowsTransparency="True" Icon="/2milniimolnii.jpg" 
         >
     <Window.Resources>
-
         <SolidColorBrush x:Key="Background" Color="#1a1a1d" />
     </Window.Resources>
-
 
     <Window.DataContext>
         <vm:NavigationVM />
@@ -42,13 +40,11 @@
                         BorderThickness="0"/>
 
                 <StackPanel  Width="270" Margin="10,0,0,0" VerticalAlignment="Center">
-
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding MainMenuCommand}"
                               IsChecked="True">
 
                         <Grid>
-
                             <iconPacks:PackIconMaterial Kind="Home"
                                    Style="{StaticResource ImageStyle}" 
                                    HorizontalAlignment="Left"/>
@@ -61,7 +57,6 @@
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding AllPassesCommand}"
                               >
-
                         <Grid>
                             <iconPacks:PackIconMaterial Kind="Note"
                                 Style="{StaticResource ImageStyle}" 
@@ -72,21 +67,7 @@
                         </Grid>
                     </Menu:Btn>
 
-                                   
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding NotificationsCommand}"
-                              >
-
-                        <Grid>
-                            <iconPacks:PackIconMaterial Kind="Bell"
-                                Style="{StaticResource ImageStyle}" 
-                                HorizontalAlignment="Left"/>
-                            <TextBlock Text="Уведомления"
-                                Style="{StaticResource TextStyle}" 
-                                HorizontalAlignment="Left"/>
-                        </Grid>
-                    </Menu:Btn>
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding NotificationsCommand}"
                               >
@@ -95,6 +76,7 @@
                             <iconPacks:PackIconMaterial Kind="ShieldKey"
                                                         Style="{StaticResource ImageStyle}" 
                                                         HorizontalAlignment="Left" Height="50" VerticalAlignment="Top"/>
+
                             <TextBlock Text="Проверка паролей"
                                        Style="{StaticResource TextStyle}" 
                                        HorizontalAlignment="Left"/>
@@ -108,6 +90,7 @@
                             <iconPacks:PackIconMaterial Kind="AutoFix"
                                                         Style="{StaticResource ImageStyle}" 
                                                         HorizontalAlignment="Left" Height="50" VerticalAlignment="Top"/>
+
                             <TextBlock Text="Генерация паролей"
                                        Style="{StaticResource TextStyle}" 
                                        HorizontalAlignment="Left"/>
@@ -233,6 +216,7 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
+
                     </StackPanel>
                 </Grid>
             </Grid>

@@ -8,7 +8,19 @@ namespace mypass.Model
     // Класс для работы с таблицей Tags
     public class TagsDB : DataBase
     {
-        public TagsDB(string databasePath, string password) : base(databasePath, password) { }
+        private int _id;
+        public int ID
+        {
+            get => _id;
+            set => _id = value;
+        }
+        private string _nametag;
+        public string NameTag
+        {
+            get => _nametag;
+            set => _nametag = value;
+        }
+        public TagsDB(string databasePath, string password) : base() { }
 
         // Метод для добавления тега
         public void AddTag(string nameTag)
