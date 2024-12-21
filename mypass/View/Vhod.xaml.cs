@@ -12,12 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-using mypass.ViewModel;
-
 namespace mypass.View
 {
+    /// <summary>
     /// Логика взаимодействия для Vhod.xaml
-    public partial class Vhod : UserControl
+    /// </summary>
+    public partial class Vhod : Window
     {
         public Vhod()
         {

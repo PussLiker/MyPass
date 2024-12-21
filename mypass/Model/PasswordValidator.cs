@@ -1,47 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace mypass.Model
 {
     internal class PasswordValidator
-    {
-        // Перечисление для определения уровня надёжности пароля
-        public enum PasswordStrength
+    { 
+      // Метод проверки надёжности пароля
+        public static PasswordCheckResult CheckPasswordStrength(string password)
         {
-            VeryWeak,
-            Weak,
-            Medium,
-            Strong,
-            VeryStrong
-        }
-
-        // Метод проверки надёжности пароля
-        public static PasswordStrength CheckPasswordStrength(string password)
-        {
-            // Проверка на распространённые пароли
-            if (CommonPasswordsList.Passwords.Contains(password.ToLower()))
-            {
-                return PasswordStrength.VeryWeak;
-            }
-
             int score = 0;
+            PasswordCheckResult result = new PasswordCheckResult();
 
             // Проверка на минимальную длину
             if (password.Length < 8)
             {
-                return PasswordStrength.VeryWeak;
+                result.Status = "very_weak";
+                result.Message = "Пароль слишком короткий. Минимум 8 символов.";
+                result.Color = "red"; // Красный для очень слабого пароля
+                return result;
             }
             else if (password.Length >= 8)
                 score += 1; // Базовый балл за длину
 
             // Длина пароля
-            if (password.Length >= 30)
-                return PasswordStrength.VeryStrong;
-            else if (password.Length >= 12)
+            if (password.Length >= 12)
                 score += 1;
             else if (password.Length >= 16)
                 score += 3;
-
+            else if (password.Length >= 30)
+                
 
             // Разнообразие символов
             if (Regex.IsMatch(password, @"\d")) // Наличие цифр
@@ -60,27 +51,48 @@ namespace mypass.Model
             if (IsSequential(password)) // Последовательности, типа "1234" или "abcd"
                 score -= 2;
 
+            // Проверка на распространённые пароли
+            if (CommonPasswordsList.Passwords.Contains(password.ToLower()))
+            {
+                result.Status = "very_weak";
+                result.Message = "Очень слабый пароль: входит в список распространённых паролей.";
+                result.Color = "red"; // Красный для очень слабого пароля
+                return result;
+            }
+
             // Результат на основе баллов
             if (score <= 2)
             {
-                return PasswordStrength.VeryWeak;
+                result.Status = "very_weak";
+                result.Message = "Очень слабый пароль";
+                result.Color = "red"; // Красный для очень слабого пароля
             }
             else if (score <= 4)
             {
-                return PasswordStrength.Weak;
+                result.Status = "weak";
+                result.Message = "Слабый пароль";
+                result.Color = "orange"; // Оранжевый для слабого пароля
             }
             else if (score <= 6)
             {
-                return PasswordStrength.Medium;
+                result.Status = "medium";
+                result.Message = "Средний пароль";
+                result.Color = "yellow"; // Желтый для среднего пароля
             }
             else if (score <= 8)
             {
-                return PasswordStrength.Strong;
+                result.Status = "strong";
+                result.Message = "Хороший пароль";
+                result.Color = "green"; // Зеленый для хорошего пароля
             }
             else
             {
-                return PasswordStrength.VeryStrong;
+                result.Status = "very_strong";
+                result.Message = "Очень надёжный пароль";
+                result.Color = "green"; // Зеленый для очень сильного пароля
             }
+
+            return result;
         }
 
         // Проверка на последовательности (например, "1234", "abcd")

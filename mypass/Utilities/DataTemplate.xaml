@@ -41,5 +41,5 @@
     <DataTemplate DataType="{x:Type vm:RegistrationPageVM}">
         <view:RegistrationPage />
     </DataTemplate>
-
+    
 </ResourceDictionary>
