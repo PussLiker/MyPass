@@ -13,21 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace mypass.View
-{
-<<<<<<<< HEAD:mypass/View/Vhod.xaml.cs
-    /// <summary>
-    /// Логика взаимодействия для Vhod.xaml
-    /// </summary>
-    public partial class Vhod : UserControl
-    {
-        public Vhod()
-========
+{ 
     /// Логика взаимодействия для RegistrationPage.xaml
     public partial class RegistrationPage : UserControl
     {
         public RegistrationPage()
 
->>>>>>>> main:mypass/View/RegistrationPage.xaml.cs
         {
             InitializeComponent();
         }
