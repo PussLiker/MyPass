@@ -65,7 +65,7 @@ namespace mypass.Model
 
             // 1
             string createUsersTable = @"CREATE TABLE IF NOT EXISTS User (
-                Login VARCHAR(128) PRIMARY KEY,
+                LoginUser VARCHAR(128) PRIMARY KEY,
                 FirstName VARCHAR(128) NOT NULL,
                 SecondName VARCHAR(128) NOT NULL,
                 MasterPasswordHash VARCHAR(64) NOT NULL,
@@ -87,10 +87,10 @@ namespace mypass.Model
             // 4
             string createAccountsTable = @"CREATE TABLE IF NOT EXISTS Accounts (
                 IdAccount INTEGER PRIMARY KEY AUTOINCREMENT,
-                Login VARCHAR(128) NOT NULL,
+                LoginUserAccount VARCHAR(128) NOT NULL,
                 ServiceName VARCHAR(128) NOT NULL,
                 URL VARCHAR(255),
-                Login VARCHAR(36),
+                LoginAccount VARCHAR(36),
                 Password CHAR(64) NOT NULL,
                 FOREIGN KEY(Login) REFERENCES User(Login) ON UPDATE CASCADE ON DELETE RESTRICT
             );";
