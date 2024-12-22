@@ -34,7 +34,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Width="220" Height="250" Margin="30,20,0,20" Background="#2d2d30" CornerRadius="10" Padding="10" 
+                                <Border Width="220" Height="250" Margin="30,20,0,20" Background="Khaki" CornerRadius="10" Padding="10" 
                                         BorderThickness="1" BorderBrush="#404040">
                                     <!-- Тень для карточки -->
                                     <Border.Effect>

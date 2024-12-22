@@ -206,7 +206,7 @@
 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Выберите длину пароля:" Style="{StaticResource DefTextStyle}"
-                           PreviewTextInput="NumberValidationTextBox"
+                           PreviewTextInput="NumberValidationTextBox"       
                            
                            />
 

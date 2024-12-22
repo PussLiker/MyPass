@@ -8,7 +8,7 @@ using System.Data.SQLite;
 // Методы: 'CreateDataBase' - для создания БД, а также папки 'DataBase', если ранее не была создана и EncryptDataBase - для установки пользовательского пароля для бд
 
 // Пример использования: DataBaseManager.CreateDataBase('Nikita');
-//                       DataBaseManager.EncryptDataBase('230rt0450Tkkgji4'); - также можно вызывать много раз, тк с 59 по 62 строчку идёт проверка на уже имеющийся пароль
+//                       DataBaseManager.EncryptDataBase('230rt0450Tkkgji4');    - также можно вызывать много раз, тк с 59 по 62 строчку идёт проверка на уже имеющийся пароль
 
 namespace mypass.Model
 {
