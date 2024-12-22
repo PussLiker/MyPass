@@ -66,6 +66,8 @@ namespace mypass.Model
 
             string createUsersTable = @"CREATE TABLE IF NOT EXISTS Users (
                 IdUser INTEGER PRIMARY KEY AUTOINCREMENT,
+                FirstName VARCHAR(128) NOT NULL,
+                SecondName VARCHAR(128) NOT NULL,
                 Username VARCHAR(128) NOT NULL,
                 MasterPasswordHash VARCHAR(64) NOT NULL,
                 Salt CHAR(16) NOT NULL

@@ -168,7 +168,7 @@ namespace mypass.Model
 
             OpenConnection();
 
-            string query = "SELECT IdUser, Username, MasterPasswordHash, Salt FROM Users WHERE IdUser = @IdUser;";
+            string query = "SELECT IdUser, FirstName, SecondName, Username, MasterPasswordHash, Salt FROM Users WHERE IdUser = @IdUser;";
             MessageError($"Создание запроса: {query}");
 
             using (var command = _connection.CreateCommand())
@@ -182,14 +182,18 @@ namespace mypass.Model
                     {
                         MessageError($"Заполнение полей полученными данными");
                         _id = Convert.ToInt32(reader["IdUser"]);
+                        _firstname = reader["FirstName"].ToString();
+                        _secondname = reader["SecondName"].ToString();
                         _username = reader["Username"].ToString();
-                        _masterPasswordHash = reader["MasterPasswordHash"].ToString();
+                        _masterpasswordhash = reader["MasterPasswordHash"].ToString();
                         _salt = reader["Salt"].ToString();
 
                         MessageError($"Добавление в словарь полученных данных");
                         userDataDictionary.Add("IdUser", _id.ToString());
+                        userDataDictionary.Add("FirstName", _firstname);
+                        userDataDictionary.Add("SecondName", _secondname);
                         userDataDictionary.Add("Username", _username);
-                        userDataDictionary.Add("MasterPasswordHash", _masterPasswordHash);
+                        userDataDictionary.Add("MasterPasswordHash", _masterpasswordhash);
                         userDataDictionary.Add("Salt", _salt);
                     }
                     else
@@ -198,9 +202,9 @@ namespace mypass.Model
                     }
                 }
             }
-
-            CloseTransaction();
+            
             CloseConnection();
+            CloseTransaction();
             return userDataDictionary;
         }
     }
