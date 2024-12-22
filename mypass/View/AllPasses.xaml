@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vm="clr-namespace:mypass.ViewModel"
+             xmlns:vm="clr-namespace:mypass.ViewModel" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="810"
              Style="{StaticResource PageStyle}">
@@ -14,7 +15,83 @@
 
     <Grid>
         <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
-            
+            <Grid>
+                <!-- Верхняя панель -->
+                <StackPanel Orientation="Horizontal" Background="#2d2d30" Height="70" VerticalAlignment="Top" Margin="0,30,0,0">
+                </StackPanel>
+
+                <!-- Область с прокруткой -->
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" 
+                              VerticalScrollBarVisibility="Visible" 
+                              Margin="0,100,0,0" 
+                              VerticalAlignment="Stretch">
+                    <ItemsControl ItemsSource="{Binding Accounts}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <!-- WrapPanel для отображения элементов -->
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Width="220" Height="250" Margin="30,20,0,20" Background="#2d2d30" CornerRadius="10" Padding="10" 
+                                        BorderThickness="1" BorderBrush="#404040">
+                                    <!-- Тень для карточки -->
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="#000" BlurRadius="10" ShadowDepth="0" Opacity="0.5" />
+                                    </Border.Effect>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="35" />
+                                            <RowDefinition Height="35" />
+                                            <RowDefinition Height="90" />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Верхняя панель с иконками и заголовком -->
+                                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                                            <TextBox Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Text="{Binding Username}" FontWeight="Bold"  FontSize="16" VerticalAlignment="Center" BorderThickness="0"/>
+                                        </StackPanel>
+
+                                        <!-- Дополнительный текст -->
+                                        <Border Background="#1a1a1d" CornerRadius="5,5,0,0" Grid.Row="1" Margin="0,5,0,0">
+                                            <Grid>
+                                                <TextBox Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Text="{Binding Email}" BorderThickness="0" FontSize="14"/>
+                                                <Border Style="{StaticResource AnimatedButtonStyleAllPasses}" CornerRadius="5" Margin="0,0,5,0" HorizontalAlignment="Right" Width="15" Height="15">
+                                                    <Button Style="{StaticResource ButtonSimp}" HorizontalAlignment="Right" Background="Transparent" />
+                                                </Border>
+                                                <iconPacks:PackIconMaterial Kind="Refresh" Foreground="PeachPuff" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,9,0" Width="7"/>
+                                            </Grid>
+                                        </Border>
+
+                                        <!-- Поле ввода текста -->
+                                        <Border Background="#1a1a1d" CornerRadius="0,0,5,5" Grid.Row="2" Margin="0,2,0,5">
+                                            <Grid>
+                                                <TextBox Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Text="{Binding Password}" BorderThickness="0" FontSize="14"/>
+                                                <Border Style="{StaticResource AnimatedButtonStyleAllPasses}" CornerRadius="5" Margin="0,0,5,0" HorizontalAlignment="Right" Width="15" Height="15">
+                                                    <Button Style="{StaticResource ButtonSimp}" HorizontalAlignment="Right" Background="Transparent" />
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+
+                                        <!-- Сообщение об ошибке -->
+                                        <TextBlock Text="⚠ Проблемы с паролем" Foreground="Red" FontSize="10" Grid.Row="3" Margin="5,10,0,32"/>
+
+                                        <!-- Кнопка перехода -->
+                                        <Border Style="{StaticResource AnimatedButtonStyleAllPasses}" Background="#404040" Grid.Row="4" CornerRadius="10" Width="180">
+                                            <Button Content="⭢ Перейти на сайт" Style="{StaticResource ButtonSimp}" 
+                                            VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#1a1a1d"
+                                            Cursor="Hand"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

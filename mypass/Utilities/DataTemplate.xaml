@@ -47,4 +47,5 @@
     <DataTemplate DataType="{x:Type vm:MainAuthWindowVM}">
         <view:MainAuthWindow/>
     </DataTemplate>
+
 </ResourceDictionary>

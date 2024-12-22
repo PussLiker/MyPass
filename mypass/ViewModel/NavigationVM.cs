@@ -1,7 +1,12 @@
-﻿using mypass.Utilities;
-using mypass.View;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using mypass.Utilities;
+using mypass.View;
 
 namespace mypass.ViewModel
 {
@@ -30,6 +35,7 @@ namespace mypass.ViewModel
         public ICommand VhodStartCommand { get; set; }
         public ICommand VhodButtonCommand { get; set; }
 
+
         private void Accounts(object obj) => CurrentView = new AccountsVM();
         private void AllPasses(object obj) => CurrentView = new AllPassesVM();
         private void Cards(object obj) => CurrentView = new CardsVM();
@@ -39,19 +45,20 @@ namespace mypass.ViewModel
         private void PassCheck(object obj) => CurrentView = new PassCheckVM();
         private void VhodStart(object obj)
         {
-            if (_mainWindow == null)
+            if (obj is Window window)
             {
-                _mainWindow = new MainWindow();
-                _mainWindow.Closed += (s, args) => _mainWindow = null;
-                _mainWindow.Show();
+                if (_mainWindow == null)
+                {
+                    _mainWindow = new MainWindow();
+                    _mainWindow.Closed += (s, args) => _mainWindow = null;
+                    _mainWindow.Show();
+                }
+                else
+                    _mainWindow = new MainWindow();
+                window?.Close();
             }
-            else
-                _mainWindow = new MainWindow();
         }
-        private void VhodButton(object obj)
-        {
-
-        }
+        
         private void PassGen(object obj)
         {
             if (_passGenWindow == null)
@@ -59,12 +66,6 @@ namespace mypass.ViewModel
                 _passGenWindow = new PassGenWindow();
                 _passGenWindow.Closed += (s, args) => _passGenWindow = null;
                 _passGenWindow.Show();
-
-                // Пример вызова отладки + содания бд (без таблиц)
-                //DebugConfig.LoadConfig();
-                //string name = "Dima";
-                //string password = "2984yt284y";
-                //DataBaseManager.CreateEncryptedDatabase(name, password);
             }
             else
             {
@@ -73,23 +74,30 @@ namespace mypass.ViewModel
         }
         private void Minimize(object obj)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+
+            if (obj is Window window)
+            {
+                window.WindowState = WindowState.Minimized;
+            }
         }
         private void Maximize(object obj)
         {
-            var window = Application.Current.MainWindow;
-            if (window.WindowState == WindowState.Maximized)
+            if (obj is Window window)
             {
-                window.WindowState = WindowState.Normal; // Восстановить окно
-            }
-            else
-            {
-                window.WindowState = WindowState.Maximized; // Максимизировать окно
+                if (window.WindowState == WindowState.Maximized)
+                {
+                    window.WindowState = WindowState.Normal; // Восстановить окно
+                }
+                else
+                {
+                    window.WindowState = WindowState.Maximized; // Максимизировать окно
+                }
             }
         }
         private void Close(object obj)
         {
-            Application.Current.MainWindow.Close();
+            if (obj is Window window)
+            { window?.Close(); }
         }
 
         public NavigationVM()

@@ -5,6 +5,7 @@
              StartupUri="View/MainAuthWindow.xaml">
 
 
+
     <Application.Resources>
         <ResourceDictionary>
             

@@ -14,6 +14,7 @@ namespace mypass.ViewModel
         private CancellationTokenSource _cancellationTokenSource;
         public ICommand CopyTextCommand { get; }
         public ICommand PasswordGenerateCommand { get; }
+        public ICommand ExitCommand { get; }
 
         private string _text;
         public string Text
@@ -137,6 +138,7 @@ namespace mypass.ViewModel
             // Создаем команду
             CopyTextCommand = new RelayCommand(CopyTextToClipboard);
             PasswordGenerateCommand = new RelayCommand(SetPass);
+            ExitCommand = new RelayCommand(Exit);
             _pageModel = new PageModel();
 
             // Пример инициализации текста
@@ -147,6 +149,11 @@ namespace mypass.ViewModel
             DecreasePasswordLengthCommand = new RelayCommand(_ => PasswordLength--, _ => PasswordLength > 4);
 
 
+        }
+        private void Exit(object s)
+        {
+            if (s is Window w)
+            { w?.Close(); }
         }
         private void SetPass(object sender)
         {
