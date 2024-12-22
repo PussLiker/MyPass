@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Data;
 
 namespace mypass.Model
 {
@@ -114,6 +115,10 @@ namespace mypass.Model
             }
             CloseConnection();
             return result;
+        }
+        public void LoadDataFromActionsDB()
+        {
+
         }
     }
 }
