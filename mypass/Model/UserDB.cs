@@ -17,11 +17,11 @@ namespace mypass.Model
     public class UsersDB : DataBase
     {
         // Поля класса
-        private int _id;
-        public int ID
+        private string _login;
+        public string Login
         {
-            get => _id;
-            set => _id = value;
+            get => _login;
+            set => _login = value;
         }
         private string _firstname;
         public string FirstName
@@ -34,12 +34,6 @@ namespace mypass.Model
         {
             get => _secondname;
             set => _secondname = value;
-        }
-        private string _username;
-        public string UserName
-        {
-            get => _username;
-            set => _username = value;
         }
         private string _masterpasswordhash;
         public string MasterPasswordHash
@@ -55,12 +49,12 @@ namespace mypass.Model
         }
 
         // Метод для добавления нового пользователя
-        public bool AddUser(int idUser, string firstname, string secondname, string username, string masterpasswordhash, string salt)
+        public bool AddUser(string login, string firstname, string secondname,  string masterpasswordhash, string salt)
         {
             InitTransaction("Вызов метода 'AddUser'");
             OpenConnection();
 
-            string query = "INSERT INTO Users (IdUser, FirstName, SecondName, Username, MasterPasswordHash, Salt) VALUES (@IdUsers, @FirstName, @SecondName @Username, @MasterPasswordHash, @Salt);";
+            string query = "INSERT INTO User (Login, FirstName, SecondName, MasterPasswordHash, Salt) VALUES (@Login, @FirstName, @SecondName, @MasterPasswordHash, @Salt);";
             MessageError($"Создание запроса: {query}");
             int affectedRows;
 
@@ -68,10 +62,9 @@ namespace mypass.Model
             {
                 command.CommandText = query;
                 MessageError($"Вызов команд для добавления");
-                command.Parameters.AddWithValue("@IdUser", idUser);
+                command.Parameters.AddWithValue("@Login", login);
                 command.Parameters.AddWithValue("@FirstName", firstname);
                 command.Parameters.AddWithValue("@SecondName", secondname);
-                command.Parameters.AddWithValue("@Username", username);
                 command.Parameters.AddWithValue("@MasterPasswordHash", masterpasswordhash);
                 command.Parameters.AddWithValue("@Salt", salt);
 
@@ -85,10 +78,9 @@ namespace mypass.Model
             if (affectedRows > 0)
             {
                 MessageError($"Применение полученных значений к полям класса");
-                _id = idUser;
+                _login = login;
                 _firstname = firstname;
                 _secondname = secondname;
-                _username = username;
                 _masterpasswordhash = masterpasswordhash;
                 _salt = salt;
             }
@@ -98,12 +90,13 @@ namespace mypass.Model
         }
 
         // Метод для обновления данных пользователя
-        public bool UpdateUser(int idUser, string newFirstname, string newSecondname, string newName, string newMasterPasswordHash, string newSalt)
+        public bool UpdateUser(string login, string newFirstname, string newSecondname, string newMasterPasswordHash, string newSalt)
         {
             InitTransaction("Вызов метода 'UpdateUser'");
             OpenConnection();
 
-            string query = "UPDATE Users SET FirstName = @FirstName, SecondName = @SecondName, Username = @Username, MasterPasswordHash = @MasterPasswordHash, Salt = @Salt WHERE IdUser = @IdUser;";
+            string query = "UPDATE Users SET FirstName = @FirstName, SecondName = @SecondName, MasterPasswordHash = @MasterPasswordHash, Salt = @Salt " +
+                "WHERE Login = @Login;";
             MessageError($"Создание запроса: {query}");
             int affectedRows;
 
@@ -111,10 +104,9 @@ namespace mypass.Model
             {
                 command.CommandText = query;
                 MessageError($"Вызов команд для обновления");
-                command.Parameters.AddWithValue("@IdUser", idUser);
+                command.Parameters.AddWithValue("@Login", login);
                 command.Parameters.AddWithValue("@FirstName", newFirstname);
                 command.Parameters.AddWithValue("@SecondName", newSecondname);
-                command.Parameters.AddWithValue("@Username", newName);
                 command.Parameters.AddWithValue("@MasterPasswordHash", newMasterPasswordHash);
                 command.Parameters.AddWithValue("@Salt", newSalt);
 
@@ -127,10 +119,9 @@ namespace mypass.Model
             // Обновляем поля класса, если обновление прошло успешно
             if (affectedRows > 0)
             {
-                _id = idUser;
+                _login = login;
                 _firstname = newFirstname;
                 _secondname = newSecondname;
-                _username = newName;
                 _masterpasswordhash = newMasterPasswordHash;
                 _salt = newSalt;
             }
@@ -161,38 +152,36 @@ namespace mypass.Model
         }
 
         // Метод для получения полной информации о пользователе
-        public Dictionary<string, string> GetUserData(int idUser)
+        public Dictionary<string, string> GetUserData(string login)
         {
             InitTransaction("Вызов метода 'GetUserData'");
             Dictionary<string, string> userDataDictionary = new Dictionary<string, string>();
 
             OpenConnection();
 
-            string query = "SELECT IdUser, FirstName, SecondName, Username, MasterPasswordHash, Salt FROM Users WHERE IdUser = @IdUser;";
+            string query = "SELECT FirstName, SecondName, MasterPasswordHash, Salt FROM Users WHERE Login = @Login;";
             MessageError($"Создание запроса: {query}");
 
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = query;
-                command.Parameters.AddWithValue("@IdUser", idUser);
+                command.Parameters.AddWithValue("Login", login);
 
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
                         MessageError($"Заполнение полей полученными данными");
-                        _id = Convert.ToInt32(reader["IdUser"]);
+                        _login = reader["Login"].ToString();
                         _firstname = reader["FirstName"].ToString();
                         _secondname = reader["SecondName"].ToString();
-                        _username = reader["Username"].ToString();
                         _masterpasswordhash = reader["MasterPasswordHash"].ToString();
                         _salt = reader["Salt"].ToString();
 
                         MessageError($"Добавление в словарь полученных данных");
-                        userDataDictionary.Add("IdUser", _id.ToString());
+                        userDataDictionary.Add("Login", _login);
                         userDataDictionary.Add("FirstName", _firstname);
                         userDataDictionary.Add("SecondName", _secondname);
-                        userDataDictionary.Add("Username", _username);
                         userDataDictionary.Add("MasterPasswordHash", _masterpasswordhash);
                         userDataDictionary.Add("Salt", _salt);
                     }

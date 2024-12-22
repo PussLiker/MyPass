@@ -64,23 +64,22 @@ namespace mypass.Model
             OpenConnection();
 
 
-            string createUsersTable = @"CREATE TABLE IF NOT EXISTS Users (
-                IdUser INTEGER PRIMARY KEY AUTOINCREMENT,
+            string createUsersTable = @"CREATE TABLE IF NOT EXISTS User (
+                Login VARCHAR(128) PRIMARY KEY,
                 FirstName VARCHAR(128) NOT NULL,
                 SecondName VARCHAR(128) NOT NULL,
-                Username VARCHAR(128) NOT NULL,
                 MasterPasswordHash VARCHAR(64) NOT NULL,
                 Salt CHAR(16) NOT NULL
             );";
 
             string createAccountsTable = @"CREATE TABLE IF NOT EXISTS Accounts (
                 IdAccount INTEGER PRIMARY KEY AUTOINCREMENT,
-                IdUser INTEGER NOT NULL,
+                Login VARCHAR(128) NOT NULL,
                 ServiceName VARCHAR(128) NOT NULL,
                 URL VARCHAR(255),
                 Login VARCHAR(36),
                 Password CHAR(64) NOT NULL,
-                FOREIGN KEY(IdUser) REFERENCES Users(IdUser) ON UPDATE CASCADE ON DELETE RESTRICT
+                FOREIGN KEY(Login) REFERENCES User(Login) ON UPDATE CASCADE ON DELETE RESTRICT
             );";
 
             string createTagsTable = @"CREATE TABLE IF NOT EXISTS Tags (
