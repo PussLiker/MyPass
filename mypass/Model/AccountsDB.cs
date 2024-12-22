@@ -45,9 +45,6 @@ namespace mypass.Model
             set => _password = value;
         }
 
-        // Инициализация конструктора
-        public AccountsDB(string databasePath, string password) : base() { }
-
         // Метод для создания нового аккаунта
         public void AddAccount(int userId, string serviceName, string url, string login, string password)
         {
@@ -164,6 +161,10 @@ namespace mypass.Model
 
             CloseConnection();
             return accountsList;
+        }
+        public void LoadDataFromAccountsDB()
+        {
+
         }
     }
 }

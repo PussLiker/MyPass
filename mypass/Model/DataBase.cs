@@ -63,7 +63,7 @@ namespace mypass.Model
             InitTransaction("Вызов базы данных для создания таблиц");
             OpenConnection();
 
-
+            // 1
             string createUsersTable = @"CREATE TABLE IF NOT EXISTS User (
                 Login VARCHAR(128) PRIMARY KEY,
                 FirstName VARCHAR(128) NOT NULL,
@@ -71,7 +71,20 @@ namespace mypass.Model
                 MasterPasswordHash VARCHAR(64) NOT NULL,
                 Salt CHAR(16) NOT NULL
             );";
+            
+            // 2
+            string createTagsTable = @"CREATE TABLE IF NOT EXISTS Tags (
+                IdTag INTEGER PRIMARY KEY AUTOINCREMENT,
+                NameTag VARCHAR(36) NOT NULL
+            );";
 
+            // 3
+            string createTypeEventsTable = @"CREATE TABLE IF NOT EXISTS TypeEvents (
+                IdTypeEvent INTEGER PRIMARY KEY AUTOINCREMENT,
+                TypeEvent VARCHAR(128) NOT NULL
+            );";
+
+            // 4
             string createAccountsTable = @"CREATE TABLE IF NOT EXISTS Accounts (
                 IdAccount INTEGER PRIMARY KEY AUTOINCREMENT,
                 Login VARCHAR(128) NOT NULL,
@@ -82,11 +95,15 @@ namespace mypass.Model
                 FOREIGN KEY(Login) REFERENCES User(Login) ON UPDATE CASCADE ON DELETE RESTRICT
             );";
 
-            string createTagsTable = @"CREATE TABLE IF NOT EXISTS Tags (
-                IdTag INTEGER PRIMARY KEY AUTOINCREMENT,
-                NameTag VARCHAR(36) NOT NULL
+            // 5
+            string createEventsTable = @"CREATE TABLE IF NOT EXISTS Events (
+                IdEvent INTEGER PRIMARY KEY AUTOINCREMENT,
+                IDTypeEvent INTEGER NOT NULL,
+                NameEvent VARCHAR(128) NOT NULL,
+                FOREIGN KEY(IDTypeEvent) REFERENCES TypeEvents(IdTypeEvent) ON UPDATE CASCADE ON DELETE RESTRICT
             );";
 
+            // 6
             string createTagsAccountsTable = @"CREATE TABLE IF NOT EXISTS TagsAccounts (
                 IdTagsAccounts INTEGER PRIMARY KEY AUTOINCREMENT,
                 IdAccount INTEGER NOT NULL,
@@ -96,13 +113,7 @@ namespace mypass.Model
                 FOREIGN KEY(IdTag) REFERENCES Tags(IdTag) ON UPDATE CASCADE ON DELETE RESTRICT
             );";
 
-            string createEventsTable = @"CREATE TABLE IF NOT EXISTS Events (
-                IdEvent INTEGER PRIMARY KEY AUTOINCREMENT,
-                IDTypeEvent INTEGER NOT NULL,
-                NameEvent VARCHAR(128) NOT NULL,
-                FOREIGN KEY(IDTypeEvent) REFERENCES TypeEvents(IdTypeEvent) ON UPDATE CASCADE ON DELETE RESTRICT
-            );";
-
+            // 7
             string createActionsTable = @"CREATE TABLE IF NOT EXISTS Actions (
                 IdAction INTEGER PRIMARY KEY AUTOINCREMENT,
                 IdAccount INTEGER NOT NULL,
@@ -112,42 +123,36 @@ namespace mypass.Model
                 FOREIGN KEY(IdEvent) REFERENCES Events(IdEvent) ON UPDATE CASCADE ON DELETE RESTRICT
             );";
 
-            string createTypeEventsTable = @"CREATE TABLE IF NOT EXISTS TypeEvents (
-                IdTypeEvent INTEGER PRIMARY KEY AUTOINCREMENT,
-                TypeEvent VARCHAR(128) NOT NULL
-            );";
-
             using (var command = _connection.CreateCommand())
             {
                 MessageError("Создание таблицы 'Users'");
                 command.CommandText = createUsersTable;
                 command.ExecuteNonQuery();
 
-                MessageError("Создание таблицы 'Accounts'");
-                command.CommandText = createAccountsTable;
-                command.ExecuteNonQuery();
-
                 MessageError("Создание таблицы 'Tags'");
                 command.CommandText = createTagsTable;
                 command.ExecuteNonQuery();
 
-                MessageError("Создание таблицы 'TagsAccounts'");
-                command.CommandText = createTagsAccountsTable;
+                MessageError("Создание таблицы 'TypeEvents'");
+                command.CommandText = createTypeEventsTable;
+                command.ExecuteNonQuery();
+
+                MessageError("Создание таблицы 'Accounts'");
+                command.CommandText = createAccountsTable;
                 command.ExecuteNonQuery();
 
                 MessageError("Создание таблицы 'Events");
                 command.CommandText = createEventsTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'TagsAccounts'");
+                command.CommandText = createTagsAccountsTable;
+                command.ExecuteNonQuery();
+
                 MessageError("Создание таблицы 'Actions'");
                 command.CommandText = createActionsTable;
                 command.ExecuteNonQuery();
-
-                MessageError("Создание таблицы 'TypeEvents'");
-                command.CommandText = createTypeEventsTable;
-                command.ExecuteNonQuery();
             }
-
             CloseConnection();
             CloseTransaction("Завершение создания таблиц");
         }

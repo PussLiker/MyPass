@@ -105,5 +105,9 @@ namespace mypass.Model
             CloseConnection();
             return null;
         }
+        public void LoadDataFromTagsAccountsDB()
+        {
+
+        }
     }
 }

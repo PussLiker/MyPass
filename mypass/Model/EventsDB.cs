@@ -99,5 +99,9 @@ namespace mypass.Model
             CloseConnection();
             return result;
         }
+        public void LoadDataFromEventsDB()
+        {
+
+        }
     }
 }

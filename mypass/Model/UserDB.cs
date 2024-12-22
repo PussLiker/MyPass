@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.IO;
 using Microsoft.Data.Sqlite;
 
-// Зачем нужен: Этот класс нужен для упралвения созданием и установкой пароля для базы данных
-// Наследование: идёт в наследование путь к созданной бд (_databasePath) и пароль пользователя (_passwordDB)
-// Методы: 'CreateDataBase' - для создания БД, а также папки 'DataBase', если ранее не была создана и EncryptDataBase - для установки пользовательского пароля для бд
-
-// Пример использования: DataBaseManager.CreateDataBase('Nikita');
-//                       DataBaseManager.EncryptDataBase('230rt0450Tkkgji4'); - также можно вызывать много раз, тк с 59 по 62 строчку идёт проверка на уже имеющийся парол
-
+// Зачем нужен: типо таблица с бд
+// Наследование: лень писать
+// Методы: лень писать
+// Пример использования: лень писать
 
 namespace mypass.Model
 {
@@ -49,7 +47,7 @@ namespace mypass.Model
         }
 
         // Метод для добавления нового пользователя
-        public bool AddUser(string login, string firstname, string secondname,  string masterpasswordhash, string salt)
+        public void AddUser(string login, string firstname, string secondname,  string masterpasswordhash, string salt)
         {
             InitTransaction("Вызов метода 'AddUser'");
             OpenConnection();
@@ -59,7 +57,7 @@ namespace mypass.Model
             int affectedRows;
 
             using (var command = _connection.CreateCommand())
-            {
+            { 
                 command.CommandText = query;
                 MessageError($"Вызов команд для добавления");
                 command.Parameters.AddWithValue("@Login", login);
@@ -86,11 +84,10 @@ namespace mypass.Model
             }
 
             CloseTransaction();
-            return affectedRows > 0;
         }
 
         // Метод для обновления данных пользователя
-        public bool UpdateUser(string login, string newFirstname, string newSecondname, string newMasterPasswordHash, string newSalt)
+        public void UpdateUser(string login, string newFirstname, string newSecondname, string newMasterPasswordHash, string newSalt)
         {
             InitTransaction("Вызов метода 'UpdateUser'");
             OpenConnection();
@@ -124,14 +121,12 @@ namespace mypass.Model
                 _secondname = newSecondname;
                 _masterpasswordhash = newMasterPasswordHash;
                 _salt = newSalt;
+                CloseTransaction();
             }
-
-            CloseTransaction();
-            return affectedRows > 0;
         }
 
         // Метод удаления базы данных (тк одна бд для одного пользователя)
-        public bool RemoveUser()
+        public void RemoveUser()
         {
             InitTransaction("Вызов метода 'RemoveUser'");
             bool result = false;
@@ -148,7 +143,6 @@ namespace mypass.Model
 
             MessageError($"Резульат попытки удаления БД: {result}");
             CloseTransaction();
-            return result;
         }
 
         // Метод для получения полной информации о пользователе
@@ -195,6 +189,35 @@ namespace mypass.Model
             CloseConnection();
             CloseTransaction();
             return userDataDictionary;
+        }
+
+        public void LoadDataFromUserDB()
+        {
+            InitTransaction("Начало загрузки данных из UserDB");
+            OpenConnection();
+
+            string query = "SELECT Login, FirstName, SecondName, MasterPasswordHash, Salt FROM User;";
+            MessageError($"Создание запроса: {query}");
+
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = query;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    MessageError("Применеие загруженных значений к полям");
+                    while (reader.Read())
+                    {
+                        _login = reader["Login"].ToString();
+                        _firstname = reader["FirstName"].ToString();
+                        _secondname = reader["SecondName"].ToString();
+                        _masterpasswordhash = reader["MasterPasswordHash"].ToString();
+                        _salt = reader["Salt"].ToString();
+                    }
+                }
+            }
+            CloseConnection();
+            CloseTransaction();
         }
     }
 }
