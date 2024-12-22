@@ -226,13 +226,14 @@
     </ApplicationDefinition>
     <Compile Include="Model\AccountsDB.cs" />
     <Compile Include="Model\ActionsDB.cs" />
-    <Compile Include="Model\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Model\PasswordToVisibilityConverter.cs" />
     <Compile Include="Model\CommonPasswordsList.cs" />
     <Compile Include="Model\DataBase.cs" />
     <Compile Include="Model\DebugConfig.cs" />
     <Compile Include="Model\EncryptionModel.cs" />
     <Compile Include="Model\EventsDB.cs" />
     <Compile Include="Model\Logging.cs" />
+    <Compile Include="Model\PasswordBoxHelper.cs" />
     <Compile Include="Model\PasswordDoublicateChecker.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
     <Compile Include="Model\PasswordValidator.cs" />

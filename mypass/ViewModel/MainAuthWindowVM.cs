@@ -9,8 +9,20 @@ namespace mypass.ViewModel
         private object _pohujView = new VhodVM();
         private string _login;
         private string _password;
+        private bool _isPasswordEmpty = true;
 
-
+        public bool IsPasswordEmpty
+        {
+            get => _isPasswordEmpty;
+            set
+            {
+                if (_isPasswordEmpty != value)
+                {
+                    _isPasswordEmpty = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public string Logintext
         {
             get => _login;
@@ -44,7 +56,7 @@ namespace mypass.ViewModel
             set { _pohujView = value; OnPropertyChanged(nameof(PohujView)); }
         }
 
-        public void Registration(object obj) { PohujView = new RegistrationPageVM(); Console.WriteLine(_pohujView); OnPropertyChanged(nameof(PohujView)); }
+        public void Registration(object obj) { PohujView = new RegistrationPageVM(); }
         public void Login(object obj) => PohujView = new VhodVM();
 
         public MainAuthWindowVM()

@@ -2,7 +2,9 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-
+using mypass.ViewModel;
+using mypass.View;
+using mypass.Model;
 namespace mypass.View
 {
     /// <summary>
@@ -11,35 +13,26 @@ namespace mypass.View
     public partial class RegistrationPage : UserControl
     {
 
-        private bool _isPasswordEmpty = true;
+        MainAuthWindowVM authWindow = new MainAuthWindowVM();
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public bool IsPasswordEmpty
-        {
-            get => _isPasswordEmpty;
-            set
-            {
-                if (_isPasswordEmpty != value)
-                {
-                    _isPasswordEmpty = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
         public RegistrationPage()
         {
             InitializeComponent();
             DataContext = this;
         }
 
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             var passwordBox = sender as PasswordBox;
-            IsPasswordEmpty = string.IsNullOrEmpty(passwordBox.Password);
+            authWindow.IsPasswordEmpty = string.IsNullOrEmpty(passwordBox.Password);
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null) 
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

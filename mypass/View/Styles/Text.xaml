@@ -33,7 +33,6 @@
         <Setter Property="Padding" Value="4,0,0,0" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="PeachPuff" />
-
     </Style>
 
     <Style x:Key="PassBoxStyle" TargetType="PasswordBox">
