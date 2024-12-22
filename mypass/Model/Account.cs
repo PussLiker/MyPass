@@ -12,5 +12,10 @@ namespace mypass.Model
         public string Password { get; set; }
         public string Email { get; set; }
         // Добавьте другие свойства по необходимости
+        public void OpenLink()
+        {
+            Model.OpenLink.Open(Username);
+        }
     }
+
 }
