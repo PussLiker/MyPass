@@ -19,7 +19,18 @@ namespace mypass.Model
         protected string _passwordDB;
 
         // Метод для создания базы данных
-        public void CreateDataBase(string clientName)
+        public bool CreateDataBase(string clientName, string password) // Если возвращает false, то надо вызывать методы для загрузки данных с БД, например
+                                                                       // result = DataBaseManager.CreateDataBase(тут логин, тут пароль);
+                                                                       // if result == false
+                                                                       // {
+                                                                       //     UserDB.LoadDataFromUserDB();
+                                                                       //     TagsDB.LoadDataFromTagsDB();
+                                                                       //     TypeEventsDB.LoadDataFromTypeEventsDB();
+                                                                       //     TagsAccountsDB.LoadDataFromTagsAccountsDB();
+                                                                       //     EventsDB.LoadDataFromEventsDB();
+                                                                       //     ActionsDB.LoadDataFromActionsDB();
+                                                                       //     AccountsDB.LoadDataFromAccountsDB();
+                                                                       // }
         {
             // Логирование
             InitTransaction("Создание базы данных");
@@ -44,13 +55,19 @@ namespace mypass.Model
             {
                 SQLiteConnection.CreateFile(_databasePath);
                 MessageError($"База данных создана: {databaseName}");
+                CloseTransaction("Создание базы данных завершено");
+
+                EncryptDataBase(password);
+
+                return true;
             }
             else
             {
                 MessageError($"База данных уже существует: {databaseName}");
-            }
+                CloseTransaction();
 
-            CloseTransaction("Создание базы данных завершено");
+                return false;
+            }
         }
 
         // Метод для шифрования базы данных
@@ -77,5 +94,4 @@ namespace mypass.Model
             CloseTransaction("Шифрование базы данных завершено");
         }
     }
-
 }
