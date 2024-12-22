@@ -1,4 +1,4 @@
-﻿	<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -232,9 +232,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountsDB.cs" />
     <Compile Include="Model\ActionsDB.cs" />
-    <Compile Include="Model\PasswordToVisibilityConverter.cs" />
     <Compile Include="Model\CommonPasswordsList.cs" />
     <Compile Include="Model\DataBase.cs" />
     <Compile Include="Model\DataBaseManager.cs" />
@@ -244,22 +244,14 @@
     <Compile Include="Model\Logging.cs" />
     <Compile Include="Model\PasswordBoxHelper.cs" />
     <Compile Include="Model\PasswordDoublicateChecker.cs" />
-    <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\AccountsDB.cs" />
-    <Compile Include="Model\ActionsDB.cs" />
-    <Compile Include="Model\CommonPasswordsList.cs" />
-    <Compile Include="Model\DataBase.cs" />
-    <Compile Include="Model\EncryptionModel.cs" />
-    <Compile Include="Model\EventsDB.cs" />
-    <Compile Include="Model\PasswordDoublicateChecker.cs" />
     <Compile Include="Model\PasswordCheckResult.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
+    <Compile Include="Model\PasswordToVisibilityConverter.cs" />
     <Compile Include="Model\PasswordValidator.cs" />
     <Compile Include="Model\TagsAccountsDB.cs" />
     <Compile Include="Model\TagsDB.cs" />
     <Compile Include="Model\TextToVisibilityConverter.cs" />
     <Compile Include="Model\TypeEventsDB.cs" />
-    <Compile Include="Model\UserDB.cs" />
     <Compile Include="Model\Vhod.cs" />
     <Compile Include="Model\TypeEventsDB.cs" />
     <Compile Include="Model\UserDB.cs" />
@@ -298,6 +290,9 @@
     </Compile>
     <Compile Include="View\Accounts.xaml.cs">
       <DependentUpon>Accounts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PassGen.xaml.cs">
+      <DependentUpon>PassGen.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PassGenWindow.xaml.cs">
       <DependentUpon>PassGenWindow.xaml</DependentUpon>
@@ -359,6 +354,10 @@
     <Page Include="View\Accounts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PassGen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PassGenWindow.xaml">
       <SubType>Designer</SubType>
