@@ -44,10 +44,10 @@ namespace mypass.Model
         }
 
         // Инициализация конструктора
-        public AccountsDB(string databasePath, string password) : base(databasePath, password) { }
+        public AccountsDB(string databasePath, string password) : base() { }
 
         // Метод для создания нового аккаунта
-        public void CreateAccount(int userId, string serviceName, string url, string login, string password)
+        public void AddAccount(int userId, string serviceName, string url, string login, string password)
         {
             OpenConnection();
             string query = @"INSERT INTO Accounts (IdUser, ServiceName, URL, Login, Password) 
@@ -61,20 +61,6 @@ namespace mypass.Model
                 command.Parameters.AddWithValue("@Login", login);
                 command.Parameters.AddWithValue("@Password", password);
 
-                command.ExecuteNonQuery();
-            }
-            CloseConnection();
-        }
-
-        // Метод для удаления аккаунта
-        public void DeleteAccount(int accountId)
-        {
-            OpenConnection();
-            string query = "DELETE FROM Accounts WHERE IdAccount = @IdAccount;";
-
-            using (var command = new SQLiteCommand(query, _connection))
-            {
-                command.Parameters.AddWithValue("@IdAccount", accountId);
                 command.ExecuteNonQuery();
             }
             CloseConnection();
@@ -99,6 +85,20 @@ namespace mypass.Model
                 command.Parameters.AddWithValue("@Login", login);
                 command.Parameters.AddWithValue("@Password", password);
 
+                command.ExecuteNonQuery();
+            }
+            CloseConnection();
+        }
+
+        // Метод для удаления аккаунта
+        public void DeleteAccount(int accountId)
+        {
+            OpenConnection();
+            string query = "DELETE FROM Accounts WHERE IdAccount = @IdAccount;";
+
+            using (var command = new SQLiteCommand(query, _connection))
+            {
+                command.Parameters.AddWithValue("@IdAccount", accountId);
                 command.ExecuteNonQuery();
             }
             CloseConnection();

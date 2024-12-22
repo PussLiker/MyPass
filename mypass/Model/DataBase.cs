@@ -1,127 +1,51 @@
 ﻿using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
-using System.Data;
-//using System.Data.Common;
 using System.Data.SQLite;
-using System.IO;
 
-//using Microsoft.Data.Sqlite;
-//using System.Linq.Expressions;
-//using System.Diagnostics;
+// Зачем нужен: этот класс служит родительским классом для всех классов таблиц. Тут основные методы всей БД
+// Наследование: наследует от 'DataBaseManager' путь к файлу БД (_databasePath), а также пароль (_passwordDB)
+// Методы: OpenConnection - метод нужен для открытия соединения с БД, всегда открывать перед началом транзакции
+//         CloseConnection - метод нужен для закрытия соединения с БД
+//         InitializeDatabase - метод нужен для создания всех таблиц в БД
+
+// Пример использования: хз, потом напишу, мне лень
+
+
 
 namespace mypass.Model
 {
-    // Класс для создания БД
-    public class DataBaseManager : LoggableDB
+    // Класс для взаимодействия с базой данных
+    public class DataBase : DataBaseManager
     {
-        // Метод для создания новой базы данных с шифрованием
-        public static void CreateEncryptedDatabase(string clientName, string password)
-        {
-            // !!!Для отладки использовать Manager!!!
-            var Manager = new DataBaseManager();
-            Manager.InitTransaction("Создание шифрованной бд");
-
-            // Путь для создания папки Debug
-            string targetPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\", "DataBase"));
-            Manager.MessageError($"Перешёл в путь для создания папки DataBase: {targetPath}");
-
-            if (Directory.Exists(targetPath))
-            {
-                Manager.MessageError($"База данных {clientName}.db3 существует");
-            }
-            else
-            {
-                // Создание директории DataBasw
-                Directory.CreateDirectory(targetPath);
-                Manager.MessageError("Создана папка DataBase");
-
-                // Финальный путь для создания файла
-                string databasePath = Path.Combine(targetPath, $"{clientName}.db3");
-                Manager.MessageError($"Создан путь к БД, а также сама БД: {databasePath}");
-
-
-                // Установить пароль шифрования
-                using (var newConnection = new SQLiteConnection($"Data Source={databasePath};Version=3;"))
-                {
-                    newConnection.Open();
-                    Manager.MessageError("Установка соединения с БД");
-
-                    // Установить пароль шифрования
-                    using (var command = newConnection.CreateCommand())
-                    {
-                        // Ставим пароль
-                        command.CommandText = $"PRAGMA key = '{password}';";
-                        Manager.MessageError("Установление пароля в БД");
-                        command.ExecuteNonQuery();
-                        Manager.CloseTransaction($"Завершение создания бд: {clientName}");
-                    }
-                }
-            }
-        }
-    }
-
-    // Класс БД-шки
-    public class DataBase
-    {
-
         protected string _connectionString;
         protected SQLiteConnection _connection;
-        private string _password;
-        private string _databasePath;
 
-        // Конструктор для инициализации строки подключения
-        public DataBase(string databasePath, string password)
+        public DataBase()
         {
-            _connectionString = $"Data Source={databasePath};Version=3;";
-            _password = password;
-            _databasePath = databasePath;
-
-            if (!File.Exists(_databasePath))
+            InitTransaction("Вызов базы данных для заполнения атрибутов");
+            if (string.IsNullOrEmpty(_databasePath) || string.IsNullOrEmpty(_passwordDB))
             {
-                SQLiteConnection.CreateFile(_databasePath);
-                InitializeDatabase(); // Инициализация таблиц при создании файла БД
-
+                MessageError("Ошибка: отстутствует путь и шифрование БД");
+                throw new InvalidOperationException("Необходимо сначала создать и зашифровать базу данных.");
             }
 
-            string connectionString = $"Data Source={_databasePath};Version=3;Password={_password};";
-            _connection = new SQLiteConnection(connectionString);
+            _connectionString = $"Data Source={_databasePath};Version=3;Password={_passwordDB};";
+            _connection = new SQLiteConnection(_connectionString);
+            CloseTransaction("Завершение изменения значений");
         }
 
         // Функция для открытия соединения
         public void OpenConnection()
         {
-            try
+            
+            if (_connection == null)
             {
-                if (_connection == null)
-                {
-                    _connection = new SQLiteConnection(_connectionString);
-                }
-
-                if (_connection.State != ConnectionState.Open)
-                {
-                    _connection.Open();
-
-                    using (var command = _connection.CreateCommand())
-                    {
-                        command.CommandText = $"PRAGMA key = '{_password}';";
-                        command.ExecuteNonQuery();
-                    }
-
-                    // Проверить доступность базы данных после установки пароля
-                    using (var command = _connection.CreateCommand())
-                    {
-                        command.CommandText = "SELECT count(*) FROM sqlite_master;";
-                        command.ExecuteScalar();
-                    }
-                }
+                _connection = new SQLiteConnection(_connectionString);
             }
-            catch (Exception)
-            {
 
+            if (_connection.State != System.Data.ConnectionState.Open)
+            {
+                _connection.Open();
+                MessageError("Установлено соединение с БД");
             }
         }
 
@@ -131,14 +55,19 @@ namespace mypass.Model
             if (_connection != null && _connection.State != System.Data.ConnectionState.Closed)
             {
                 _connection.Close();
+                MessageError("Соединение с БД закрыто");
             }
         }
         private void InitializeDatabase()
         {
+            InitTransaction("Вызов базы данных для создания таблиц");
             OpenConnection();
+
 
             string createUsersTable = @"CREATE TABLE IF NOT EXISTS Users (
                 IdUser INTEGER PRIMARY KEY AUTOINCREMENT,
+                FirstName VARCHAR(128) NOT NULL,
+                SecondName VARCHAR(128) NOT NULL,
                 Username VARCHAR(128) NOT NULL,
                 MasterPasswordHash VARCHAR(64) NOT NULL,
                 Salt CHAR(16) NOT NULL
@@ -191,30 +120,37 @@ namespace mypass.Model
 
             using (var command = _connection.CreateCommand())
             {
+                MessageError("Создание таблицы 'Users'");
                 command.CommandText = createUsersTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'Accounts'");
                 command.CommandText = createAccountsTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'Tags'");
                 command.CommandText = createTagsTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'TagsAccounts'");
                 command.CommandText = createTagsAccountsTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'Events");
                 command.CommandText = createEventsTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'Actions'");
                 command.CommandText = createActionsTable;
                 command.ExecuteNonQuery();
 
+                MessageError("Создание таблицы 'TypeEvents'");
                 command.CommandText = createTypeEventsTable;
                 command.ExecuteNonQuery();
             }
 
             CloseConnection();
+            CloseTransaction("Завершение создания таблиц");
         }
     }
 }
-

@@ -30,7 +30,7 @@ namespace mypass.Model
             get => (DateTime)_timetagging;
             set => _timetagging = value;
         }
-        public TagsAccountsDB(string databasePath, string password) : base(databasePath, password) { }
+        public TagsAccountsDB(string databasePath, string password) : base() { }
 
         // Метод для добавления связи между тегом и аккаунтом
         public void AddTagAccount(int idAccount, int idTag, DateTime timeTagging)

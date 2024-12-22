@@ -7,15 +7,14 @@ using mypass.View;
 using mypass.Model;
 namespace mypass.View
 {
-    /// <summary>
     /// Логика взаимодействия для RegistrationPage.xaml
-    /// </summary>
     public partial class RegistrationPage : UserControl
     {
 
         MainAuthWindowVM authWindow = new MainAuthWindowVM();
 
         public RegistrationPage()
+
         {
             InitializeComponent();
             DataContext = this;

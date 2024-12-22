@@ -17,7 +17,7 @@ namespace mypass.Model
             get => _nametag;
             set => _nametag = value;
         }
-        public TagsDB(string databasePath, string password) : base(databasePath, password) { }
+        public TagsDB(string databasePath, string password) : base() { }
 
         // Метод для добавления тега
         public void AddTag(string nameTag)

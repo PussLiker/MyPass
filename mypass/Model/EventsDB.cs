@@ -23,7 +23,7 @@ namespace mypass.Model
             get => _nameevent;
             set => _nameevent = value;
         }
-        public EventsDB(string databasePath, string password) : base(databasePath, password) { }
+        public EventsDB(string databasePath, string password) : base() { }
 
         public void AddEvent(int idTypeEvent, string nameEvent)
         {
