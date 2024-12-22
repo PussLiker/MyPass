@@ -15,9 +15,9 @@ namespace mypass.Model
     public class DataBaseManager : Logging
     {
         // Переменные
-        protected string _databasePath;
+        public string _databasePath;
         protected string _passwordDB;
-
+        
         // Метод для создания базы данных
         public bool CreateDataBase(string clientName, string password) // Если возвращает false, то надо вызывать методы для загрузки данных с БД, например
                                                                        // result = DataBaseManager.CreateDataBase(тут логин, тут пароль);
@@ -36,7 +36,7 @@ namespace mypass.Model
             InitTransaction("Создание базы данных");
 
             // Путь для создания папки DataBase
-            string targetPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\", "DataBase"));
+            string targetPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\\..\\", "DataBase"));
             MessageError($"Создан путь для создания папки DataBase: {targetPath}");
 
             if (!Directory.Exists(targetPath))
@@ -46,9 +46,10 @@ namespace mypass.Model
             }
 
             // Финальный путь для создания файла
-            string databaseExtension = ".sqlite";
+            string databaseExtension = ".bd";
             string databaseName = $"{clientName}.{databaseExtension}";
             _databasePath = Path.Combine(targetPath, databaseName);
+            Console.WriteLine(_databasePath);
             MessageError($"Создан путь к БД: {_databasePath}");
 
             if (!File.Exists(_databasePath))

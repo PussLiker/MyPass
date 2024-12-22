@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SQLite;
+using System.Web.UI.WebControls;
 
 // Зачем нужен: этот класс служит родительским классом для всех классов таблиц. Тут основные методы всей БД
 // Наследование: наследует от 'DataBaseManager' путь к файлу БД (_databasePath), а также пароль (_passwordDB)
@@ -17,21 +18,19 @@ namespace mypass.Model
     // Класс для взаимодействия с базой данных
     public class DataBase : DataBaseManager
     {
+        
         protected string _connectionString;
         protected SQLiteConnection _connection;
 
         public DataBase()
         {
-            InitTransaction("Вызов базы данных для заполнения атрибутов");
-            if (string.IsNullOrEmpty(_databasePath) || string.IsNullOrEmpty(_passwordDB))
-            {
-                MessageError("Ошибка: отстутствует путь и шифрование БД");
-                throw new InvalidOperationException("Необходимо сначала создать и зашифровать базу данных.");
-            }
-
-            _connectionString = $"Data Source={_databasePath};Version=3;Password={_passwordDB};";
+           
+       
+            _connectionString = $"Data Source={_databasePath};Version=3;";
             _connection = new SQLiteConnection(_connectionString);
-            CloseTransaction("Завершение изменения значений");
+            InitializeDatabase();
+
+
         }
 
         // Функция для открытия соединения
@@ -93,7 +92,7 @@ namespace mypass.Model
                 URL VARCHAR(255),
                 LoginAccount VARCHAR(36),
                 Password CHAR(64) NOT NULL,
-                FOREIGN KEY(Login) REFERENCES User(Login) ON UPDATE CASCADE ON DELETE RESTRICT
+                FOREIGN KEY(LoginUserAccount) REFERENCES User(LoginUser) ON UPDATE CASCADE ON DELETE RESTRICT
             );";
 
             // 5
