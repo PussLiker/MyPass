@@ -88,7 +88,7 @@
                         </Grid>
                     </Menu:Btn>
                     <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding NotificationsCommand}"
+                              Command="{Binding PassCheckCommand}"
                               >
 
                         <Grid>

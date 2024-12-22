@@ -17,7 +17,10 @@
         <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
             <Grid>
                 <!-- Верхняя панель -->
-                <StackPanel Orientation="Horizontal" Background="#2d2d30" Height="70" VerticalAlignment="Top" Margin="0,30,0,0">
+                <StackPanel Orientation="Horizontal" Background="#1a1a1d" Height="70" Width="140"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,60,0">
+                    <Button Height="40" Width="140" FontSize="20" Background="#FF2D2D30"
+                        Content="+ Добавить" Style="{StaticResource ButtonSimp}" Margin="0,0,70,0"></Button>
                 </StackPanel>
 
                 <!-- Область с прокруткой -->
@@ -25,7 +28,7 @@
                               VerticalScrollBarVisibility="Visible" 
                               Margin="0,100,0,0" 
                               VerticalAlignment="Stretch">
-                    <ItemsControl ItemsSource="{Binding Accounts}">
+                    <ItemsControl ItemsSource="{Binding Accounts}" >
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <!-- WrapPanel для отображения элементов -->
@@ -34,12 +37,9 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Width="220" Height="250" Margin="30,20,0,20" Background="#2d2d30" CornerRadius="10" Padding="10" 
-                                        BorderThickness="1" BorderBrush="#404040">
-                                    <!-- Тень для карточки -->
-                                    <Border.Effect>
-                                        <DropShadowEffect Color="#000" BlurRadius="10" ShadowDepth="0" Opacity="0.5" />
-                                    </Border.Effect>
+                                <Border Width="220" Height="250" Margin="30,20,0,20" CornerRadius="10" Padding="10" 
+                                        BorderThickness="1" BorderBrush="#202020" Background="#FF2D2D30">
+                                    
 
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -59,10 +59,40 @@
                                         <Border Background="#1a1a1d" CornerRadius="5,5,0,0" Grid.Row="1" Margin="0,5,0,0">
                                             <Grid>
                                                 <TextBox Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Text="{Binding Email}" BorderThickness="0" FontSize="14"/>
-                                                <Border Style="{StaticResource AnimatedButtonStyleAllPasses}" CornerRadius="5" Margin="0,0,5,0" HorizontalAlignment="Right" Width="15" Height="15">
-                                                    <Button Style="{StaticResource ButtonSimp}" HorizontalAlignment="Right" Background="Transparent" />
-                                                </Border>
-                                                <iconPacks:PackIconMaterial Kind="Refresh" Foreground="PeachPuff" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,9,0" Width="7"/>
+                                                <Button Command="{Binding CopyEmailCommand}"
+                                                        Background="Transparent"
+                                                        BorderBrush="Transparent"
+                                                        Cursor="Hand"
+                                                        HorizontalAlignment="Right" 
+                                                        Width="15" 
+                                                        Height="15"
+                                                        Margin="0,0,5,0">
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Grid>
+                                                                <Border x:Name="ButtonBorder" 
+                                                                        Background="Transparent" 
+                                                                        CornerRadius="5"/>
+                                                                <iconPacks:PackIconMaterial x:Name="Icon"
+                                                                                            Kind="ContentCopy"
+                                                                                            HorizontalAlignment="Center"
+                                                                                            VerticalAlignment="Center"
+                                                                                            Foreground="PeachPuff" 
+                                                                                            Width="8"/>
+                                                            </Grid>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="#636364"/>
+                                                                    <Setter TargetName="Icon" Property="Foreground" Value="#202020"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsPressed" Value="True">
+                                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="#202020"/>
+                                                                    <Setter TargetName="Icon" Property="Foreground" Value="#636364"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
                                             </Grid>
                                         </Border>
 
@@ -70,9 +100,74 @@
                                         <Border Background="#1a1a1d" CornerRadius="0,0,5,5" Grid.Row="2" Margin="0,2,0,5">
                                             <Grid>
                                                 <TextBox Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Text="{Binding Password}" BorderThickness="0" FontSize="14"/>
-                                                <Border Style="{StaticResource AnimatedButtonStyleAllPasses}" CornerRadius="5" Margin="0,0,5,0" HorizontalAlignment="Right" Width="15" Height="15">
-                                                    <Button Style="{StaticResource ButtonSimp}" HorizontalAlignment="Right" Background="Transparent" />
-                                                </Border>
+                                                <Button Command="{Binding CopyPasswordCommand}"
+                                                        Background="Transparent"
+                                                        BorderBrush="Transparent"
+                                                        Cursor="Hand"
+                                                        HorizontalAlignment="Right" 
+                                                        Width="15" 
+                                                        Height="15"
+                                                        Margin="0,0,5,0">
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Grid>
+                                                                <Border x:Name="ButtonBorder" 
+                                                                        Background="Transparent" 
+                                                                        CornerRadius="5"/>
+                                                                <iconPacks:PackIconMaterial x:Name="Icon"
+                                                                                            Kind="ContentCopy"
+                                                                                            HorizontalAlignment="Center"
+                                                                                            VerticalAlignment="Center"
+                                                                                            Foreground="PeachPuff" 
+                                                                                            Width="8"/>
+                                                            </Grid>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="#636364"/>
+                                                                    <Setter TargetName="Icon" Property="Foreground" Value="#202020"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsPressed" Value="True">
+                                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="#202020"/>
+                                                                    <Setter TargetName="Icon" Property="Foreground" Value="#636364"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
+                                                <Button Command="{Binding TogglePasswordVisibilityCommand}"
+                                                        Background="Transparent"
+                                                        BorderBrush="Transparent"
+                                                        Cursor="Hand"
+                                                        HorizontalAlignment="Right" 
+                                                        Width="15" 
+                                                        Height="15"
+                                                        Margin="0,0,25,0">
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Grid>
+                                                                <Border x:Name="ButtonBorder" 
+                                                                        Background="Transparent" 
+                                                                        CornerRadius="5"/>
+                                                                <iconPacks:PackIconMaterial x:Name="Icon"
+                                                                                            Kind="Eye"
+                                                                                            HorizontalAlignment="Center"
+                                                                                            VerticalAlignment="Center"
+                                                                                            Foreground="PeachPuff" 
+                                                                                            Width="8"/>
+                                                            </Grid>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="#636364"/>
+                                                                    <Setter TargetName="Icon" Property="Foreground" Value="#202020"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsPressed" Value="True">
+                                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="#202020"/>
+                                                                    <Setter TargetName="Icon" Property="Foreground" Value="#636364"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
                                             </Grid>
                                         </Border>
 
@@ -80,7 +175,7 @@
                                         <TextBlock Text="⚠ Проблемы с паролем" Foreground="Red" FontSize="10" Grid.Row="3" Margin="5,10,0,32"/>
 
                                         <!-- Кнопка перехода -->
-                                        <Border Style="{StaticResource AnimatedButtonStyleAllPasses}" Background="#404040" Grid.Row="4" CornerRadius="10" Width="180">
+                                        <Border Style="{StaticResource AnimatedButtonStyleAllPasses}" Background="#202020" Grid.Row="4" CornerRadius="10" Width="180">
                                             <Button Content="⭢ Перейти на сайт" Style="{StaticResource ButtonSimp}" 
                                             VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#1a1a1d"
                                             Cursor="Hand"/>
