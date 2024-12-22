@@ -35,7 +35,7 @@ namespace mypass.Model
             }
 
             // Финальный путь для создания файла
-            string databaseExtension = "db3";
+            string databaseExtension = ".sqlite";
             string databaseName = $"{clientName}.{databaseExtension}";
             _databasePath = Path.Combine(targetPath, databaseName);
             MessageError($"Создан путь к БД: {_databasePath}");
