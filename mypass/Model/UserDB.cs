@@ -11,9 +11,18 @@ using Microsoft.Data.Sqlite;
 
 namespace mypass.Model
 {
+    
     // Класс для таблицы Users
     public class UsersDB : DataBase
     {
+        public UsersDB(string databasePath, string password)
+        {
+            _databasePath = databasePath;
+            _passwordDB = password;
+            _connectionString = $"Data Source={_databasePath};Version=3;Password={_passwordDB};";
+            _connection = new SQLiteConnection(_connectionString);
+        }
+
         // Поля класса
         private string _loginuser;
         public string LoginUser

@@ -37,7 +37,7 @@ namespace mypass.Model
         {
             // Путь для создания папки DataBase
             string targetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase");
-
+            Console.WriteLine(targetPath);
             if (!Directory.Exists(targetPath))
             {
                 Directory.CreateDirectory(targetPath);
@@ -46,11 +46,12 @@ namespace mypass.Model
             _databasePath = GetPathToDataBase(clientName);
             _databaseName = $"{clientName}{_databaseExtension}";
 
+            Console.WriteLine(_databasePath);
             if (!File.Exists(_databasePath))
             {
                 SQLiteConnection.CreateFile(_databasePath);
 
-                EncryptDataBase(password);
+                //EncryptDataBase(password);
 
                 InitializeDatabase(); // Инициализация таблиц
 
@@ -62,9 +63,11 @@ namespace mypass.Model
             }
         }
 
+       
         // Метод для шифрования базы данных
         public void EncryptDataBase(string password)
         {
+            Console.WriteLine(_databasePath);
             if (string.IsNullOrEmpty(_databasePath) || !File.Exists(_databasePath))
             {
                 throw new InvalidOperationException("База данных не существует. Сначала создайте базу данных.");
@@ -74,6 +77,7 @@ namespace mypass.Model
 
             using (var connection = new SQLiteConnection($"Data Source={_databasePath};Version=3;"))
             {
+                Console.WriteLine(_databasePath);
                 connection.Open();
                 using (var command = connection.CreateCommand())
                 {
@@ -159,29 +163,29 @@ namespace mypass.Model
                         );"
                     };
 
-                    foreach (var query in tableCreationQueries)
+                foreach (var query in tableCreationQueries)
+                {
+                    using (var command = new SQLiteCommand(query, connection))
                     {
-                        using (var command = new SQLiteCommand(query, connection))
+                        try
                         {
-                            try
-                            {
-                                command.ExecuteNonQuery();
-                                MessageError($"Таблица успешно создана: {query.Substring(0, 30)}...");
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageError($"Ошибка создания таблицы: {ex.Message}");
-                            }
+                            command.ExecuteNonQuery();
+                            MessageError($"Таблица успешно создана: {query.Substring(0, 30)}...");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageError($"Ошибка создания таблицы: {ex.Message}");
                         }
                     }
-
-                    connection.Close();
                 }
-            }
+
+                connection.Close();
+                }
+        }
             catch (Exception ex)
             {
                 MessageError($"Ошибка инициализации базы данных: {ex.Message}");
-            }
-        }
+    }
+}
     }
 }

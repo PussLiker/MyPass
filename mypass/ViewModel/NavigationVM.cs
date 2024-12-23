@@ -15,7 +15,6 @@ namespace mypass.ViewModel
     class NavigationVM : ViewModelBase
     {
         private object _currentView;
-        private Vhod _vhod;
         private MainWindow _mainWindow;
         private PassGenWindow _passGenWindow; // Поле для хранения ссылки на окно
         public object CurrentView
@@ -70,13 +69,13 @@ namespace mypass.ViewModel
                 _passGenWindow.Show();
 
                 // !!!!!!УДАЛИТЬ ПОСЛЕ ПРОВЕРКИ БД!!!!!!!
-                //string dbclient = "Dima";
-                //string password = "3o4tuh32487gr9g7";
+                string dbclient = "Dima";
+                string password = "3o4tuh32487gr9g7";
 
-                //var DB = new DataBase();
-                //DB.CreateDataBase(dbclient, password);                                                                     
-                //DebugConfig.LoadConfig();
-                //
+                var DB = new DataBase();
+                DB.CreateDataBase(dbclient, password);
+                DebugConfig.LoadConfig();
+
             }
             else
             {

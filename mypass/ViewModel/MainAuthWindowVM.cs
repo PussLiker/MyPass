@@ -2,6 +2,8 @@
 using System;
 using System.Windows.Input;
 using mypass.Model;
+using System.Windows;
+using mypass.View;
 
 namespace mypass.ViewModel
 {
@@ -16,8 +18,10 @@ namespace mypass.ViewModel
         private string _passRegConf;
         private string _loginReg;
         private bool _isPasswordEmpty = true;
+        private MainWindow _mainWindow;
 
-        MainAuthWindow MainWinClass = new MainAuthWindow();
+        RegistrationPage _registrationPage  ;
+        MainAuthWindowClass MainWinClass = new MainAuthWindowClass();
         public string PassReg
         {
             get => _passReg;
@@ -116,6 +120,23 @@ namespace mypass.ViewModel
                 }
             }
         }
+
+        public void SwitchWindow(Object obj)
+        {
+            if(obj is Window window){
+                if (_mainWindow == null)
+                {
+                    _mainWindow = new MainWindow();
+                    _mainWindow.Closed += (s, args) => _mainWindow = null;
+                    _mainWindow.Show();
+                }
+                else
+                    _mainWindow = new MainWindow();
+                window?.Close();                
+            }
+        }
+    
+
         public ICommand RegPageCommand { get; set; }
         public ICommand LoginPageCommand { get; set; }
         public ICommand RegistrationToSystemCommand {  get; set; }
@@ -127,7 +148,25 @@ namespace mypass.ViewModel
 
         public void Registration(object obj) { PohujView = new RegistrationPageVM(); }
         public void Login(object obj) => PohujView = new VhodVM();
-        public void RegistrationToSystem(object obj) { MainWinClass.Registration(LoginReg, PassRegConf, Username, UserSecondname); }
+        public void RegistrationToSystem(object obj) {
+            if (MainWinClass.GdePole(LoginReg) || MainWinClass.GdePole(Username) || MainWinClass.GdePole(UserSecondname))
+            {
+                switch (MainWinClass.IsPasswordNorm(PassReg, PassRegConf))
+                {
+                    case 1:
+                        MainWinClass.Registration(LoginReg, PassRegConf, Username, UserSecondname);
+                        SwitchWindow(obj);
+                        break;
+                    case 2:
+                        _registrationPage.PassNotNorm();
+                        break;
+                    case 3:
+
+                        break;
+                }
+            }
+            else { }
+        }
         
 
         public MainAuthWindowVM()

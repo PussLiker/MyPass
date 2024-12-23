@@ -24,19 +24,23 @@ namespace mypass.Model
             _connectionString = $"Data Source={_databasePath};Version=3;Password={_passwordDB};";
             _connection = new SQLiteConnection(_connectionString);
         }
-
+        private readonly object _lock = new object();
         // Функция для открытия соединения
         public void OpenConnection()
         {
-            
-            if (_connection == null)
+            lock (_lock)
             {
-                _connection = new SQLiteConnection(_connectionString);
-            }
+                if (_connection == null)
+                {
+                    Console.WriteLine(_connectionString);
+                    _connection = new SQLiteConnection(_connectionString);
+                }
 
-            if (_connection.State != System.Data.ConnectionState.Open)
-            {
-                _connection.Open();
+                if (_connection.State != System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine(_connectionString); 
+                    _connection.Open();
+                }
             }
         }
 
