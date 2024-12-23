@@ -251,7 +251,7 @@
     <Compile Include="Model\PasswordDoublicateChecker.cs" />
     <Compile Include="Model\PasswordCheckResult.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
-    <Compile Include="Model\PasswordToMaskedConverter.cs" />
+    <Compile Include="Model\PasswordToMaskedMultiConverter.cs" />
     <Compile Include="Model\PasswordValidator.cs" />
     <Compile Include="Model\TagsAccountsDB.cs" />
     <Compile Include="Model\TagsDB.cs" />
