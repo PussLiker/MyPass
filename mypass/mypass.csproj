@@ -245,9 +245,8 @@
     <Compile Include="Model\EncryptionModel.cs" />
     <Compile Include="Model\EventsDB.cs" />
     <Compile Include="Model\Logging.cs" />
-    <Compile Include="Model\MainAuthWindow.cs" />
+    <Compile Include="Model\MainAuthWindowClass.cs" />
     <Compile Include="Model\OpenLink.cs" />
-    <Compile Include="Model\PasswordBoxHelper.cs" />
     <Compile Include="Model\PasswordDoublicateChecker.cs" />
     <Compile Include="Model\PasswordCheckResult.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
