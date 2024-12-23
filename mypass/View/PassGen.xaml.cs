@@ -17,8 +17,8 @@ namespace mypass.View
 {
     /// <summary>
     /// Логика взаимодействия для PassGen.xaml
-    /// </summary>
-    public partial class PassGen : UserControl
+    /// </summary>  
+    public partial class PassGen : UserControl  
     {
         public PassGen()
         {

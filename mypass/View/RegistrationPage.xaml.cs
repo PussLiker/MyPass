@@ -17,23 +17,7 @@ namespace mypass.View
 
         {
             InitializeComponent();
-            DataContext = this;
-        }
 
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            var passwordBox = sender as PasswordBox;
-            authWindow.IsPasswordEmpty = string.IsNullOrEmpty(passwordBox.Password);
-        }
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null) 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

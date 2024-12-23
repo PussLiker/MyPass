@@ -20,6 +20,8 @@ namespace mypass.View
     public partial class PassGenWindow : Window
     {
         public PassGenWindow()
+
+
         {
             InitializeComponent();
         }

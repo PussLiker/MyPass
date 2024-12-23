@@ -13,7 +13,7 @@
     <!-- Размещение конвертера в ресурсы UserControl -->
     <UserControl.Resources>
         <m:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-        <m:PasswordToMaskedConverter x:Key="PasswordToMaskedConverter" />
+        <m:PasswordToMaskedMultiConverter x:Key="PasswordToMaskedMultiConverter" />
     </UserControl.Resources>
 
     <!-- Установка контекста данных -->
@@ -42,8 +42,8 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Width="220" Height="250" Margin="30,20,0,20" Background="#2d2d30" CornerRadius="10" Padding="10" 
-                                        BorderThickness="1" BorderBrush="#404040">
+                                <Border Width="220" Height="250" Margin="30,20,0,20" Background="#404040" CornerRadius="10" Padding="10" 
+                                        BorderThickness="1">
                                     <!-- Тень для карточки -->
                                     <Border.Effect>
                                         <DropShadowEffect Color="#000" BlurRadius="10" ShadowDepth="0" Opacity="0.5" />
@@ -111,10 +111,15 @@
                                                 <TextBox x:Name="PasswordTextBox"
                                                  Style="{StaticResource TextBoxStyle}" 
                                                  IsReadOnly="True" 
-                                                 Text="{Binding Password}" 
                                                  BorderThickness="0" 
-                                                 FontSize="14"
-                                                 Visibility="{Binding IsPasswordVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                                 FontSize="14">
+                                                    <TextBox.Text>
+                                                        <MultiBinding Converter="{StaticResource PasswordToMaskedMultiConverter}">
+                                                            <Binding Path="Password" />
+                                                            <Binding Path="IsPasswordVisible" />
+                                                        </MultiBinding>
+                                                    </TextBox.Text>
+                                                </TextBox>
 
                                                 <!-- Кнопка для копирования пароля -->
                                                 <Button Command="{Binding DataContext.CopyPasswordCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"

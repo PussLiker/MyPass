@@ -235,6 +235,9 @@
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountsDB.cs" />
     <Compile Include="Model\ActionsDB.cs" />
+    <Compile Include="Model\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\CommonPasswordsList.cs" />
     <Compile Include="Model\DataBase.cs" />
     <Compile Include="Model\DataBaseManager.cs" />
@@ -242,6 +245,7 @@
     <Compile Include="Model\EncryptionModel.cs" />
     <Compile Include="Model\EventsDB.cs" />
     <Compile Include="Model\Logging.cs" />
+    <Compile Include="Model\MainAuthWindow.cs" />
     <Compile Include="Model\OpenLink.cs" />
     <Compile Include="Model\PasswordBoxHelper.cs" />
     <Compile Include="Model\PasswordDoublicateChecker.cs" />
@@ -249,6 +253,7 @@
     <Compile Include="Model\PasswordGeneration.cs" />
     <Compile Include="Model\PasswordToMaskedConverter.cs" />
     <Compile Include="Model\PasswordToVisibilityConverter.cs" />
+    <Compile Include="Model\PasswordToMaskedMultiConverter.cs" />
     <Compile Include="Model\PasswordValidator.cs" />
     <Compile Include="Model\TagsAccountsDB.cs" />
     <Compile Include="Model\TagsDB.cs" />
@@ -306,6 +311,10 @@
     <Compile Include="View\Vhod.xaml.cs">
       <DependentUpon>Vhod.xaml</DependentUpon>
     </Compile>
+    <Page Include="Model\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Utilities\DataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -409,6 +418,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="DataBase\123..sqlite" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -476,6 +486,7 @@
   <ItemGroup>
     <Resource Include="2milniimolnii.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
