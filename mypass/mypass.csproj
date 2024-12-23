@@ -251,6 +251,7 @@
     <Compile Include="Model\PasswordDoublicateChecker.cs" />
     <Compile Include="Model\PasswordCheckResult.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
+    <Compile Include="Model\PasswordToMaskedConverter.cs" />
     <Compile Include="Model\PasswordToMaskedMultiConverter.cs" />
     <Compile Include="Model\PasswordValidator.cs" />
     <Compile Include="Model\TagsAccountsDB.cs" />
@@ -416,6 +417,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="DataBase\123..sqlite" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

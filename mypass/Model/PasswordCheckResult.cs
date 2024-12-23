@@ -9,7 +9,6 @@ namespace mypass.Model
     internal class PasswordCheckResult
     {
         public string Status { get; set; }  // Статус (например, "weak", "strong")
-        public string Message { get; set; }  // Сообщение для пользователя
         public string Color { get; set; }    // Цвет или код для отображения на фронте (например, зеленый для сильного пароля)
     }
 }
