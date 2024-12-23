@@ -14,8 +14,6 @@ namespace mypass.Model
     // Класс для таблицы Users
     public class UsersDB : DataBase
     {
-<<<<<<< Updated upstream
-=======
         public UsersDB(string databasePath)
         {
             _databasePath = databasePath;
@@ -23,7 +21,6 @@ namespace mypass.Model
             _connection = new SqliteConnection(_connectionString);
         }
 
->>>>>>> Stashed changes
         // Поля класса
         private string _loginuser;
         public string LoginUser

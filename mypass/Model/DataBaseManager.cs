@@ -1,33 +1,19 @@
 ﻿using System;
 using System.IO;
-<<<<<<< Updated upstream
 
-using System.Data.SQLite;
-
-// Зачем нужен: этот класс нужен для упралвения созданием и установкой пароля для базы данных
-// Наследование: идёт в наследование путь к созданной бд (_databasePath) и пароль пользователя (_passwordDB)
-// Методы: 'CreateDataBase' - для создания БД, а также папки 'DataBase', если ранее не была создана и EncryptDataBase - для установки пользовательского пароля для бд
-
-// Пример использования: DataBaseManager.CreateDataBase('Nikita');
-//                       DataBaseManager.EncryptDataBase('230rt0450Tkkgji4'); - также можно вызывать много раз, тк с 59 по 62 строчку идёт проверка на уже имеющийся пароль
-=======
 using Microsoft.Data.Sqlite;
->>>>>>> Stashed changes
+
 
 namespace mypass.Model
 {
     public class DataBaseManager : Logging
     {
         // Переменные
-<<<<<<< Updated upstream
-        protected string _databasePath;
-        protected string _passwordDB;
-=======
+
         public string _databasePath;
         protected string _databaseExtension = ".db";
         protected string _databaseName;
         protected string _passwordDataBase;
->>>>>>> Stashed changes
 
         // Метод для создания базы данных
         public bool CreateDataBase(string clientName, string password)
@@ -36,35 +22,15 @@ namespace mypass.Model
             InitTransaction("Создание базы данных");
 
             // Путь для создания папки DataBase
-<<<<<<< Updated upstream
-            string targetPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\", "DataBase"));
-            MessageError($"Создан путь для создания папки DataBase: {targetPath}");
 
-=======
             string targetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase");
->>>>>>> Stashed changes
+
             if (!Directory.Exists(targetPath))
             {
                 Directory.CreateDirectory(targetPath);
                 MessageError("Создана папка DataBase");
             }
 
-<<<<<<< Updated upstream
-            // Финальный путь для создания файла
-            string databaseExtension = ".sqlite";
-            string databaseName = $"{clientName}.{databaseExtension}";
-            _databasePath = Path.Combine(targetPath, databaseName);
-            MessageError($"Создан путь к БД: {_databasePath}");
-
-            if (!File.Exists(_databasePath))
-            {
-                SQLiteConnection.CreateFile(_databasePath);
-                MessageError($"База данных создана: {databaseName}");
-                CloseTransaction("Создание базы данных завершено");
-
-                EncryptDataBase(password);
-
-=======
             // Путь к базе данных
             _databaseName = clientName;
             _databasePath = GetPathToDataBase(clientName);
@@ -79,42 +45,17 @@ namespace mypass.Model
                     InitializeDatabase(); // Инициализация таблиц
                     connection.Close();
                 }
->>>>>>> Stashed changes
+
                 return true;
             }
             else
             {
-                MessageError($"База данных уже существует: {databaseName}");
+                MessageError($"База данных уже существует: {_databaseName}");
                 CloseTransaction();
 
                 return false;
             }
         }
-
-<<<<<<< Updated upstream
-        // Метод для шифрования базы данных
-        public void EncryptDataBase(string password)
-        {
-            if (string.IsNullOrEmpty(_databasePath) || !File.Exists(_databasePath))
-            {
-                throw new InvalidOperationException("База данных не существует. Сначала создайте базу данных.");
-            }
-
-            _passwordDB = password;
-
-            InitTransaction("Шифрование базы данных");
-            using (var connection = new SQLiteConnection($"Data Source={_databasePath};Version=3;"))
-            {
-                connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = $"PRAGMA key = '{_passwordDB}';";
-                    command.ExecuteNonQuery();
-                    MessageError("Пароль успешно установлен для базы данных");
-                }
-            }
-            CloseTransaction("Шифрование базы данных завершено");
-=======
         public string GetPathToDataBase(string clientName)
         {
             string targetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase");
@@ -198,21 +139,20 @@ namespace mypass.Model
                             try
                             {
                                 command.ExecuteNonQuery();
-                                MessageError($"Таблица успешно создана: {query.Substring(0, 30)}...");
+
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
-                                MessageError($"Ошибка создания таблицы: {ex.Message}");
+                                //
                             }
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageError($"Ошибка инициализации базы данных: {ex.Message}");
+                //
             }
->>>>>>> Stashed changes
         }
     }
 }
