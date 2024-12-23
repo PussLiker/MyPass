@@ -247,6 +247,7 @@
     <Compile Include="Model\PasswordDoublicateChecker.cs" />
     <Compile Include="Model\PasswordCheckResult.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
+    <Compile Include="Model\PasswordToMaskedConverter.cs" />
     <Compile Include="Model\PasswordToVisibilityConverter.cs" />
     <Compile Include="Model\PasswordValidator.cs" />
     <Compile Include="Model\TagsAccountsDB.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="Model\Vhod.cs" />
     <Compile Include="Model\TypeEventsDB.cs" />
     <Compile Include="Model\UserDB.cs" />
+    <Compile Include="Model\BoolToVisibilityConverter.cs" />
     <Compile Include="Utilities\Btn.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />

@@ -4,11 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:mypass.ViewModel" 
+             xmlns:m="clr-namespace:mypass.Model"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="810"
              Style="{StaticResource PageStyle}">
 
+    <!-- Размещение конвертера в ресурсы UserControl -->
+    <UserControl.Resources>
+        <m:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <m:PasswordToMaskedConverter x:Key="PasswordToMaskedConverter" />
+    </UserControl.Resources>
+
+    <!-- Установка контекста данных -->
     <UserControl.DataContext>
         <vm:AllPassesVM/>
     </UserControl.DataContext>
@@ -97,11 +105,19 @@
                                             </Grid>
                                         </Border>
 
-                                        <!-- Поле ввода текста -->
                                         <Border Background="#1a1a1d" CornerRadius="0,0,5,5" Grid.Row="2" Margin="0,2,0,5">
                                             <Grid>
-                                                <TextBox Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Text="{Binding Password}" BorderThickness="0" FontSize="14"/>
-                                                <Button  Command="{Binding DataContext.CopyPasswordCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                <!-- Поле ввода пароля с возможностью скрытия/показа -->
+                                                <TextBox x:Name="PasswordTextBox"
+                                                 Style="{StaticResource TextBoxStyle}" 
+                                                 IsReadOnly="True" 
+                                                 Text="{Binding Password}" 
+                                                 BorderThickness="0" 
+                                                 FontSize="14"
+                                                 Visibility="{Binding IsPasswordVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+                                                <!-- Кнопка для копирования пароля -->
+                                                <Button Command="{Binding DataContext.CopyPasswordCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}"
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
@@ -113,15 +129,13 @@
                                                     <Button.Template>
                                                         <ControlTemplate TargetType="Button">
                                                             <Grid>
-                                                                <Border x:Name="ButtonBorder" 
-                                                                Background="Transparent" 
-                                                                CornerRadius="5"/>
+                                                                <Border x:Name="ButtonBorder" Background="Transparent" CornerRadius="5"/>
                                                                 <iconPacks:PackIconMaterial x:Name="Icon"
-                                                    Kind="ContentCopy"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="PeachPuff" 
-                                                    Width="8"/>
+                                                                Kind="ContentCopy"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"
+                                                                Foreground="PeachPuff" 
+                                                                Width="8"/>
                                                             </Grid>
                                                             <ControlTemplate.Triggers>
                                                                 <Trigger Property="IsMouseOver" Value="True">
@@ -136,7 +150,10 @@
                                                         </ControlTemplate>
                                                     </Button.Template>
                                                 </Button>
-                                                <Button Command="{Binding TogglePasswordVisibilityCommand}"
+
+                                                <!-- Кнопка для переключения видимости пароля -->
+                                                <Button Command="{Binding DataContext.TogglePasswordVisibilityCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}"
                                                     Background="Transparent"
                                                     BorderBrush="Transparent"
                                                     Cursor="Hand"
@@ -147,15 +164,13 @@
                                                     <Button.Template>
                                                         <ControlTemplate TargetType="Button">
                                                             <Grid>
-                                                                <Border x:Name="ButtonBorder" 
-                                                                Background="Transparent" 
-                                                                CornerRadius="5"/>
+                                                                <Border x:Name="ButtonBorder" Background="Transparent" CornerRadius="5"/>
                                                                 <iconPacks:PackIconMaterial x:Name="Icon"
-                                                    Kind="Eye"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="PeachPuff" 
-                                                    Width="8"/>
+                                                                Kind="Eye"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"
+                                                                Foreground="PeachPuff" 
+                                                                Width="8"/>
                                                             </Grid>
                                                             <ControlTemplate.Triggers>
                                                                 <Trigger Property="IsMouseOver" Value="True">
@@ -172,6 +187,7 @@
                                                 </Button>
                                             </Grid>
                                         </Border>
+
 
                                         <!-- Сообщение об ошибке -->
                                         <TextBlock Text="⚠ Проблемы с паролем" Foreground="Red" FontSize="10" Grid.Row="3" Margin="5,10,0,32"/>
