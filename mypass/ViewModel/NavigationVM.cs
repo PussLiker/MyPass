@@ -7,6 +7,8 @@ using System.Windows;
 using System.Windows.Input;
 using mypass.Utilities;
 using mypass.View;
+using mypass.Model;
+using System.Data.SqlClient;
 
 namespace mypass.ViewModel
 {
@@ -66,6 +68,15 @@ namespace mypass.ViewModel
                 _passGenWindow = new PassGenWindow();
                 _passGenWindow.Closed += (s, args) => _passGenWindow = null;
                 _passGenWindow.Show();
+
+                // !!!!!!УДАЛИТЬ ПОСЛЕ ПРОВЕРКИ БД!!!!!!!
+                //string dbclient = "Dima";
+                //string password = "3o4tuh32487gr9g7";
+
+                //var DB = new DataBase();
+                //DB.CreateDataBase(dbclient, password);                                                                     
+                //DebugConfig.LoadConfig();
+                //
             }
             else
             {
