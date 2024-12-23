@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace mypass.Utilities
+namespace mypass.Model
 {
     internal class PasswordToMaskedConverter : IValueConverter
     {
