@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 
 namespace mypass.Model
 {
@@ -23,6 +23,7 @@ namespace mypass.Model
             get => _nameevent;
             set => _nameevent = value;
         }
+
         public EventsDB(string databasePath, string password) : base() { }
 
         public void AddEvent(int idTypeEvent, string nameEvent)
@@ -30,9 +31,8 @@ namespace mypass.Model
             OpenConnection();
             string query = "INSERT INTO Events (IDTypeEvent, NameEvent) VALUES (@IDTypeEvent, @NameEvent);";
 
-            using (var command = _connection.CreateCommand())
+            using (var command = new SqliteCommand(query, _connection))
             {
-                command.CommandText = query;
                 command.Parameters.AddWithValue("@IDTypeEvent", idTypeEvent);
                 command.Parameters.AddWithValue("@NameEvent", nameEvent);
 
@@ -48,9 +48,8 @@ namespace mypass.Model
                              SET IDTypeEvent = @IDTypeEvent, NameEvent = @NameEvent 
                              WHERE IdEvent = @IdEvent;";
 
-            using (var command = _connection.CreateCommand())
+            using (var command = new SqliteCommand(query, _connection))
             {
-                command.CommandText = query;
                 command.Parameters.AddWithValue("@IdEvent", idEvent);
                 command.Parameters.AddWithValue("@IDTypeEvent", idTypeEvent);
                 command.Parameters.AddWithValue("@NameEvent", nameEvent);
@@ -65,9 +64,8 @@ namespace mypass.Model
             OpenConnection();
             string query = "DELETE FROM Events WHERE IdEvent = @IdEvent;";
 
-            using (var command = _connection.CreateCommand())
+            using (var command = new SqliteCommand(query, _connection))
             {
-                command.CommandText = query;
                 command.Parameters.AddWithValue("@IdEvent", idEvent);
 
                 command.ExecuteNonQuery();
@@ -81,12 +79,11 @@ namespace mypass.Model
             string query = "SELECT * FROM Events WHERE IdEvent = @IdEvent;";
             var result = new Dictionary<string, string>();
 
-            using (var command = _connection.CreateCommand())
+            using (var command = new SqliteCommand(query, _connection))
             {
-                command.CommandText = query;
                 command.Parameters.AddWithValue("@IdEvent", idEvent);
 
-                using (SQLiteDataReader reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
@@ -99,9 +96,25 @@ namespace mypass.Model
             CloseConnection();
             return result;
         }
+
         public void LoadDataFromEventsDB()
         {
+            OpenConnection();
+            string query = "SELECT * FROM Events;";
 
+            using (var command = new SqliteCommand(query, _connection))
+            {
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        _idevents = int.Parse(reader["IdEvent"].ToString());
+                        _idtypeevent = int.Parse(reader["IDTypeEvent"].ToString());
+                        _nameevent = reader["NameEvent"].ToString();
+                    }
+                }
+            }
+            CloseConnection();
         }
     }
 }

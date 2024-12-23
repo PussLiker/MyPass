@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using System;
 using System.Data.SQLite;
 
@@ -8,6 +9,11 @@ using System.Data.SQLite;
 //         InitializeDatabase - метод нужен для создания всех таблиц в БД
 
 // Пример использования: хз, потом напишу, мне лень
+=======
+﻿using Microsoft.Data.Sqlite;
+using System;
+using System.IO;
+>>>>>>> Stashed changes
 
 
 
@@ -17,10 +23,12 @@ namespace mypass.Model
     public class DataBase : DataBaseManager
     {
         protected string _connectionString;
-        protected SQLiteConnection _connection;
+        protected SqliteConnection _connection;
+        private readonly object _lock = new object();
 
         public DataBase()
         {
+<<<<<<< Updated upstream
             InitTransaction("Вызов базы данных для заполнения атрибутов");
             if (string.IsNullOrEmpty(_databasePath) || string.IsNullOrEmpty(_passwordDB))
             {
@@ -31,6 +39,11 @@ namespace mypass.Model
             _connectionString = $"Data Source={_databasePath};Version=3;Password={_passwordDB};";
             _connection = new SQLiteConnection(_connectionString);
             CloseTransaction("Завершение изменения значений");
+=======
+            // Формируем строку подключения к базе данных
+            _connectionString = $"Data Source={_databasePath};";
+            _connection = new SqliteConnection(_connectionString);
+>>>>>>> Stashed changes
         }
 
         // Функция для открытия соединения
@@ -39,6 +52,7 @@ namespace mypass.Model
             
             if (_connection == null)
             {
+<<<<<<< Updated upstream
                 _connection = new SQLiteConnection(_connectionString);
             }
 
@@ -46,14 +60,29 @@ namespace mypass.Model
             {
                 _connection.Open();
                 MessageError("Установлено соединение с БД");
+=======
+                if (_connection == null)
+                {
+                    Console.WriteLine($"Инициализация подключения: {_connectionString}");
+                    _connection = new SqliteConnection(_connectionString);
+                }
+
+                if (_connection.State != System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine($"Открытие подключения: {_connectionString}");
+                    _connection.Open();
+                    Console.WriteLine("Подключение успешно открыто.");
+                }
+>>>>>>> Stashed changes
             }
         }
 
         // Функция для закрытия соединения
         public void CloseConnection()
         {
-            if (_connection != null && _connection.State != System.Data.ConnectionState.Closed)
+            lock (_lock)
             {
+<<<<<<< Updated upstream
                 _connection.Close();
                 MessageError("Соединение с БД закрыто");
             }
@@ -155,6 +184,20 @@ namespace mypass.Model
             }
             CloseConnection();
             CloseTransaction("Завершение создания таблиц");
+=======
+                if (_connection != null && _connection.State != System.Data.ConnectionState.Closed)
+                {
+                    _connection.Close();
+                    Console.WriteLine("Подключение успешно закрыто.");
+                }
+            }
+        }
+
+        // Проверка состояния подключения
+        public bool IsConnectionOpen()
+        {
+            return _connection != null && _connection.State == System.Data.ConnectionState.Open;
+>>>>>>> Stashed changes
         }
     }
 }

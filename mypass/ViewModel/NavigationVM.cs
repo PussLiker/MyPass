@@ -64,11 +64,22 @@ namespace mypass.ViewModel
                 _passGenWindow.Closed += (s, args) => _passGenWindow = null;
                 _passGenWindow.Show();
 
+<<<<<<< Updated upstream
                 // Пример вызова отладки + содания бд (без таблиц)
                 //DebugConfig.LoadConfig();
                 //string name = "Dima";
                 //string password = "2984yt284y";
                 //DataBaseManager.CreateEncryptedDatabase(name, password);
+=======
+                //// !!!!!!УДАЛИТЬ ПОСЛЕ ПРОВЕРКИ БД!!!!!!!
+                //string dbclient = "Dima";
+                //string password = "3o4tuh32487gr9g7";
+
+                //var DB = new DataBase();
+                //DB.CreateDataBase(dbclient, password);
+                //DebugConfig.LoadConfig();
+
+>>>>>>> Stashed changes
             }
             else
             {
