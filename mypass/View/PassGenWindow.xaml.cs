@@ -13,6 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace mypass.View
+<<<<<<<< HEAD:mypass/View/RegistrationPage.xaml.cs
+{ 
+    /// Логика взаимодействия для RegistrationPage.xaml
+    public partial class RegistrationPage : UserControl
+    {
+        public RegistrationPage()
+========
 {
     /// <summary>
     /// Логика взаимодействия для PassGenWindow.xaml
@@ -20,6 +27,9 @@ namespace mypass.View
     public partial class PassGenWindow : Window
     {
         public PassGenWindow()
+
+>>>>>>>> main:mypass/View/PassGenWindow.xaml.cs
+
         {
             InitializeComponent();
         }

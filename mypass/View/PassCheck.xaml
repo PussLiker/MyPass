@@ -3,10 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:mypass.View"
+             xmlns:vm="clr-namespace:mypass.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="680" d:DesignWidth="810"
+             Style="{StaticResource PageStyle}">
+
+    <UserControl.DataContext>
+        <vm:PassCheckVM/>
+    </UserControl.DataContext>
+
     <Grid>
-            
+        <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
+            <StackPanel Margin="50">
+                <!-- Поле для ввода пароля -->
+                <TextBox x:Name="PasswordTextBox"
+                         Style="{StaticResource TextBoxStyle}"
+                         Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" 
+                         FontSize="16" Margin="0 0 0 10"
+                         VerticalAlignment="Center"
+                         Padding="10"
+                         Background="#2E2E30"
+                         BorderThickness="0"/>
+
+                <!-- Кнопка проверки -->
+                <Border Style="{StaticResource AnimatedButtonStyleAllPasses}" 
+                        Background="#404040" Grid.Row="4" CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        Margin="0 0 0 20"> 
+                <Button Content="Проверить" 
+                        Command="{Binding CheckPasswordCommand}"
+                        FontSize="26"
+                        Background="Transparent" Foreground="PeachPuff"
+                        BorderThickness="0"/>
+                </Border>
+
+                <!-- Уровень надёжности -->
+                <TextBlock Text="{Binding StrengthResult}" 
+                           FontSize="18" 
+                           Foreground="#FFF" 
+                           Margin="0 0 0 10" />
+
+                <!-- Прогресс бар -->
+                <ProgressBar Value="{Binding StrengthProgress}"
+                             Background="Transparent"
+                             Maximum="100"
+                             Height="20"
+                             Margin="0 0 0 10" 
+                             Foreground="#4CAF50"/>
+
+                <!-- Список рекомендаций -->
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding Feedback}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Foreground="Red" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

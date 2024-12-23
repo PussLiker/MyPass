@@ -15,22 +15,22 @@ public static class DebugConfig
     public static bool IsDebugEnabled { get; private set; } = true; // По умолчанию false
     public static string LogFileName { get; private set; } = "Log.txt"; // Файл по умолчанию
 
-    private static string debugFolderPath; // Путь к папке Debug
+    private static string _debugFolderPath; // Путь к папке Debug
 
     // Метод для загрузки настроек из файла
     public static void LoadConfig()
     {
         // Путь для создания папки Debug
-        debugFolderPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\", "Debug"));
+        _debugFolderPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Debug"));
 
         // Проверяем и создаем папку, если её нет
-        if (!Directory.Exists(debugFolderPath))
+        if (!Directory.Exists(_debugFolderPath))
         {
-            Directory.CreateDirectory(debugFolderPath);
+            Directory.CreateDirectory(_debugFolderPath);
         }
 
         // Финальный путь для файла DebugLoggingSetting.txt
-        string configFilePath = Path.Combine(debugFolderPath, "DebugLoggingSetting.txt");
+        string configFilePath = Path.Combine(_debugFolderPath, "DebugLoggingSetting.txt");
 
         // Проверяем и создаем файл DebugLoggingSetting.txt, если его нет
         if (!File.Exists(configFilePath))
@@ -58,7 +58,7 @@ public static class DebugConfig
 
         if (settings.ContainsKey("LogFileName"))
         {
-            LogFileName = Path.Combine(debugFolderPath, settings["LogFileName"]);
+            LogFileName = Path.Combine(_debugFolderPath, settings["LogFileName"]);
         }
     }
 }

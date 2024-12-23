@@ -5,19 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using mypass.Model;
 using mypass.Utilities;
 using mypass.View;
+using mypass.Model;
+using System.Data.SqlClient;
 
 namespace mypass.ViewModel
 {
     class NavigationVM : ViewModelBase
     {
         private object _currentView;
-        private Vhod _vhod;
         private MainWindow _mainWindow;
         private PassGenWindow _passGenWindow; // Поле для хранения ссылки на окно
-        public object CurrentView {
+        public object CurrentView
+        {
             get { return _currentView; }
             set { _currentView = value; OnPropertyChanged(); }
         }
@@ -31,9 +32,10 @@ namespace mypass.ViewModel
         public ICommand MainMenuCommand { get; set; }
         public ICommand NotificationsCommand { get; set; }
         public ICommand PassCheckCommand { get; set; }
-        public ICommand PassGenCommand { get; set; }        
-        public ICommand VhodStartCommand {  get; set; }
-        public ICommand VhodButtonCommand {  get; set; }
+        public ICommand PassGenCommand { get; set; }
+        public ICommand VhodStartCommand { get; set; }
+        public ICommand VhodButtonCommand { get; set; }
+
 
         private void Accounts(object obj) => CurrentView = new AccountsVM();
         private void AllPasses(object obj) => CurrentView = new AllPassesVM();
@@ -44,42 +46,36 @@ namespace mypass.ViewModel
         private void PassCheck(object obj) => CurrentView = new PassCheckVM();
         private void VhodStart(object obj)
         {
-            if (_mainWindow == null)
+            if (obj is Window window)
             {
-                _mainWindow = new MainWindow();
-                _mainWindow.Closed += (s, args) => _mainWindow = null;
-                _mainWindow.Show();
+                if (_mainWindow == null)
+                {
+                    _mainWindow = new MainWindow();
+                    _mainWindow.Closed += (s, args) => _mainWindow = null;
+                    _mainWindow.Show();
+                }
+                else
+                    _mainWindow = new MainWindow();
+                window?.Close();
             }
-            else
-                _mainWindow = new MainWindow();
         }
-        private void VhodButton(object obj)
+        
+        private void PassGen(object obj)
         {
-            
-        }
-        private void PassGen(object obj) {
             if (_passGenWindow == null)
             {
                 _passGenWindow = new PassGenWindow();
                 _passGenWindow.Closed += (s, args) => _passGenWindow = null;
                 _passGenWindow.Show();
 
-<<<<<<< Updated upstream
-                // Пример вызова отладки + содания бд (без таблиц)
-                //DebugConfig.LoadConfig();
-                //string name = "Dima";
-                //string password = "2984yt284y";
-                //DataBaseManager.CreateEncryptedDatabase(name, password);
-=======
-                //// !!!!!!УДАЛИТЬ ПОСЛЕ ПРОВЕРКИ БД!!!!!!!
-                //string dbclient = "Dima";
-                //string password = "3o4tuh32487gr9g7";
+                // !!!!!!УДАЛИТЬ ПОСЛЕ ПРОВЕРКИ БД!!!!!!!
+                string dbclient = "Dima";
+                string password = "3o4tuh32487gr9g7";
 
-                //var DB = new DataBase();
-                //DB.CreateDataBase(dbclient, password);
-                //DebugConfig.LoadConfig();
+                var DB = new DataBase();
+                DB.CreateDataBase(dbclient, password);
+                DebugConfig.LoadConfig();
 
->>>>>>> Stashed changes
             }
             else
             {
@@ -88,23 +84,30 @@ namespace mypass.ViewModel
         }
         private void Minimize(object obj)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+
+            if (obj is Window window)
+            {
+                window.WindowState = WindowState.Minimized;
+            }
         }
         private void Maximize(object obj)
         {
-            var window = Application.Current.MainWindow;
-            if (window.WindowState == WindowState.Maximized)
+            if (obj is Window window)
             {
-                window.WindowState = WindowState.Normal; // Восстановить окно
-            }
-            else
-            {
-                window.WindowState = WindowState.Maximized; // Максимизировать окно
+                if (window.WindowState == WindowState.Maximized)
+                {
+                    window.WindowState = WindowState.Normal; // Восстановить окно
+                }
+                else
+                {
+                    window.WindowState = WindowState.Maximized; // Максимизировать окно
+                }
             }
         }
         private void Close(object obj)
         {
-            Application.Current.MainWindow.Close();
+            if (obj is Window window)
+            { window?.Close(); }
         }
 
         public NavigationVM()

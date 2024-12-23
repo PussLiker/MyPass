@@ -1,15 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
-    <Style x:Key="ImageStyle" TargetType="Image">
+    <Style x:Key="ImageStyle" TargetType="iconPacks:PackIconMaterial">
 
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Height" Value="30" />
         <Setter Property="Width" Value="30" />
-        <Setter Property="Margin" Value="20, 0,0,0" />
-
+        <Setter Property="Margin" Value="20,0,0,0" />
+        <Setter Property="Foreground" Value="PeachPuff" />
     </Style>
     
 </ResourceDictionary>

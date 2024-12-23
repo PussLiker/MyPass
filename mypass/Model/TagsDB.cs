@@ -1,6 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Data.Sqlite;
+using System.Data;
+using System.Data.SQLite;
+using System.Security.Cryptography;
+
+// Зачем нужен: типо таблица с бд
+// Наследование: лень писать
+// Методы: лень писать
+// Пример использования: лень писать
 
 namespace mypass.Model
 {
@@ -25,11 +32,11 @@ namespace mypass.Model
         {
             OpenConnection();
 
-            string query = "INSERT INTO Tags (NameTag) VALUES (@NameTag);";
             int affectedRows;
 
-            using (var command = new SqliteCommand(query, _connection))
+            using (var command = _connection.CreateCommand())
             {
+                command.CommandText = "INSERT INTO Tags (NameTag) VALUES (@NameTag);";
                 command.Parameters.AddWithValue("@NameTag", nameTag);
 
                 affectedRows = command.ExecuteNonQuery();
@@ -50,11 +57,11 @@ namespace mypass.Model
         {
             OpenConnection();
 
-            string query = "UPDATE Tags SET NameTag = @NameTag WHERE IdTag = @IdTag;";
             int affectedRows;
 
-            using (var command = new SqliteCommand(query, _connection))
+            using (var command = _connection.CreateCommand())
             {
+                command.CommandText = "UPDATE Tags SET NameTag = @NameTag WHERE IdTag = @IdTag;";
                 command.Parameters.AddWithValue("@NameTag", newNameTag);
                 command.Parameters.AddWithValue("@IdTag", idTag);
                 affectedRows = command.ExecuteNonQuery();
@@ -74,11 +81,11 @@ namespace mypass.Model
         {
             OpenConnection();
 
-            string query = "DELETE FROM Tags WHERE IdTag = @IdTag;";
             int affectedRows;
 
-            using (var command = new SqliteCommand(query, _connection))
+            using (var command = _connection.CreateCommand())
             {
+                command.CommandText = "DELETE FROM Tags WHERE IdTag = @IdTag;";
                 command.Parameters.AddWithValue("@IdTag", idTag);
                 affectedRows = command.ExecuteNonQuery();
             }
@@ -98,11 +105,12 @@ namespace mypass.Model
             string query = "SELECT * FROM Tags WHERE IdTag = @IdTag;";
             var result = new Dictionary<string, string>();
 
-            using (var command = new SqliteCommand(query, _connection))
+            using (var command = _connection.CreateCommand())
             {
+                command.CommandText = query;
                 command.Parameters.AddWithValue("@IdTag", idTag);
 
-                using (var reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
@@ -118,15 +126,16 @@ namespace mypass.Model
             return result;
         }
 
-        // Метод для загрузки данных из таблицы Tags
         public void LoadDataFromTagsDB()
         {
             OpenConnection();
 
             string query = "SELECT IdTag, NameTag FROM Tags;";
 
-            using (var command = new SqliteCommand(query, _connection))
+            using (var command = _connection.CreateCommand())
             {
+                command.CommandText = query;
+
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())

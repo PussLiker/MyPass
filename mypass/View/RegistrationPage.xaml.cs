@@ -1,26 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
+using mypass.ViewModel;
+using mypass.View;
+using mypass.Model;
+using System;
 namespace mypass.View
-{ 
+{
     /// Логика взаимодействия для RegistrationPage.xaml
     public partial class RegistrationPage : UserControl
     {
+
+        MainAuthWindowVM authWindow = new MainAuthWindowVM();
+
         public RegistrationPage()
 
         {
             InitializeComponent();
+
+        }
+
+        public void PassNotNorm()
+        {
+            Console.WriteLine("Пароль не одинаковый");
         }
     }
 }

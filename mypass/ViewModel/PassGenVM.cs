@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using mypass.Model;
+﻿using mypass.Model;
 using mypass.Utilities;
-using mypass.View;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace mypass.ViewModel
@@ -20,6 +14,7 @@ namespace mypass.ViewModel
         private CancellationTokenSource _cancellationTokenSource;
         public ICommand CopyTextCommand { get; }
         public ICommand PasswordGenerateCommand { get; }
+        public ICommand ExitCommand { get; }
 
         private string _text;
         public string Text
@@ -49,7 +44,7 @@ namespace mypass.ViewModel
                 }
             }
         }
-        
+
         public ICommand IncreasePasswordLengthCommand { get; }
         public ICommand DecreasePasswordLengthCommand { get; }
 
@@ -143,6 +138,7 @@ namespace mypass.ViewModel
             // Создаем команду
             CopyTextCommand = new RelayCommand(CopyTextToClipboard);
             PasswordGenerateCommand = new RelayCommand(SetPass);
+            ExitCommand = new RelayCommand(Exit);
             _pageModel = new PageModel();
 
             // Пример инициализации текста
@@ -153,6 +149,11 @@ namespace mypass.ViewModel
             DecreasePasswordLengthCommand = new RelayCommand(_ => PasswordLength--, _ => PasswordLength > 4);
 
 
+        }
+        private void Exit(object s)
+        {
+            if (s is Window w)
+            { w?.Close(); }
         }
         private void SetPass(object sender)
         {
@@ -210,5 +211,5 @@ namespace mypass.ViewModel
 
 
 }
-        
+
 

@@ -1,61 +1,92 @@
 ﻿using System;
 using System.IO;
 
-using Microsoft.Data.Sqlite;
+using System.Data.SQLite;
 
+// Зачем нужен: этот класс нужен для упралвения созданием и установкой пароля для базы данных
+// Наследование: идёт в наследование путь к созданной бд (_databasePath) и пароль пользователя (_passwordDB)
+// Методы: 'CreateDataBase' - для создания БД, а также папки 'DataBase', если ранее не была создана и EncryptDataBase - для установки пользовательского пароля для бд
+
+// Пример использования: DataBaseManager.CreateDataBase('Nikita');
+//                       DataBaseManager.EncryptDataBase('230rt0450Tkkgji4');    - также можно вызывать много раз, тк с 59 по 62 строчку идёт проверка на уже имеющийся пароль
 
 namespace mypass.Model
 {
     public class DataBaseManager : Logging
     {
         // Переменные
-
         public string _databasePath;
-        protected string _databaseExtension = ".db";
+        protected string _passwordDB;
+        protected string _databaseExtension = ".bd";
         protected string _databaseName;
-        protected string _passwordDataBase;
+
 
         // Метод для создания базы данных
-        public bool CreateDataBase(string clientName, string password)
+        public bool CreateDataBase(string clientName, string password) // Если возвращает false, то надо вызывать методы для загрузки данных с БД, например
+                                                                       // result = DataBaseManager.CreateDataBase(тут логин, тут пароль);
+                                                                       // if result == false
+                                                                       // {
+                                                                       //     UserDB.LoadDataFromUserDB();
+                                                                       //     TagsDB.LoadDataFromTagsDB();
+                                                                       //     TypeEventsDB.LoadDataFromTypeEventsDB();
+                                                                       //     TagsAccountsDB.LoadDataFromTagsAccountsDB();
+                                                                       //     EventsDB.LoadDataFromEventsDB();
+                                                                       //     ActionsDB.LoadDataFromActionsDB();
+                                                                       //     AccountsDB.LoadDataFromAccountsDB();
+                                                                       // }
         {
-            // Логирование
-            InitTransaction("Создание базы данных");
-
             // Путь для создания папки DataBase
-
             string targetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase");
-
+            Console.WriteLine(targetPath);
             if (!Directory.Exists(targetPath))
             {
                 Directory.CreateDirectory(targetPath);
-                MessageError("Создана папка DataBase");
             }
 
-            // Путь к базе данных
-            _databaseName = clientName;
             _databasePath = GetPathToDataBase(clientName);
-            _passwordDataBase = password;
+            _databaseName = $"{clientName}{_databaseExtension}";
 
+            Console.WriteLine(_databasePath);
             if (!File.Exists(_databasePath))
             {
-                // Создание базы данных
-                using (var connection = new SqliteConnection($"Data Source={_databasePath}"))
-                {
-                    connection.Open();
-                    InitializeDatabase(); // Инициализация таблиц
-                    connection.Close();
-                }
+                SQLiteConnection.CreateFile(_databasePath);
+
+                //EncryptDataBase(password);
+
+                InitializeDatabase(); // Инициализация таблиц
 
                 return true;
             }
             else
             {
-                MessageError($"База данных уже существует: {_databaseName}");
-                CloseTransaction();
-
                 return false;
             }
         }
+
+       
+        // Метод для шифрования базы данных
+        public void EncryptDataBase(string password)
+        {
+            Console.WriteLine(_databasePath);
+            if (string.IsNullOrEmpty(_databasePath) || !File.Exists(_databasePath))
+            {
+                throw new InvalidOperationException("База данных не существует. Сначала создайте базу данных.");
+            }
+
+            _passwordDB = password;
+
+            using (var connection = new SQLiteConnection($"Data Source={_databasePath};Version=3;"))
+            {
+                Console.WriteLine(_databasePath);
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = $"PRAGMA key = '{_passwordDB}';";
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public string GetPathToDataBase(string clientName)
         {
             string targetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase");
@@ -73,7 +104,7 @@ namespace mypass.Model
         {
             try
             {
-                using (var connection = new SqliteConnection($"Data Source={_databasePath}"))
+                using (var connection = new SQLiteConnection($"Data Source={_databasePath};Version=3;")) //Password={_passwordDB};
                 {
                     connection.Open();
 
@@ -132,27 +163,29 @@ namespace mypass.Model
                         );"
                     };
 
-                    foreach (var query in tableCreationQueries)
+                foreach (var query in tableCreationQueries)
+                {
+                    using (var command = new SQLiteCommand(query, connection))
                     {
-                        using (var command = new SqliteCommand(query, connection))
+                        try
                         {
-                            try
-                            {
-                                command.ExecuteNonQuery();
-
-                            }
-                            catch (Exception)
-                            {
-                                //
-                            }
+                            command.ExecuteNonQuery();
+                            MessageError($"Таблица успешно создана: {query.Substring(0, 30)}...");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageError($"Ошибка создания таблицы: {ex.Message}");
                         }
                     }
                 }
-            }
-            catch (Exception)
-            {
-                //
-            }
+
+                connection.Close();
+                }
         }
+            catch (Exception ex)
+            {
+                MessageError($"Ошибка инициализации базы данных: {ex.Message}");
+    }
+}
     }
 }

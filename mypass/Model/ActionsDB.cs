@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Data.Sqlite;
+using System.Data.SQLite;
+using System.Data;
 
 namespace mypass.Model
 {
@@ -40,8 +41,9 @@ namespace mypass.Model
             OpenConnection();
             string query = "INSERT INTO Actions (IdAccount, IdEvent, TimeEvent) VALUES (@IdAccount, @IdEvent, @TimeEvent);";
 
-            using (var command = new SqliteCommand(query, _connection))
+            using (var command = _connection.CreateCommand())
             {
+                command.CommandText = query;
                 command.Parameters.AddWithValue("@IdAccount", idAccount);
                 command.Parameters.AddWithValue("@IdEvent", idEvent);
                 command.Parameters.AddWithValue("@TimeEvent", timeEvent);
@@ -59,8 +61,9 @@ namespace mypass.Model
                              SET IdAccount = @IdAccount, IdEvent = @IdEvent, TimeEvent = @TimeEvent 
                              WHERE IdAction = @IdAction;";
 
-            using (var command = new SqliteCommand(query, _connection))
+            using (var command = _connection.CreateCommand())
             {
+                command.CommandText = query;
                 command.Parameters.AddWithValue("@IdAction", idAction);
                 command.Parameters.AddWithValue("@IdAccount", idAccount);
                 command.Parameters.AddWithValue("@IdEvent", idEvent);
@@ -77,8 +80,9 @@ namespace mypass.Model
             OpenConnection();
             string query = "DELETE FROM Actions WHERE IdAction = @IdAction;";
 
-            using (var command = new SqliteCommand(query, _connection))
+            using (var command = _connection.CreateCommand())
             {
+                command.CommandText = query;
                 command.Parameters.AddWithValue("@IdAction", idAction);
 
                 command.ExecuteNonQuery();
@@ -93,11 +97,12 @@ namespace mypass.Model
             string query = "SELECT * FROM Actions WHERE IdAction = @IdAction;";
             var result = new Dictionary<string, string>();
 
-            using (var command = new SqliteCommand(query, _connection))
+            using (var command = _connection.CreateCommand())
             {
+                command.CommandText = query;
                 command.Parameters.AddWithValue("@IdAction", idAction);
 
-                using (var reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
@@ -111,28 +116,9 @@ namespace mypass.Model
             CloseConnection();
             return result;
         }
-
-        // Метод для загрузки данных
         public void LoadDataFromActionsDB()
         {
-            OpenConnection();
 
-            string query = "SELECT * FROM Actions;";
-
-            using (var command = new SqliteCommand(query, _connection))
-            {
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        _idaction = Convert.ToInt32(reader["IdAction"]);
-                        _idaccount = Convert.ToInt32(reader["IdAccount"]);
-                        _idevent = Convert.ToInt32(reader["IdEvent"]);
-                        _timeevent = Convert.ToDateTime(reader["TimeEvent"]);
-                    }
-                }
-            }
-            CloseConnection();
         }
     }
 }

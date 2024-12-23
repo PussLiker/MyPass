@@ -11,8 +11,8 @@
     <Grid>
         <Grid>
 
-            <ContentControl x:Name="UserControls"  
-                    Content="{Binding PohujView}" />
+            <ContentControl Content="{Binding PohujView}"  />
+
         </Grid>
     </Grid>
 </Window>

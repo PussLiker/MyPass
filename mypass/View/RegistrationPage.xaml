@@ -5,6 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="clr-namespace:mypass.ViewModel"
       xmlns:local="clr-namespace:mypass.Model"
+      Height="450" Width="400"
       mc:Ignorable="d"
       Background="Transparent">
 
@@ -25,37 +26,43 @@
 
                 <!-- Поле для имени -->
                 <Grid Margin="0,10,0,0">
-                    <TextBox x:Name="FirstNameTextBox" Width="250" Height="30" Style="{StaticResource TextBoxStyle}" />
+                    <TextBox Text="{Binding Username}" x:Name="FirstNameTextBox" Width="250" Height="30" Style="{StaticResource TextBoxStyle}" />
                     <TextBlock Text="Введите имя" Style="{StaticResource RegistrationTextBoxes}"
                                Visibility="{Binding Text, ElementName=FirstNameTextBox, Converter={StaticResource TextToVisibilityConverter}}" />
                 </Grid>
 
                 <!-- Поле для фамилии -->
                 <Grid Margin="0,10,0,0">
-                    <TextBox x:Name="LastNameTextBox" Width="250" Height="30" Style="{StaticResource TextBoxStyle}" />
+                    <TextBox Text="{Binding UserSecondname}" x:Name="LastNameTextBox" Width="250" Height="30" Style="{StaticResource TextBoxStyle}" />
                     <TextBlock Text="Введите фамилию" Style="{StaticResource RegistrationTextBoxes}"
                                Visibility="{Binding Text, ElementName=LastNameTextBox, Converter={StaticResource TextToVisibilityConverter}}" />
                 </Grid>
 
                 <!-- Поле для логина -->
                 <Grid Margin="0,10,0,0">
-                    <TextBox x:Name="UsernameTextBox" Width="250" Height="30" Style="{StaticResource TextBoxStyle}" />
+                    <TextBox Text="{Binding LoginReg}" x:Name="UsernameTextBox" Width="250" Height="30" Style="{StaticResource TextBoxStyle}" />
                     <TextBlock Text="Введите логин" Style="{StaticResource RegistrationTextBoxes}"
                                Visibility="{Binding Text, ElementName=UsernameTextBox, Converter={StaticResource TextToVisibilityConverter}}" />
                 </Grid>
 
                 <!-- Поле для пароля -->
                 <Grid Margin="0,10,0,0">
-                    <PasswordBox x:Name="PasswordBox" Width="250" Height="30" Style="{StaticResource PassBoxStyle }" />
-                    <TextBlock Text="Введите пароль" Style="{StaticResource RegistrationTextBoxes}"
-                               Visibility="{Binding Password, ElementName=PasswordBox, Converter={StaticResource TextToVisibilityConverter}}" />
+                    <local:BindablePasswordBox Password="{Binding PassReg, UpdateSourceTrigger = PropertyChanged , 
+                        Mode=TwoWay}" x:Name="BindablePasswordBox" Width="250" Height="30"  />
+                    
+                    <TextBlock Text="Введите пароль"  
+                               Style="{StaticResource RegistrationTextBoxes}"
+                               Visibility="{Binding Password, ElementName=BindablePasswordBox, Converter={StaticResource TextToVisibilityConverter} }" />
                 </Grid>
-
+        
                 <!-- Поле для подтверждения пароля -->
-                <Grid Margin="0,10,0,20">
-                    <PasswordBox x:Name="ConfirmPasswordBox" Width="250" Height="30" Style="{StaticResource PassBoxStyle}" />
-                    <TextBlock Text="Подтвердите пароль" Style="{StaticResource RegistrationTextBoxes}"
-                               Visibility="{Binding Password    , ElementName=ConfirmPasswordBox, Converter={StaticResource TextToVisibilityConverter}}" />
+                <Grid Margin= "0, 10, 0, 20">
+                    <local:BindablePasswordBox Width="250" Height="30"
+                     Password ="{Binding PassRegConf, UpdateSourceTrigger=PropertyChanged }" x:Name="PassBox"/>
+
+                    <TextBlock Text="Введите пароль"
+                   Style="{StaticResource RegistrationTextBoxes}"
+                   Visibility="{Binding Password, ElementName=PassBox, Converter={StaticResource TextToVisibilityConverter} }" />
                 </Grid>
 
                 <!-- Переход ко входу -->
@@ -64,12 +71,12 @@
                            TextDecorations="Underline" Cursor="Hand" HorizontalAlignment="Left">
                     <TextBlock.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.LoginPageCommand, 
-                                                    RelativeSource={RelativeSource AncestorType=Window}}"/>
+                         RelativeSource={RelativeSource AncestorType=Window}}" />
                     </TextBlock.InputBindings>
-                </TextBlock>
+                </TextBlock>    
 
                 <!-- Кнопка регистрации -->
-                <Button Content="Зарегистрироваться" Width="250" Height="40" Style="{StaticResource ButtonSimp}" Margin="0,0,0,0" />
+                <Button Content="Зарегистрироваться" Width="250" Height="40" Style="{StaticResource ButtonSimp}" Command="{Binding RegistrationToSystemCommand}" Margin="0,0,0,0" />
 
 
             </StackPanel>

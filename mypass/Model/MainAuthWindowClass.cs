@@ -14,10 +14,10 @@ namespace mypass.Model
 
         public void Registration(string Login, string Password, string Username, string UserSecondName) {
 
-            var DBM = new DataBaseManager();
-            DBM.CreateDataBase(Login, Password);
+            var DB = new DataBase();
+            DB.CreateDataBase(Login, Password);
 
-            var user = new UsersDB(DBM._databasePath);
+            var user = new UsersDB(DB._databasePath, Password);
             user.AddUser(Login, Username, UserSecondName, Password, "asdmkojashdfoashdasij");
 
         }

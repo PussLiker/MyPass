@@ -1,40 +1,45 @@
-using Microsoft.Data.Sqlite;
-using System;
+﻿using System;
+using System.Data.SQLite;
 using System.IO;
+using System.Web.UI.WebControls;
+
+// Зачем нужен: этот класс служит родительским классом для всех классов таблиц. Тут основные методы всей БД
+// Наследование: наследует от 'DataBaseManager' путь к файлу БД (_databasePath), а также пароль (_passwordDB)
+// Методы: OpenConnection - метод нужен для открытия соединения с БД, всегда открывать перед началом транзакции
+//         CloseConnection - метод нужен для закрытия соединения с БД
+
+// Пример использования: хз, потом напишу, мне лень
 
 namespace mypass.Model
 {
     // Класс для взаимодействия с базой данных
     public class DataBase : DataBaseManager
     {
+        
         protected string _connectionString;
-        protected SqliteConnection _connection;
-        private readonly object _lock = new object();
+        protected SQLiteConnection _connection;
 
         public DataBase()
         {
-            // Формируем строку подключения к базе данных
-            _connectionString = $"Data Source={_databasePath};";
-            _connection = new SqliteConnection(_connectionString);
+            _connectionString = $"Data Source={_databasePath};Version=3;Password={_passwordDB};";
+            _connection = new SQLiteConnection(_connectionString);
         }
-
+        private readonly object _lock = new object();
         // Функция для открытия соединения
         public void OpenConnection()
         {
-            
-            if (_connection == null)
+            lock (_lock)
             {
                 if (_connection == null)
                 {
-                    Console.WriteLine($"Инициализация подключения: {_connectionString}");
-                    _connection = new SqliteConnection(_connectionString);
+                    Console.WriteLine(_connectionString);
+                    _connection = new SQLiteConnection(_connectionString);
                 }
 
                 if (_connection.State != System.Data.ConnectionState.Open)
                 {
-                    Console.WriteLine($"Открытие подключения: {_connectionString}");
+                    Console.WriteLine(_connectionString); 
                     _connection.Open();
-                    Console.WriteLine("Подключение успешно открыто.");
                 }
             }
         }
@@ -42,20 +47,10 @@ namespace mypass.Model
         // Функция для закрытия соединения
         public void CloseConnection()
         {
-            lock (_lock)
+            if (_connection != null && _connection.State != System.Data.ConnectionState.Closed)
             {
-                if (_connection != null && _connection.State != System.Data.ConnectionState.Closed)
-                {
-                    _connection.Close();
-                    Console.WriteLine("Подключение успешно закрыто.");
-                }
+                _connection.Close();
             }
-        }
-
-        // Проверка состояния подключения
-        public bool IsConnectionOpen()
-        {
-            return _connection != null && _connection.State == System.Data.ConnectionState.Open;
         }
     }
 }
