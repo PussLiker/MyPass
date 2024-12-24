@@ -15,11 +15,10 @@ namespace mypass.Model
     // Класс для таблицы Users
     public class UsersDB : DataBase
     {
-        public UsersDB(string databasePath, string password)
+        public UsersDB(string databasePath)
         {
             _databasePath = databasePath;
-            _passwordDB = password;
-            _connectionString = $"Data Source={_databasePath};Version=3;Password={_passwordDB};";
+            _connectionString = $"Data Source={_databasePath};Version=3;";
             _connection = new SQLiteConnection(_connectionString);
         }
 
@@ -56,27 +55,22 @@ namespace mypass.Model
         }
 
         // Метод для добавления нового пользователя
-        public void AddUser(string login, string firstname, string secondname,  string masterpasswordhash, string salt)
+        public void AddUser(string login, string firstname, string secondname, string salt)
         {
-            InitTransaction("Вызов метода 'AddUser'");
             OpenConnection();
 
-            string query = "INSERT INTO User (LoginUser, FirstName, SecondName, MasterPasswordHash, Salt) VALUES (@LoginUser, @FirstName, @SecondName, @MasterPasswordHash, @Salt);";
-            MessageError($"Создание запроса: {query}");
+            string query = "INSERT INTO User (LoginUser, FirstName, SecondName, Salt) VALUES (@LoginUser, @FirstName, @SecondName, @Salt);";
             int affectedRows;
 
             using (var command = _connection.CreateCommand())
             { 
                 command.CommandText = query;
-                MessageError($"Вызов команд для добавления");
                 command.Parameters.AddWithValue("@LoginUser", login);
                 command.Parameters.AddWithValue("@FirstName", firstname);
                 command.Parameters.AddWithValue("@SecondName", secondname);
-                command.Parameters.AddWithValue("@MasterPasswordHash", masterpasswordhash);
                 command.Parameters.AddWithValue("@Salt", salt);
 
                 affectedRows = command.ExecuteNonQuery();
-                MessageError($"Значение переменной после завершения команд: {affectedRows}");
             }
 
             CloseConnection();
@@ -84,15 +78,11 @@ namespace mypass.Model
             // Обновляем поля класса, если обновление прошло успешно
             if (affectedRows > 0)
             {
-                MessageError($"Применение полученных значений к полям класса");
                 _loginuser = login;
                 _firstname = firstname;
                 _secondname = secondname;
-                _masterpasswordhash = masterpasswordhash;
                 _salt = salt;
             }
-
-            CloseTransaction();
         }
 
         // Метод для обновления данных пользователя
