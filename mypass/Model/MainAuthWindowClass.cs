@@ -18,7 +18,7 @@ namespace mypass.Model
             DB.CreateDataBase(Login);
 
             var user = new UsersDB(DB._databasePath);
-            user.AddUser(Login, Username, UserSecondName, "asdmkojashdfoashdasij");
+            user.AddUser(Login, Username, UserSecondName, Password, "asdmkojashdfoashdasij");
 
         }
 

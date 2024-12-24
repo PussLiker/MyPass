@@ -55,6 +55,7 @@ namespace mypass.Model
                             LoginUser VARCHAR(128) PRIMARY KEY,
                             FirstName VARCHAR(128) NOT NULL,
                             SecondName VARCHAR(128) NOT NULL,
+                            MasterPasswordHash VARCHAR(128) NOT NULL,
                             Salt CHAR(16) NOT NULL
                         );",
 
