@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 
-// Зачем нужен: типо таблица с бд
-// Наследование: лень писать
-// Методы: лень писать
-// Пример использования: лень писать
+// Зачем нужен: таблица для хранения типов событий
+// Наследование: от DataBase для работы с SQLite
+// Методы: работа с типами событий (добавление, обновление, удаление, получение)
 
 namespace mypass.Model
 {
     public class TypeEventsDB : DataBase
     {
+        public TypeEventsDB(string databasePath)
+        {
+            _databasePath = databasePath;
+            _connectionString = $"Data Source={_databasePath};Version=3;";
+            _connection = new SQLiteConnection(_connectionString);
+        }
+
         private int _idtypeevent;
-        public int IdTypeEvents
+        public int IdTypeEvent
         {
             get => _idtypeevent;
             set => _idtypeevent = value;
@@ -24,129 +30,116 @@ namespace mypass.Model
             set => _typeevent = value;
         }
 
-        public void AddTypeEvent(int IdTypeEvents, string TypeEvent)
+        public void AddTypeEvent(string typeEvent)
         {
             OpenConnection();
 
-            int affectedRows;
-
-            string query = "INSERT INTO TypeEvents (TypeEvent) VALUES (@TypeEvent);";
-
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = query;
-                command.Parameters.AddWithValue("@IdTypeEvent", IdTypeEvents);
-                command.Parameters.AddWithValue("@TypeEvent", TypeEvent);
+                command.CommandText = "INSERT INTO TypeEvents (TypeEvent) VALUES (@TypeEvent);";
+                command.Parameters.AddWithValue("@TypeEvent", typeEvent);
 
-                affectedRows =command.ExecuteNonQuery();
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    TypeEvent = typeEvent;
+                }
             }
+
             CloseConnection();
-
-            // Обновляем поля класса, если обновление прошло успешно
-            if (affectedRows > 0)
-            {
-                _idtypeevent = IdTypeEvents;
-                _typeevent = TypeEvent;
-            }
         }
 
-        public void UpdateTypeEvent(int idTypeEvent, string TypeEvent)
+        public void UpdateTypeEvent(int idTypeEvent, string newTypeEvent)
         {
             OpenConnection();
 
-            int affectedRows;
-
-            string query = @"UPDATE TypeEvents 
-                             SET TypeEvent = @TypeEvent 
-                             WHERE IdTypeEvent = @IdTypeEvent;";
-
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = query;
+                command.CommandText = "UPDATE TypeEvents SET TypeEvent = @TypeEvent WHERE IdTypeEvent = @IdTypeEvent;";
+                command.Parameters.AddWithValue("@TypeEvent", newTypeEvent);
                 command.Parameters.AddWithValue("@IdTypeEvent", idTypeEvent);
-                command.Parameters.AddWithValue("@TypeEvent", TypeEvent);
 
-                affectedRows = command.ExecuteNonQuery();
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    IdTypeEvent = idTypeEvent;
+                    TypeEvent = newTypeEvent;
+                }
             }
+
             CloseConnection();
-
-            if (affectedRows > 0)
-            {
-                _idtypeevent = IdTypeEvents;
-                _typeevent = TypeEvent;
-            }
         }
 
         public void DeleteTypeEvent(int idTypeEvent)
         {
             OpenConnection();
 
-            int affectedRows;
-
-            string query = "DELETE FROM TypeEvents WHERE IdTypeEvent = @IdTypeEvent;";
-
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = query;
+                command.CommandText = "DELETE FROM TypeEvents WHERE IdTypeEvent = @IdTypeEvent;";
                 command.Parameters.AddWithValue("@IdTypeEvent", idTypeEvent);
 
-                affectedRows = command.ExecuteNonQuery();
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    IdTypeEvent = 0;
+                    TypeEvent = null;
+                }
             }
-            CloseConnection();
 
-            if (affectedRows > 0)
-            {
-                _typeevent = "";
-            }
+            CloseConnection();
         }
 
         public Dictionary<string, string> GetTypeEventById(int idTypeEvent)
         {
             OpenConnection();
-            string query = "SELECT * FROM TypeEvents WHERE IdTypeEvent = @IdTypeEvent;";
+
             var result = new Dictionary<string, string>();
 
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = query;
+                command.CommandText = "SELECT IdTypeEvent, TypeEvent FROM TypeEvents WHERE IdTypeEvent = @IdTypeEvent;";
                 command.Parameters.AddWithValue("@IdTypeEvent", idTypeEvent);
 
-                using (SQLiteDataReader reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        _idtypeevent = Convert.ToInt32(reader["IdTypeEvent"]);
-                        _typeevent = reader["TypeEvent"].ToString();
+                        IdTypeEvent = Convert.ToInt32(reader["IdTypeEvent"]);
+                        TypeEvent = reader["TypeEvent"].ToString();
 
-                        result["IdTypeEvent"] = reader["IdTypeEvent"].ToString();
-                        result["TypeEvent"] = reader["TypeEvent"].ToString();
+                        result["IdTypeEvent"] = IdTypeEvent.ToString();
+                        result["TypeEvent"] = TypeEvent;
                     }
                 }
             }
+
             CloseConnection();
             return result;
         }
 
-        public void LoadDataFromTypeEventsDB()
+        public List<Dictionary<string, string>> GetAllTypeEvents()
         {
             OpenConnection();
 
-            string query = "SELECT IdTypeEvent, TypeEvent FROM TypeEvents;";
+            var result = new List<Dictionary<string, string>>();
 
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = query;
+                command.CommandText = "SELECT IdTypeEvent, TypeEvent FROM TypeEvents;";
 
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        _idtypeevent = Convert.ToInt32(reader["IdTypeEvent"]);
-                        _typeevent = reader["TypeEvent"].ToString();
+                        result.Add(new Dictionary<string, string>
+                        {
+                            { "IdTypeEvent", reader["IdTypeEvent"].ToString() },
+                            { "TypeEvent", reader["TypeEvent"].ToString() }
+                        });
                     }
                 }
             }
+
             CloseConnection();
+            return result;
         }
     }
 }

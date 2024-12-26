@@ -1,30 +1,25 @@
 ﻿using System;
 using System.Data.SQLite;
-using System.IO;
-using System.Web.UI.WebControls;
 
-// Зачем нужен: этот класс служит родительским классом для всех классов таблиц. Тут основные методы всей БД
-// Наследование: наследует от 'DataBaseManager' путь к файлу БД (_databasePath), а также пароль (_passwordDB)
-// Методы: OpenConnection - метод нужен для открытия соединения с БД, всегда открывать перед началом транзакции
-//         CloseConnection - метод нужен для закрытия соединения с БД
-
-// Пример использования: хз, потом напишу, мне лень
+// Зачем нужен: этот класс служит родительским классом для всех классов таблиц
+// Методы: OpenConnection - открывает соединение с БД
+//         CloseConnection - закрывает соединение с БД
 
 namespace mypass.Model
 {
-    // Класс для взаимодействия с базой данных
     public class DataBase : DataBaseManager
     {
-        
         protected string _connectionString;
         protected SQLiteConnection _connection;
 
         public DataBase()
         {
-            _connectionString = $"Data Source={_databasePath};Version=3;Password={_passwordDB};";
+            _connectionString = $"Data Source={_databasePath};Version=3;";
             _connection = new SQLiteConnection(_connectionString);
         }
+
         private readonly object _lock = new object();
+
         // Функция для открытия соединения
         public void OpenConnection()
         {
@@ -32,13 +27,11 @@ namespace mypass.Model
             {
                 if (_connection == null)
                 {
-                    Console.WriteLine(_connectionString);
                     _connection = new SQLiteConnection(_connectionString);
                 }
 
                 if (_connection.State != System.Data.ConnectionState.Open)
                 {
-                    Console.WriteLine(_connectionString); 
                     _connection.Open();
                 }
             }

@@ -70,10 +70,9 @@ namespace mypass.ViewModel
 
                 // !!!!!!УДАЛИТЬ ПОСЛЕ ПРОВЕРКИ БД!!!!!!!
                 string dbclient = "Dima";
-                string password = "3o4tuh32487gr9g7";
 
-                var DB = new DataBase();
-                DB.CreateDataBase(dbclient, password);
+                var DBM = new DataBaseManager();
+                DBM.CreateDataBase(dbclient);
                 DebugConfig.LoadConfig();
 
             }

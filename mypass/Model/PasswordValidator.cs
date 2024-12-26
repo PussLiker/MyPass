@@ -16,10 +16,14 @@ namespace mypass.Model
         // Метод проверки с детализацией
         public static (PasswordStrength strength, List<string> feedback) CheckPasswordStrength(string password)
         {
-            
-
             List<string> feedback = new List<string>();
             int score = 0;
+
+            // Проверка на null или пустую строку
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                return (PasswordStrength.VeryWeak, new List<string> { "Пароль не может быть пустым." });
+            }
 
             if (CommonPasswordsList.Passwords.Contains(password.ToLower()))
             {
@@ -46,17 +50,17 @@ namespace mypass.Model
             else
                 feedback.Add("Добавьте хотя бы одну цифру.");
 
-            // Строчные буквы
-            if (Regex.IsMatch(password, @"[a-z]"))
+            // Строчные буквы (латиница или кириллица)
+            if (Regex.IsMatch(password, @"[a-zа-яё]"))
                 score++;
             else
-                feedback.Add("Добавьте хотя бы одну строчную букву.");
+                feedback.Add("Добавьте хотя бы одну строчную букву (латиница или кириллица).");
 
-            // Заглавные буквы
-            if (Regex.IsMatch(password, @"[A-Z]"))
+            // Заглавные буквы (латиница или кириллица)
+            if (Regex.IsMatch(password, @"[A-ZА-ЯЁ]"))
                 score++;
             else
-                feedback.Add("Добавьте хотя бы одну заглавную букву.");
+                feedback.Add("Добавьте хотя бы одну заглавную букву (латиница или кириллица).");
 
             // Специальные символы
             if (Regex.IsMatch(password, @"[!~@#$%^&*(),.?""':;{}|<>_\-\[\]\\+=]"))
@@ -66,11 +70,17 @@ namespace mypass.Model
 
             // Повторяющиеся символы
             if (Regex.IsMatch(password, @"(.)\1{2,}"))
-                feedback.Add("Избегайте повторяющихся символов подряд."); score -= 2;
-                
+            {
+                feedback.Add("Избегайте повторяющихся символов подряд.");
+                score -= 2;
+            }
+
             // Последовательности
             if (IsSequential(password))
-                feedback.Add("Избегайте последовательностей вроде '1234' или 'abcd'."); score--;
+            {
+                feedback.Add("Избегайте последовательностей вроде '1234' или 'abcd'.");
+                score--;
+            }
 
             // Оценка по баллам
             PasswordStrength strength;
@@ -83,7 +93,7 @@ namespace mypass.Model
             {
                 strength = PasswordStrength.Weak;
             }
-            else if (score <= 5)
+            else if (score <= 6)
             {
                 strength = PasswordStrength.Medium;
             }
@@ -94,7 +104,6 @@ namespace mypass.Model
 
             return (strength, feedback);
         }
-
 
         private static bool IsSequential(string password)
         {

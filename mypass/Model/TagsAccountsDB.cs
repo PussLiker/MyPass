@@ -8,6 +8,13 @@ namespace mypass.Model
     // Класс для работы с таблицей TagsAccounts
     public class TagsAccountsDB : DataBase
     {
+        public TagsAccountsDB(string databasePath)
+        {
+            _databasePath = databasePath;
+            _connectionString = $"Data Source={_databasePath};Version=3;";
+            _connection = new SQLiteConnection(_connectionString);
+        }
+
         private int _idtagsaccounts;
         public int IdTagsAccounts
         {
@@ -32,7 +39,6 @@ namespace mypass.Model
             get => (DateTime)_timetagging;
             set => _timetagging = value;
         }
-        public TagsAccountsDB(string databasePath, string password) : base() { }
 
         // Метод для добавления связи между тегом и аккаунтом
         public void AddTagAccount(int idAccount, int idTag, DateTime timeTagging)

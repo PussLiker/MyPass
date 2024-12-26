@@ -10,30 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace mypass.View
 {
     /// <summary>
-    /// Логика взаимодействия для PassGenWindow.xaml
-    /// </summary>
-    public partial class PassGenWindow : Window
+    /// Логика взаимодействия для PassGen.xaml
+    /// </summary>  
+    public partial class PassGen : UserControl  
     {
-        public PassGenWindow()
-
-
+        public PassGen()
         {
             InitializeComponent();
         }
-
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
+            e.Handled = !int.TryParse(e.Text, out _);
         }
 
-        
-    }
+    } 
+     
 }
