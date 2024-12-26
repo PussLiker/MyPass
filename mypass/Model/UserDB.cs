@@ -82,6 +82,7 @@ namespace mypass.Model
                 _loginuser = login;
                 _firstname = firstname;
                 _secondname = secondname;
+                _masterpasswordhash = masterpasswordhash;
                 _salt = salt;
             }
         }
@@ -127,9 +128,9 @@ namespace mypass.Model
             {
                 File.Exists(_databasePath);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //
+                Console.WriteLine(ex);
             }
         }
 
@@ -151,21 +152,11 @@ namespace mypass.Model
                 {
                     if (reader.Read())
                     {
-                        _loginuser = reader["LoginUser"].ToString();
-                        _firstname = reader["FirstName"].ToString();
-                        _secondname = reader["SecondName"].ToString();
-                        _masterpasswordhash = reader["MasterPasswordHash"].ToString();
-                        _salt = reader["Salt"].ToString();
-
                         userDataDictionary.Add("LoginUser", _loginuser);
                         userDataDictionary.Add("FirstName", _firstname);
                         userDataDictionary.Add("SecondName", _secondname);
                         userDataDictionary.Add("MasterPasswordHash", _masterpasswordhash);
                         userDataDictionary.Add("Salt", _salt);
-                    }
-                    else
-                    {
-                        //
                     }
                 }
             }
