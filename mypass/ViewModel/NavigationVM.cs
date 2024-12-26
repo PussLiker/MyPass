@@ -7,13 +7,14 @@ using System.Windows;
 using System.Windows.Input;
 using mypass.Utilities;
 using mypass.View;
+using mypass.Model;
+using System.Data.SqlClient;
 
 namespace mypass.ViewModel
 {
     class NavigationVM : ViewModelBase
     {
         private object _currentView;
-        private Vhod _vhod;
         private MainWindow _mainWindow;
         private PassGenWindow _passGenWindow; // Поле для хранения ссылки на окно
         public object CurrentView
@@ -66,6 +67,14 @@ namespace mypass.ViewModel
                 _passGenWindow = new PassGenWindow();
                 _passGenWindow.Closed += (s, args) => _passGenWindow = null;
                 _passGenWindow.Show();
+
+                // !!!!!!УДАЛИТЬ ПОСЛЕ ПРОВЕРКИ БД!!!!!!!
+                string dbclient = "Dima";
+
+                var DBM = new DataBaseManager();
+                DBM.CreateDataBase(dbclient);
+                DebugConfig.LoadConfig();
+
             }
             else
             {

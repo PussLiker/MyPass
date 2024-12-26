@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using mypass.ViewModel;
 using mypass.View;
 using mypass.Model;
+using System;
 namespace mypass.View
 {
     /// Логика взаимодействия для RegistrationPage.xaml
@@ -17,23 +18,12 @@ namespace mypass.View
 
         {
             InitializeComponent();
-            DataContext = this;
+
         }
 
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        public void PassNotNorm()
         {
-            var passwordBox = sender as PasswordBox;
-            authWindow.IsPasswordEmpty = string.IsNullOrEmpty(passwordBox.Password);
-        }
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null) 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Console.WriteLine("Пароль не одинаковый");
         }
     }
 }

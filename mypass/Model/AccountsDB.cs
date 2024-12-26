@@ -1,41 +1,53 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 
 namespace mypass.Model
 {
     public class AccountsDB : DataBase
     {
+        public AccountsDB(string databasePath)
+        {
+            _databasePath = databasePath;
+            _connectionString = $"Data Source={_databasePath};Version=3;";
+            _connection = new SQLiteConnection(_connectionString);
+        }
+
         private int _idaccount;
-        public int IDAccount
+        public int IdAccount
         {
             get => _idaccount;
             set => _idaccount = value;
         }
-        private int _iduser;
-        public int IDUser
+
+        private string _loginuseraccount;
+        public string LoginUserAccount
         {
-            get => _iduser;
-            set => _iduser = value;
+            get => _loginuseraccount;
+            set => _loginuseraccount = value;
         }
+
         private string _servisename;
         public string ServiseName
         {
             get => _servisename;
             set => _servisename = value;
         }
+
         private string _url;
         public string Url
         {
             get => _url;
             set => _url = value;
         }
-        private string _login;
-        public string Login
+
+        private string _loginaccount;
+        public string LoginAccount
         {
-            get => _login;
-            set => _login = value;
+            get => _loginaccount;
+            set => _loginaccount = value;
         }
+
         private string _password;
         public string Password
         {
@@ -43,69 +55,72 @@ namespace mypass.Model
             set => _password = value;
         }
 
-        // Инициализация конструктора
-        public AccountsDB(string databasePath, string password) : base() { }
-
-        // Метод для создания нового аккаунта
-        public void AddAccount(int userId, string serviceName, string url, string login, string password)
+        // Метод для добавления нового аккаунта
+        public void AddAccount(string loginUserAccount, string serviceName, string url, string loginAccount, string password)
         {
             OpenConnection();
-            string query = @"INSERT INTO Accounts (IdUser, ServiceName, URL, Login, Password) 
-                             VALUES (@IdUser, @ServiceName, @URL, @Login, @Password);";
+            string query = @"INSERT INTO Accounts (LoginUserAccount, ServiceName, URL, LoginAccount, Password) 
+                             VALUES (@LoginUserAccount, @ServiceName, @URL, @LoginAccount, @Password);";
 
             using (var command = new SQLiteCommand(query, _connection))
             {
-                command.Parameters.AddWithValue("@IdUser", userId);
+                command.Parameters.AddWithValue("@LoginUserAccount", loginUserAccount);
                 command.Parameters.AddWithValue("@ServiceName", serviceName);
                 command.Parameters.AddWithValue("@URL", url);
-                command.Parameters.AddWithValue("@Login", login);
+                command.Parameters.AddWithValue("@LoginAccount", loginAccount);
                 command.Parameters.AddWithValue("@Password", password);
 
                 command.ExecuteNonQuery();
             }
+
             CloseConnection();
         }
 
         // Метод для обновления аккаунта
-        public void UpdateAccount(int accountId, string serviceName, string url, string login, string password)
+        public void UpdateAccount(int idAccount, string loginUserAccount, string serviceName, string url, string loginAccount, string password)
         {
             OpenConnection();
+
             string query = @"UPDATE Accounts SET 
+                             LoginUserAccount = @LoginUserAccount,
                              ServiceName = @ServiceName, 
                              URL = @URL, 
-                             Login = @Login, 
+                             LoginAccount = @LoginAccount, 
                              Password = @Password 
                              WHERE IdAccount = @IdAccount;";
 
             using (var command = new SQLiteCommand(query, _connection))
             {
-                command.Parameters.AddWithValue("@IdAccount", accountId);
+                command.Parameters.AddWithValue("@IdAccount", idAccount);
+                command.Parameters.AddWithValue("@LoginUserAccount", loginUserAccount);
                 command.Parameters.AddWithValue("@ServiceName", serviceName);
                 command.Parameters.AddWithValue("@URL", url);
-                command.Parameters.AddWithValue("@Login", login);
+                command.Parameters.AddWithValue("@LoginAccount", loginAccount);
                 command.Parameters.AddWithValue("@Password", password);
 
                 command.ExecuteNonQuery();
             }
+
             CloseConnection();
         }
 
         // Метод для удаления аккаунта
-        public void DeleteAccount(int accountId)
+        public void DeleteAccount(int idAccount)
         {
             OpenConnection();
             string query = "DELETE FROM Accounts WHERE IdAccount = @IdAccount;";
 
             using (var command = new SQLiteCommand(query, _connection))
             {
-                command.Parameters.AddWithValue("@IdAccount", accountId);
+                command.Parameters.AddWithValue("@IdAccount", idAccount);
                 command.ExecuteNonQuery();
             }
+
             CloseConnection();
         }
 
         // Метод для получения всех данных об аккаунте в виде Dictionary<string, string>
-        public Dictionary<string, string> GetAccountById(int accountId)
+        public Dictionary<string, string> GetAccountById(int idAccount)
         {
             OpenConnection();
             string query = "SELECT * FROM Accounts WHERE IdAccount = @IdAccount;";
@@ -113,16 +128,16 @@ namespace mypass.Model
 
             using (var command = new SQLiteCommand(query, _connection))
             {
-                command.Parameters.AddWithValue("@IdAccount", accountId);
+                command.Parameters.AddWithValue("@IdAccount", idAccount);
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
                         accountData["IdAccount"] = reader["IdAccount"].ToString();
-                        accountData["IdUser"] = reader["IdUser"].ToString();
+                        accountData["LoginUserAccount"] = reader["LoginUserAccount"].ToString();
                         accountData["ServiceName"] = reader["ServiceName"].ToString();
                         accountData["URL"] = reader["URL"].ToString();
-                        accountData["Login"] = reader["Login"].ToString();
+                        accountData["LoginAccount"] = reader["LoginAccount"].ToString();
                         accountData["Password"] = reader["Password"].ToString();
                     }
                 }
@@ -132,16 +147,15 @@ namespace mypass.Model
             return accountData;
         }
 
-        // Метод для получения списка всех аккаунтов пользователя
-        public List<Dictionary<string, string>> GetAllAccountsByUserId(int userId)
+        // Метод для загрузки всех аккаунтов из базы данных
+        public List<Dictionary<string, string>> LoadDataFromAccountsDB()
         {
             OpenConnection();
-            string query = "SELECT * FROM Accounts WHERE IdUser = @IdUser;";
+            string query = "SELECT * FROM Accounts;";
             var accountsList = new List<Dictionary<string, string>>();
 
             using (var command = new SQLiteCommand(query, _connection))
             {
-                command.Parameters.AddWithValue("@IdUser", userId);
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -149,10 +163,10 @@ namespace mypass.Model
                         var accountData = new Dictionary<string, string>
                         {
                             ["IdAccount"] = reader["IdAccount"].ToString(),
-                            ["IdUser"] = reader["IdUser"].ToString(),
+                            ["LoginUserAccount"] = reader["LoginUserAccount"].ToString(),
                             ["ServiceName"] = reader["ServiceName"].ToString(),
                             ["URL"] = reader["URL"].ToString(),
-                            ["Login"] = reader["Login"].ToString(),
+                            ["LoginAccount"] = reader["LoginAccount"].ToString(),
                             ["Password"] = reader["Password"].ToString()
                         };
                         accountsList.Add(accountData);
