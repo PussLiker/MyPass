@@ -5,6 +5,13 @@ namespace mypass.Model
 {
     public class EventsDB : DataBase
     {
+        public EventsDB(string databasePath)
+        {
+            _databasePath = databasePath;
+            _connectionString = $"Data Source={_databasePath};Version=3;";
+            _connection = new SQLiteConnection(_connectionString);
+        }
+
         private int _idevents;
         public int IdEvents
         {
@@ -23,7 +30,6 @@ namespace mypass.Model
             get => _nameevent;
             set => _nameevent = value;
         }
-        public EventsDB(string databasePath, string password) : base() { }
 
         public void AddEvent(int idTypeEvent, string nameEvent)
         {
