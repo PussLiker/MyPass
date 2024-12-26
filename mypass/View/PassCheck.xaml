@@ -13,49 +13,67 @@
     </UserControl.DataContext>
 
     <Grid>
-        <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
-            <StackPanel Margin="50">
+        <Border CornerRadius="10" Background="#1a1a1d" Padding="20">
+            <StackPanel Margin="0 40 0 0">
                 <!-- Поле для ввода пароля -->
                 <TextBox x:Name="PasswordTextBox"
                          Style="{StaticResource TextBoxStyle}"
                          Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" 
-                         FontSize="16" Margin="0 0 0 10"
-                         VerticalAlignment="Center"
-                         Padding="10"
-                         Background="#2E2E30"
-                         BorderThickness="0"/>
+                         FontSize="18"
+                         Margin="0 0 0 20"
+                         Padding="12"
+                         Background="#3C3C3F"
+                         BorderBrush="#5A5A5D"
+                         Foreground="PeachPuff"
+                         BorderThickness="1"
+                         VerticalAlignment="Center"/>
 
                 <!-- Кнопка проверки -->
-                <Border Style="{StaticResource AnimatedButtonStyleAllPasses}" 
-                        Background="#404040" Grid.Row="4" CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                        Margin="0 0 0 20"> 
                 <Button Content="Проверить" 
                         Command="{Binding CheckPasswordCommand}"
-                        FontSize="26"
-                        Background="Transparent" Foreground="PeachPuff"
-                        BorderThickness="0"/>
-                </Border>
+                        FontSize="20"
+                        Background="#404040" 
+                        Foreground="PeachPuff"
+                        Padding="12"
+                        Margin="20 0 20 20"
+                        HorizontalAlignment="Stretch"
+                        BorderThickness="0"
+                        Style="{StaticResource ButtonSimp}"
+                        Cursor="Hand"
+                        Height="50"/>
 
                 <!-- Уровень надёжности -->
                 <TextBlock Text="{Binding StrengthResult}" 
-                           FontSize="18" 
-                           Foreground="#FFF" 
-                           Margin="0 0 0 10" />
+                           FontSize="20" 
+                           FontWeight="SemiBold"
+                           Foreground="PeachPuff" 
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 10"/>
 
                 <!-- Прогресс бар -->
                 <ProgressBar Value="{Binding StrengthProgress}"
-                             Background="Transparent"
-                             Maximum="100"
-                             Height="20"
-                             Margin="0 0 0 10" 
-                             Foreground="#4CAF50"/>
+                             Background="#404040"
+                             Foreground="#76C7C0"
+                             BorderThickness="0"
+                             Height="25"
+                             Margin="0 0 0 20" 
+                             Maximum="100"/>
 
                 <!-- Список рекомендаций -->
                 <StackPanel>
+                    <TextBlock Text="Рекомендации:"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Foreground="#FF6347"
+                               Margin="0 0 0 10"/>
                     <ItemsControl ItemsSource="{Binding Feedback}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" Foreground="Red" />
+                                <TextBlock Text="{Binding}"
+                                           FontSize="16"
+                                           Foreground="#FF6347"
+                                           TextWrapping="Wrap"
+                                           Margin="0 5"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
