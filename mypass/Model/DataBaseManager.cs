@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Data.SQLite;
+using System.ComponentModel;
 
 // Зачем нужен: этот класс нужен для управления созданием базы данных
 // Наследование: предоставляет путь к базе данных (_databasePath)

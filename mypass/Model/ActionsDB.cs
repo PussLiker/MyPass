@@ -7,6 +7,13 @@ namespace mypass.Model
 {
     public class ActionsDB : DataBase
     {
+        public ActionsDB(string databasePath)
+        {
+            _databasePath = databasePath;
+            _connectionString = $"Data Source={_databasePath};Version=3;";
+            _connection = new SQLiteConnection(_connectionString);
+        }
+
         private int _idaction;
         public int IDAction
         {
@@ -32,10 +39,6 @@ namespace mypass.Model
             set => _timeevent = value;
         }
 
-        // Инициализация конструктора
-        public ActionsDB(string databasePath, string password) : base() { }
-
-        // Метод для добавления новой записи
         public void AddAction(int idAccount, int idEvent, DateTime timeEvent)
         {
             OpenConnection();
