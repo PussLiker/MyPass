@@ -27,7 +27,6 @@ namespace mypass.Model
 
             _databaseName = $"{clientName}{_databaseExtension}";
             _databasePath = Path.Combine(targetPath, _databaseName);
-
             if (!File.Exists(_databasePath))
             {
                 SQLiteConnection.CreateFile(_databasePath);

@@ -71,14 +71,14 @@
                     <!-- Поле для ввода логина -->
                     <StackPanel Margin="0,10,0,10">
                         <TextBlock Text="Логин" Style="{StaticResource TextStyleText}" Margin="0,0,0,5"/>
-                        <TextBox x:Name="UsernameTextBox" Width="250" Height="30"
-                         Style="{StaticResource TextBoxStyle}" />
+                        <TextBox Text="{Binding Logintext}" x:Name="UsernameTextBox" Width="250" Height="30"  
+                         Style="{StaticResource TextBoxStyle}"  />
                     </StackPanel>
 
                     <!-- Поле для ввода пароля -->
                     <StackPanel Margin="0,10,0,20">
                         <TextBlock Text="Пароль" Style="{StaticResource TextStyleText}" Margin="0,0,0,5"/>
-                        <local:BindablePasswordBox x:Name="PasswordBox" Width="250" Height="30"
+                        <local:BindablePasswordBox Password="{Binding Password}" x:Name="PasswordBox" Width="250" Height="30"
                              Style="{StaticResource BindPassBox}"/>
                     </StackPanel>
                     <StackPanel>
@@ -93,7 +93,7 @@
 
                     </StackPanel>
                     <!-- Кнопка входа -->
-                    <Button Content="Войти" Style="{StaticResource ButtonSimp}" Command="{Binding }" Width="250" Height="40" Cursor="Hand">
+                    <Button Content="Войти" Style="{StaticResource ButtonSimp}" Command="{Binding VhodimCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Width="250" Height="40" Cursor="Hand">
 
                     </Button>
                 </StackPanel>

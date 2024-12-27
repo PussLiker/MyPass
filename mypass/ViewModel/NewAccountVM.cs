@@ -24,7 +24,8 @@ namespace mypass.ViewModel
 
             AddAccountCommand = new RelayCommand(AddAccount);
             CloseCommand = new RelayCommand(Close);
-            _accountsDB = new AccountsDB("C:\\project\\mypass\\bin\\Debug\\DataBase\\123.db");  // Укажите путь к вашей базе данных
+            MainAuthWindowVM mainAuthWindowVM = new MainAuthWindowVM();
+            _accountsDB = new AccountsDB(mainAuthWindowVM.FullBDPath);  // Укажите путь к вашей базе данных
         }
 
         private void AddAccount(object parameter)

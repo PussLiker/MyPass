@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
@@ -12,11 +13,10 @@ namespace mypass.Model
 {
     internal class MainAuthWindowClass
     {
-  
+        
         public void Registration(string Login, string Password, string Username, string UserSecondName) {
 
             var DB = new DataBase();
-            DB.CreateDataBase(Login);
             if (DB.CreateDataBase(Login) == true)
             {
                 var user = new UsersDB(DB._databasePath);
@@ -24,7 +24,7 @@ namespace mypass.Model
             }
             else
             {
-
+                ErrorWindow.ShowError("Такой пользователь уже существует!");
             }
         }
 
@@ -64,6 +64,19 @@ namespace mypass.Model
         public void GdePolaNull()
         {
             ErrorWindow.ShowError("Имя, Фамилия и Логин должны быть заполнены!");
+        }
+
+        static string dbpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase");
+        public string DBpath = dbpath;
+        UserAuthentication UserAuth = new UserAuthentication(dbpath);
+
+        public bool Vhodim(string Login, string Password)
+        {            
+            if (UserAuth.Authenticate(Login, Password)== true)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

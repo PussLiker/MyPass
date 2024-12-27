@@ -24,9 +24,9 @@ namespace mypass.ViewModel
         public AllPassesVM()
         {
             OpenAddAccountWindowCommand = new RelayCommand(OpenAddAccountWindow);
-
+            MainAuthWindowVM mainAuthWindowVM = new MainAuthWindowVM();
             // Инициализация базы данных
-            _accountsDB = new AccountsDB("C:\\Users\\JastLIne\\Desktop\\MyPass\\mypass\\bin\\Debug\\DataBase\\123.db");  // Замените на путь к вашей базе данных
+            _accountsDB = new AccountsDB(mainAuthWindowVM.FullBDPath);  // Замените на путь к вашей базе данных
             
             // Привязка команд
             CopyEmailCommand = new RelayCommand(CopyEmail);

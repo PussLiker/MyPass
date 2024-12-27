@@ -273,6 +273,7 @@
     <Compile Include="Model\TagsDB.cs" />
     <Compile Include="Model\TextToVisibilityConverter.cs" />
     <Compile Include="Model\TypeEventsDB.cs" />
+    <Compile Include="Model\UserAuthentication.cs" />
     <Compile Include="Model\Vhod.cs" />
     <Compile Include="Model\TypeEventsDB.cs" />
     <Compile Include="Model\UserDB.cs" />

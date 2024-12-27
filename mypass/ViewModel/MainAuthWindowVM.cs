@@ -4,6 +4,9 @@ using System.Windows.Input;
 using mypass.Model;
 using System.Windows;
 using mypass.View;
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Data.Common;
 
 namespace mypass.ViewModel
 {
@@ -19,9 +22,11 @@ namespace mypass.ViewModel
         private string _loginReg;
         private bool _isPasswordEmpty = true;
         private MainWindow _mainWindow;
-
+        private static string _fullBDPath;
+        private string _bdName;
         RegistrationPage _registrationPage ;
         MainAuthWindowClass MainWinClass = new MainAuthWindowClass();
+        public string DBName { get => _bdName; set { _bdName = value; } }
         public string PassReg
         {
             get => _passReg;
@@ -33,6 +38,11 @@ namespace mypass.ViewModel
                             OnPropertyChanged(nameof(PassReg));
                         }
             }
+        }
+        public string FullBDPath
+        {
+            get => _fullBDPath;
+            set { _fullBDPath = value; }
         }
         public string PassRegConf
         {
@@ -145,6 +155,7 @@ namespace mypass.ViewModel
         public ICommand LoginPageCommand { get; set; }
         public ICommand RegistrationToSystemCommand {  get; set; }
         public ICommand ExitCommand { get; set; }
+        public ICommand VhodimCommand { get; set; }
         public object PohujView
         {
             get { return _pohujView; }
@@ -181,12 +192,40 @@ namespace mypass.ViewModel
             { w?.Close(); }
         }
 
+        public void Vhodim(object obj)
+        {
+            if (Logintext != null && Password != null) {
+                if(MainWinClass.Vhodim(Logintext, Password)){
+                    _bdName = $"{Logintext}.db";
+                    FullBDPath = Path.Combine(MainWinClass.DBpath,DBName);
+                    SwitchWindow(obj);
+                }
+            }
+            else if (Logintext == null && Password == null)
+            {
+                ErrorWindow.ShowError("Вы не ввели данные!");
+            }
+            else if(Logintext == null)
+            {
+                ErrorWindow.ShowError("Логин не может быть пустым!");
+                Logintext = null;
+                Password = null;
+            }
+            else
+            {
+                ErrorWindow.ShowError("Пароль не может быть пустым!");
+                Logintext = null;
+                Password = null;
+            }
+        }
+
         public MainAuthWindowVM()
         {
             ExitCommand = new RelayCommand(Exit);
             RegPageCommand = new RelayCommand(Registration);
             LoginPageCommand = new RelayCommand(Login);
             RegistrationToSystemCommand = new RelayCommand(RegistrationToSystem);
+            VhodimCommand = new RelayCommand(Vhodim);
         }
     }
 }
