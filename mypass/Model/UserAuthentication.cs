@@ -2,6 +2,7 @@
 using System.IO;
 using System.Data.SQLite;
 using mypass.View;
+using mypass.Model;
 
 public class UserAuthentication
 {
@@ -14,6 +15,7 @@ public class UserAuthentication
 
     public bool Authenticate(string login, string password)
     {
+        string storedSalt = null;
         // Формируем полный путь к базе данных
         string databaseFilePath = Path.Combine(_databaseFolderPath, $"{login}.db");
 
@@ -30,7 +32,18 @@ public class UserAuthentication
             try
             {
                 connection.Open();
+                string query1 = "SELECT Salt FROM User WHERE LoginUser = @Login";
+                using (SQLiteCommand command = new SQLiteCommand(query1, connection))
+                {
+                    command.Parameters.AddWithValue("@Login", login);
 
+                    var result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        storedSalt = result.ToString();
+                    }
+                }
                 string query = "SELECT MasterPasswordHash FROM User WHERE LoginUser = @Login";
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
@@ -41,7 +54,7 @@ public class UserAuthentication
                     if (result != null)
                     {
                         string storedPassword = result.ToString();
-                        if (storedPassword == password)
+                        if (PasswordHasher.VerifyPassword(password, storedPassword, storedSalt))
                         {
                             
                             return true;

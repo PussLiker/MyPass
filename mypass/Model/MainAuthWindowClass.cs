@@ -20,7 +20,8 @@ namespace mypass.Model
             if (DB.CreateDataBase(Login) == true)
             {
                 var user = new UsersDB(DB._databasePath);
-                user.AddUser(Login, Username, UserSecondName, Password, "asdmkojashdfoashdasij");
+                string salt = PasswordHasher.GenerateSalt();
+                user.AddUser(Login, Username, UserSecondName, PasswordHasher.HashPassword(Password, salt), salt);
                 return true;
             }
             else
