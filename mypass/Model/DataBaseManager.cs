@@ -18,7 +18,6 @@ namespace mypass.Model
         // Метод для создания базы данных
         public bool CreateDataBase(string clientName) // Если возвращает false, то база уже существует
         {
-            //History.addToHistory();
             // Убедимся, что папка DataBase существует
             string targetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase");
             if (!Directory.Exists(targetPath))

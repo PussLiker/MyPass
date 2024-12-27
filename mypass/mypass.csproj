@@ -266,7 +266,8 @@
     <Compile Include="Model\PasswordToMaskedConverter.cs" />
     <Compile Include="Model\PasswordToMaskedMultiConverter.cs" />
     <Compile Include="Model\PasswordValidator.cs" />
-    <Compile Include="Model\Tag.cs" />
+    <Compile Include="Model\TagsDB.cs" />
+    <Compile Include="Model\TagSearch.cs" />
     <Compile Include="Model\TagsAccountsDB.cs" />
     <Compile Include="Model\TextToVisibilityConverter.cs" />
     <Compile Include="Model\TypeEventsDB.cs" />

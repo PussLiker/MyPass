@@ -14,7 +14,6 @@ namespace mypass.Model
             DateTime now = DateTime.Now;
             anyevent = "["+ now.GetDateTimeFormats()[31] + "] " + anyevent;
             HistoryList.Add(anyevent);
-            Console.WriteLine(anyevent + "\n");
         }
         public static List<string> getHistory()
         {
