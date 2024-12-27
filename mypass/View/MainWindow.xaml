@@ -13,7 +13,6 @@
         AllowsTransparency="True" Icon="/2milniimolnii.jpg" 
         >
     <Window.Resources>
-
         <SolidColorBrush x:Key="Background" Color="#1a1a1d" />
     </Window.Resources>
 
@@ -123,7 +122,7 @@
             </Grid>
             <!-- Top Bar for Drag and Control Buttons -->
             <Grid Grid.ColumnSpan="2" VerticalAlignment="Top" Height="40" MouseLeftButtonDown="TopBar_MouseLeftButtonDown" Background="Transparent">
-                <Border Background="#222" CornerRadius="20,20,0,0" />
+                <Border Background="#222" CornerRadius="19,20,0,0" />
                 <Grid Margin="10,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

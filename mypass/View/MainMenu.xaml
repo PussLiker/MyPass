@@ -15,9 +15,9 @@
     <Grid>
 
         <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
-
-            <TextBlock Text="MainMenu" Style="{StaticResource TextStyle}" />
-
+            <Grid>
+                
+            </Grid>
         </Border>
 
     </Grid>

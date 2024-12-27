@@ -13,7 +13,7 @@
     </UserControl.DataContext>
 
     <Grid>
-        <Border CornerRadius="10" Background="#1a1a1d" Padding="20">
+        <Border CornerRadius="0,20,20,0" Background="#1a1a1d" Padding="20">
             <StackPanel Margin="0 40 0 0">
                 <!-- Поле для ввода пароля -->
                 <TextBox x:Name="PasswordTextBox"
