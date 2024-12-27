@@ -77,18 +77,22 @@ namespace mypass.Model
 
             if (score <= 2)
             {
+                History.addToHistory("Проверен пароль " + password + ". Его уровень защиты: очень слабый");
                 strength = PasswordStrength.VeryWeak;
             }
             else if (score <= 4)
             {
+                History.addToHistory("Проверен пароль " + password + ". Его уровень защиты: слабый");
                 strength = PasswordStrength.Weak;
             }
             else if (score <= 5)
             {
+                History.addToHistory("Проверен пароль " + password + ". Его уровень защиты: нормальный");
                 strength = PasswordStrength.Medium;
             }
             else
             {
+                History.addToHistory("Проверен пароль " + password + ". Его уровень защиты: сильный");
                 strength = PasswordStrength.Strong;
             }
 

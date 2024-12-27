@@ -40,7 +40,7 @@ namespace mypass.Model
             {
                 password += masterString[rand.Next(masterString.Length)];
             }
-
+            History.addToHistory("Сгенерирован пароль");
             return Shuffle(password);
         }
         //Перемешка пароля

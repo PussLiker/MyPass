@@ -256,6 +256,7 @@
     <Compile Include="Model\DebugConfig.cs" />
     <Compile Include="Model\EncryptionModel.cs" />
     <Compile Include="Model\EventsDB.cs" />
+    <Compile Include="Model\History.cs" />
     <Compile Include="Model\Logging.cs" />
     <Compile Include="Model\MainAuthWindowClass.cs" />
     <Compile Include="Model\OpenLink.cs" />
@@ -265,8 +266,8 @@
     <Compile Include="Model\PasswordToMaskedConverter.cs" />
     <Compile Include="Model\PasswordToMaskedMultiConverter.cs" />
     <Compile Include="Model\PasswordValidator.cs" />
+    <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\TagsAccountsDB.cs" />
-    <Compile Include="Model\TagsDB.cs" />
     <Compile Include="Model\TextToVisibilityConverter.cs" />
     <Compile Include="Model\TypeEventsDB.cs" />
     <Compile Include="Model\Vhod.cs" />

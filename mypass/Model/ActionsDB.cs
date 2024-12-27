@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Data;
+using System.Security.Principal;
 
 namespace mypass.Model
 {
@@ -54,6 +55,8 @@ namespace mypass.Model
                 command.ExecuteNonQuery();
             }
             CloseConnection();
+            History.addToHistory("Добавлена запись #" + idAccount);
+            History.addToHistory("Запись добавлена событием" + idEvent);
         }
 
         // Метод для обновления записи
@@ -75,6 +78,8 @@ namespace mypass.Model
                 command.ExecuteNonQuery();
             }
             CloseConnection();
+            History.addToHistory("Обновлена запись #" + idAccount);
+            History.addToHistory("Запись обновлена событием" + idEvent);
         }
 
         // Метод для удаления записи
@@ -91,6 +96,7 @@ namespace mypass.Model
                 command.ExecuteNonQuery();
             }
             CloseConnection();
+            History.addToHistory("Удалена запись #" + idAction);
         }
 
         // Метод для получения записи в виде Dictionary
