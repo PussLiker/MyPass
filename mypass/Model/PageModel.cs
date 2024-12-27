@@ -1,11 +1,8 @@
 ﻿namespace mypass.Model
 {
-    internal class PageModel
+    internal static class PageModel
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        
+        public static int ID;
 
     }
 }

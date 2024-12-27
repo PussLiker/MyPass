@@ -7,6 +7,7 @@ namespace mypass.Model
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+        public int ID {  get; set; }
 
         private bool _isPasswordVisible;
         internal string URL;

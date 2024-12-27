@@ -1,7 +1,9 @@
 ﻿using mypass.Model;
 using mypass.Utilities;
+using mypass.View;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
@@ -17,21 +19,31 @@ namespace mypass.ViewModel
         public ICommand CopyEmailCommand { get; }
         public ICommand CopyPasswordCommand { get; }
         public ICommand TogglePasswordVisibilityCommand { get; }
-        public ICommand OpenAddAccountWindowCommand { get; }
+        public ICommand AddAccountCommand { get; set; }
+        public ICommand EditAccountCommand { get; set; }
+        public ICommand DeleteAccountCommand { get; set; }
+        public ICommand ShowAccountMenuCommand { get; set; }
+        public ICommand OpenAddAccountWindowCommand { get; set; }
+        public ICommand OpenEditAccauntWindowCommand { get; set; }
+
+        public ObservableCollection<Account> AccountsCollection { get; set; }
 
         private AccountsDB _accountsDB; // База данных для работы с аккаунтами
 
         public AllPassesVM()
         {
-            OpenAddAccountWindowCommand = new RelayCommand(OpenAddAccountWindow);
             MainAuthWindowVM mainAuthWindowVM = new MainAuthWindowVM();
             // Инициализация базы данных
-            _accountsDB = new AccountsDB(mainAuthWindowVM.FullBDPath);  // Замените на путь к вашей базе данных
-
+            //_accountsDB = new AccountsDB(mainAuthWindowVM.FullBDPath);
+            _accountsDB = new AccountsDB("D:\\Repositorys\\MyPass\\mypass\\bin\\Debug\\DataBase\\123.db");
             // Привязка команд
             CopyEmailCommand = new RelayCommand(CopyEmail);
             CopyPasswordCommand = new RelayCommand(CopyPassword);
+            OpenAddAccountWindowCommand = new RelayCommand(OpenAddAccountWindow);
+            OpenEditAccauntWindowCommand = new RelayCommand(OpenEditAccauntWindow);
+
             TogglePasswordVisibilityCommand = new RelayCommand(TogglePasswordVisibility);
+
 
             // Команда для открытия ссылки
             OpenLinkCommand = new RelayCommand(parameter =>
@@ -44,6 +56,11 @@ namespace mypass.ViewModel
 
             // Загружаем данные из базы
             LoadAccounts();
+
+            DeleteAccountCommand = new RelayCommand(DeleteAccount);
+            // Инициализация коллекции аккаунтов
+            AccountsCollection = new ObservableCollection<Account>();
+
         }
 
         private void LoadAccounts()
@@ -56,6 +73,7 @@ namespace mypass.ViewModel
             {
                 Accounts.Add(new Account
                 {
+                    ID = int.Parse(accountData["IdAccount"]),
                     Username = accountData["ServiceName"],
                     Email = accountData["LoginAccount"],
                     Password = EncryptionModel.Decrypt(accountData["Password"], "123"),
@@ -106,5 +124,26 @@ namespace mypass.ViewModel
             LoadAccounts();
         }
 
+        private void OpenEditAccauntWindow(object parameter)
+        {
+            if (parameter is Account account)
+            {
+                var editAccauntWindow = new EditAccountWindow();
+                PageModel.ID = account.ID;
+                editAccauntWindow.ShowDialog();
+                LoadAccounts();
+            }
+        }
+
+
+        // Удаление аккаунта
+        private void DeleteAccount(object parameter)
+        {
+            if (parameter is Account account)
+            {
+                _accountsDB.DeleteAccount(account.ID);
+                LoadAccounts();
+            }
+        }
     }
 }

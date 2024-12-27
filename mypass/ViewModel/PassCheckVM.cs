@@ -8,7 +8,7 @@ namespace mypass.ViewModel
 {
     internal class PassCheckVM : ViewModelBase
     {
-        private readonly PageModel _pageModel;
+       
         private string _password;
         private string _strengthResult;
         private ObservableCollection<string> _feedback;
@@ -70,7 +70,7 @@ namespace mypass.ViewModel
 
         public PassCheckVM()
         {
-            _pageModel = new PageModel();
+
             Feedback = new ObservableCollection<string>();
             CheckPasswordCommand = new RelayCommand(_ => CheckPassword());
         }

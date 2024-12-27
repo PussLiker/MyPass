@@ -247,6 +247,7 @@
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountsDB.cs" />
     <Compile Include="Model\ActionsDB.cs" />
+    <Compile Include="Model\AllPasses.cs" />
     <Compile Include="Model\BindablePasswordBoxNorm.xaml.cs">
       <DependentUpon>BindablePasswordBoxNorm.xaml</DependentUpon>
     </Compile>
@@ -302,6 +303,9 @@
     <Compile Include="View\Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EditAccountWindow.xaml.cs">
+      <DependentUpon>EditAccountWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Emails.xaml.cs">
       <DependentUpon>Emails.xaml</DependentUpon>
     </Compile>
@@ -356,6 +360,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Cards.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditAccountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

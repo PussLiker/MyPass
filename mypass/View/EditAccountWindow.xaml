@@ -1,4 +1,4 @@
-﻿<Window x:Class="mypass.AddAccountWindow"
+﻿<Window x:Class="mypass.EditAccountWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mypass="clr-namespace:mypass.ViewModel"
@@ -45,27 +45,27 @@
     <Grid Background="{DynamicResource Background}">
         <Border Background="{DynamicResource Background}" CornerRadius="10" Padding="20">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Добавить новый аккаунт" FontSize="20" FontWeight="Bold" Foreground="PeachPuff" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+                <TextBlock Text="Редактриорвание аккаунта" FontSize="20" FontWeight="Bold" Foreground="PeachPuff" Margin="0,0,0,20" HorizontalAlignment="Center"/>
 
                 <!-- Поле для Сервиса -->
                 <TextBlock Text="Сервис" Foreground="PeachPuff" Margin="0,0,0,5"/>
-                <TextBox Text="{Binding ServiceName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}" Margin="0,0,0,15" BorderThickness="0"  CaretBrush="PeachPuff"/>
+                <TextBox Text="{Binding NewServiceName,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}" Margin="0,0,0,15" BorderThickness="0"  CaretBrush="PeachPuff"/>
 
                 <!-- Поле для URL -->
                 <TextBlock Text="URL" Foreground="PeachPuff" Margin="0,0,0,5"/>
-                <TextBox Text="{Binding URL, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}" Margin="0,0,0,15" BorderThickness="0" CaretBrush="PeachPuff"/>
+                <TextBox Text="{Binding NewURL, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}" Margin="0,0,0,15" BorderThickness="0" CaretBrush="PeachPuff"/>
 
                 <!-- Поле для Логина -->
                 <TextBlock Text="Логин" Foreground="PeachPuff" Margin="0,0,0,5"/>
-                <TextBox Text="{Binding LoginAccount, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}" Margin="0,0,0,15" BorderThickness="0" CaretBrush="PeachPuff"/>
+                <TextBox Text="{Binding NewLoginAccount, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}" Margin="0,0,0,15" BorderThickness="0" CaretBrush="PeachPuff"/>
 
                 <!-- Поле для Пароля -->
                 <TextBlock Text="Пароль" Foreground="PeachPuff" Margin="0,0,0,5" />
-                <local:BindablePasswordBoxNorm Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Width="250" Height="30" Margin="0,0,0,15" BorderThickness="0" BorderBrush="Transparent" Background="#2a2a2d"/>
+                <local:BindablePasswordBoxNorm Password="{Binding NewPassword, UpdateSourceTrigger=PropertyChanged}" Width="250" Height="30" Margin="0,0,0,15" BorderThickness="0" BorderBrush="Transparent" Background="#2a2a2d"/>
 
                 <Grid>
                     <!-- Кнопка "Добавить" -->
-                    <Button Style="{StaticResource ButtonSimp}" Content="Добавить" Command="{Binding AddAccountCommand}" 
+                    <Button Style="{StaticResource ButtonSimp}" Content="Изменить" Command="{Binding EditAccountCommand}" 
                         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" 
                         Margin="0,0,120,0"
                         Height="30"

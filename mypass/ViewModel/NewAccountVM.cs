@@ -1,6 +1,7 @@
 ﻿using mypass.Model;
 using mypass.Utilities;
 using mypass.View;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 
@@ -13,6 +14,22 @@ namespace mypass.ViewModel
         public string URL { get; set; }
         public string LoginAccount { get; set; }
         public string Password { get; set; }
+        public string NewServiceName { get; set; }
+        public string NewURL { get; set; }
+        public string NewLoginAccount { get; set; }
+        public string NewPassword { get; set; } = "123";
+        private static int _id;
+        
+        public int ID { get => _id; set
+            {
+                if (value != _id)
+                {
+                    _id = value;
+                    OnPropertyChanged(nameof(ID));
+                }
+            }
+        }
+        public ICommand EditAccountCommand { get; set; }
         public ICommand AddAccountCommand { get; }
         public ICommand CloseCommand { get; }
 
@@ -26,7 +43,7 @@ namespace mypass.ViewModel
 
             AddAccountCommand = new RelayCommand(AddAccount);
             CloseCommand = new RelayCommand(Close);
-            
+            EditAccountCommand = new RelayCommand(EditAccount);
             _accountsDB = new AccountsDB(mainAuthWindowVM.FullBDPath);  // Укажите путь к вашей базе данных
 
             AddTagCommand = new RelayCommand(AddTag);   
@@ -46,6 +63,26 @@ namespace mypass.ViewModel
 
             // Закрытие окна после добавления записи
             // Предполагается, что окно будет закрываться из кода
+            var window = parameter as Window;
+            if (window != null)
+            {
+                window.Close();
+            }
+        }
+
+        private void EditAccount(object parameter)
+        {
+            if (string.IsNullOrEmpty(NewServiceName) || string.IsNullOrEmpty(NewURL) || string.IsNullOrEmpty(NewPassword))
+            {
+                // Убедитесь, что все поля заполнены
+                return;
+            }
+            AllPassesVM allPassesVM = new AllPassesVM();
+                _accountsDB.UpdateAccount(PageModel.ID, _loginUserAccount, NewServiceName, NewURL, NewLoginAccount, EncryptionModel.Enscrypt(NewPassword, "123"));
+
+
+            
+
             var window = parameter as Window;
             if (window != null)
             {
