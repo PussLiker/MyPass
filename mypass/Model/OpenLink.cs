@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mypass.View;
+using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -33,12 +34,12 @@ namespace mypass.Model
                 }
                 else
                 {
-                    Debug.WriteLine("Неправильный URL (не содержит доменное имя): " + url);
+                    ErrorWindow.ShowError("Неправильный URL (не содержит доменное имя): " + url);
                 }
             }
             else
             {
-                Debug.WriteLine("Неправильный URL: " + url);
+                ErrorWindow.ShowError("Неправильный URL: " + url);
             }
         }
     }
