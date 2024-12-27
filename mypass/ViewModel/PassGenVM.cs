@@ -10,7 +10,7 @@ namespace mypass.ViewModel
 {
     internal class PassGenVM : Utilities.ViewModelBase
     {
-        private readonly PageModel _pageModel;
+        
         private CancellationTokenSource _cancellationTokenSource;
         public ICommand CopyTextCommand { get; }
         public ICommand PasswordGenerateCommand { get; }

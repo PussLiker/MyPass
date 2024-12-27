@@ -74,10 +74,49 @@
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
 
-                                        <!-- Верхняя панель с иконками и заголовком -->
                                         <StackPanel Orientation="Horizontal" Grid.Row="0">
-                                            <TextBox Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Text="{Binding Username}" FontWeight="Bold"  FontSize="16" VerticalAlignment="Center" BorderThickness="0"/>
+                                            <!-- Поле для отображения имени пользователя -->
+                                            <TextBox Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Text="{Binding Username}" FontWeight="Bold"  
+                                            FontSize="16" VerticalAlignment="Center" BorderThickness="0"/>
+
+                                            <!-- Кнопка с иконкой "три точки" -->
+                                            <Button Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                Width="30" Height="30"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Right"
+                                                Command="{Binding DataContext.DeleteAccountCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                Cursor="Hand"
+                                                CommandParameter="{Binding}">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Grid>
+                                                            <Border x:Name="ButtonBorder" Background="Transparent" CornerRadius="5"/>
+                                                            <iconPacks:PackIconMaterial Kind="TrashCan" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="PeachPuff" Width="16"/>
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Background="Transparent"                                             
+                                                BorderBrush="Transparent"
+                                                Width="30" Height="30"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Right"
+                                                Command="{Binding DataContext.OpenEditAccauntWindowCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                Cursor="Hand"
+                                                CommandParameter="{Binding}">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Grid>
+                                                            <Border x:Name="ButtonBorder" Background="Transparent" CornerRadius="5"/>
+                                                            <iconPacks:PackIconMaterial Kind="Pencil" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="PeachPuff" Width="16"/>
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
                                         </StackPanel>
+
+
 
                                         <!-- Дополнительный текст -->
                                         <Border Background="#1a1a1d" CornerRadius="5,5,0,0" Grid.Row="1" Margin="0,5,0,0">
