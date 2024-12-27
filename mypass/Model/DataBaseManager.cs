@@ -36,10 +36,8 @@ namespace mypass.Model
 
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         // Метод для инициализации таблиц
@@ -72,17 +70,17 @@ namespace mypass.Model
 
                         @"CREATE TABLE IF NOT EXISTS Accounts (
                             IdAccount INTEGER PRIMARY KEY AUTOINCREMENT,
-                            LoginUserAccount VARCHAR(128) NOT NULL,
+                            LoginUser VARCHAR(128) NOT NULL,
                             ServiceName VARCHAR(128) NOT NULL,
                             URL VARCHAR(255),
                             LoginAccount VARCHAR(36),
                             Password CHAR(64) NOT NULL,
-                            FOREIGN KEY(LoginUserAccount) REFERENCES User(LoginUser) ON UPDATE CASCADE ON DELETE RESTRICT
+                            FOREIGN KEY(LoginUser) REFERENCES User(LoginUser) ON UPDATE CASCADE ON DELETE RESTRICT
                         );",
 
                         @"CREATE TABLE IF NOT EXISTS Events (
                             IdEvent INTEGER PRIMARY KEY AUTOINCREMENT,
-                            IDTypeEvent INTEGER NOT NULL,
+                            IdTypeEvent INTEGER NOT NULL,
                             NameEvent VARCHAR(128) NOT NULL,
                             FOREIGN KEY(IDTypeEvent) REFERENCES TypeEvents(IdTypeEvent) ON UPDATE CASCADE ON DELETE RESTRICT
                         );",

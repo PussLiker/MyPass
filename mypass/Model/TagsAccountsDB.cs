@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+
 using System.Data.SQLite;
 
 namespace mypass.Model
@@ -44,31 +44,56 @@ namespace mypass.Model
         public void AddTagAccount(int idAccount, int idTag, DateTime timeTagging)
         {
             OpenConnection();
+
+            int affectedRows;
+
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "INSERT INTO TagsAccounts (IdAccount, IdTag, TimeTagging) VALUES (@IdAccount, @IdTag, @TimeTagging);";
                 command.Parameters.AddWithValue("@IdAccount", idAccount);
                 command.Parameters.AddWithValue("@IdTag", idTag);
                 command.Parameters.AddWithValue("@TimeTagging", timeTagging);
-                command.ExecuteNonQuery();
+                affectedRows = command.ExecuteNonQuery();
             }
+
+            long idtagsaccounts = _connection.LastInsertRowId;
+
             CloseConnection();
+
+            if (affectedRows > 0)
+            {
+                _idtagsaccounts = (int)idtagsaccounts;
+                _idaccount = idAccount;
+                _idtag = idTag;
+                _timetagging = timeTagging;
+            }
         }
 
         // Метод для обновления связи
-        public void UpdateTagAccount(int idTagsAccounts, int idAccount, int idTag, DateTime newTimeTagging)
+        public void UpdateTagAccount(int idTagsAccounts, int idAccount, int idTag, DateTime TimeTagging)
         {
             OpenConnection();
+
+            int affectedRows;
+
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "UPDATE TagsAccounts SET IdAccount = @IdAccount, IdTag = @IdTag, TimeTagging = @TimeTagging WHERE IdTagsAccounts = @IdTagsAccounts;";
-                command.Parameters.AddWithValue("@IdTagsAccounts", idTagsAccounts);
                 command.Parameters.AddWithValue("@IdAccount", idAccount);
                 command.Parameters.AddWithValue("@IdTag", idTag);
-                command.Parameters.AddWithValue("@TimeTagging", newTimeTagging);
-                command.ExecuteNonQuery();
+                command.Parameters.AddWithValue("@TimeTagging", TimeTagging);
+                command.Parameters.AddWithValue("@IdTagsAccounts", idTagsAccounts);
+                affectedRows = command.ExecuteNonQuery();
             }
             CloseConnection();
+
+            if (affectedRows > 0)
+            {
+                _idtagsaccounts = idTagsAccounts;
+                _idaccount = idAccount;
+                _idtag = idTag;
+                _timetagging = TimeTagging;
+            }
         }
 
         // Метод для удаления связи
@@ -88,6 +113,7 @@ namespace mypass.Model
         public Dictionary<string, string> GetTagAccountById(int idTagsAccounts)
         {
             OpenConnection();
+            var result = new Dictionary<string, string>();
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "SELECT * FROM TagsAccounts WHERE IdTagsAccounts = @IdTagsAccounts;";
@@ -96,24 +122,52 @@ namespace mypass.Model
                 {
                     if (reader.Read())
                     {
-                        var tagAccountData = new Dictionary<string, string>
-                        {
-                            { "IdTagsAccounts", reader["IdTagsAccounts"].ToString() },
-                            { "IdAccount", reader["IdAccount"].ToString() },
-                            { "IdTag", reader["IdTag"].ToString() },
-                            { "TimeTagging", reader["TimeTagging"].ToString() }
-                        };
+
+                        result["IdTagsAccounts"] = reader.GetInt32(reader.GetOrdinal("IdTagsAccounts")).ToString();
+                        result["IdAccount"] = reader.GetInt32(reader.GetOrdinal("IdAccount")).ToString();
+                        result["IdTag"] = reader.GetInt32(reader.GetOrdinal("IdTag")).ToString();
+
+                        result["TimeTagging"] = reader.GetDateTime(4).ToString("o"); // ПРОТЕСТИТЕ ПОЖАЛУЙСТА ЕСЛИ НА СРАБОТАЕТ 3 ПОСТАВЬТЕ 4
+
+                        
                         CloseConnection();
-                        return tagAccountData;
+                        return result;
                     }
                 }
             }
             CloseConnection();
             return null;
         }
-        public void LoadDataFromTagsAccountsDB()
-        {
 
+        public List<Dictionary<string, string>> GetAllTags()
+        {
+            OpenConnection();
+
+            var TagsAccountsList = new List<Dictionary<string, string>>();
+
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT IdTagsAccounts, IdAccount, IdTag, TimeTagging FROM TagsAccounts;";
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var TagsAccountsData = new Dictionary<string, string>
+                        {
+                            ["IdTagsAccounts"] = reader.GetInt32(reader.GetOrdinal("IdTagsAccounts")).ToString(),
+                            ["IdAccount"] = reader.GetInt32(reader.GetOrdinal("IdAccount")).ToString(),
+                            ["IdTag"] = reader.GetInt32(reader.GetOrdinal("IdTag")).ToString(),
+
+                            ["TimeTagging"] = reader.GetDateTime(4).ToString("o") // ТУТ ТАКАЯ ЖЕ ЗАЛУПА НАДО ПОМЕНЯТЬ НА 4 ЕСЛИ 3 НЕ РАБОТАЕТ
+                        };
+                        TagsAccountsList.Add(TagsAccountsData);
+                    }
+                }
+            }
+
+            CloseConnection();
+            return TagsAccountsList;
         }
     }
 }

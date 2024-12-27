@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Web.UI.WebControls;
 
 namespace mypass.Model
 {
@@ -20,18 +21,18 @@ namespace mypass.Model
             set => _idaccount = value;
         }
 
-        private string _loginuseraccount;
+        private string _loginuser;
         public string LoginUserAccount
         {
-            get => _loginuseraccount;
-            set => _loginuseraccount = value;
+            get => _loginuser;
+            set => _loginuser = value;
         }
 
-        private string _servisename;
-        public string ServiseName
+        private string _servicename;
+        public string ServiceName
         {
-            get => _servisename;
-            set => _servisename = value;
+            get => _servicename;
+            set => _servicename = value;
         }
 
         private string _url;
@@ -56,52 +57,78 @@ namespace mypass.Model
         }
 
         // Метод для добавления нового аккаунта
-        public void AddAccount(string loginUserAccount, string serviceName, string url, string loginAccount, string password)
+        public void AddAccount(string loginUser, string serviceName, string url, string loginAccount, string password)
         {
             OpenConnection();
-            string query = @"INSERT INTO Accounts (LoginUserAccount, ServiceName, URL, LoginAccount, Password) 
-                             VALUES (@LoginUserAccount, @ServiceName, @URL, @LoginAccount, @Password);";
+            string query = @"INSERT INTO Accounts (LoginUser, ServiceName, URL, LoginAccount, Password) 
+                             VALUES (@LoginUser, @ServiceName, @URL, @LoginAccount, @Password);";
+            int affectedRows;
 
             using (var command = new SQLiteCommand(query, _connection))
             {
-                command.Parameters.AddWithValue("@LoginUserAccount", loginUserAccount);
+                command.Parameters.AddWithValue("@LoginUser", loginUser);
                 command.Parameters.AddWithValue("@ServiceName", serviceName);
                 command.Parameters.AddWithValue("@URL", url);
                 command.Parameters.AddWithValue("@LoginAccount", loginAccount);
                 command.Parameters.AddWithValue("@Password", password);
 
-                command.ExecuteNonQuery();
+                affectedRows = command.ExecuteNonQuery();
             }
 
+            long idacount = _connection.LastInsertRowId;
+
             CloseConnection();
+
+            // Обновляем поля класса, если обновление прошло успешно
+            if (affectedRows > 0)
+            {
+                _idaccount = (int)idacount;
+                _loginuser = loginUser;
+                _servicename = serviceName;
+                _url = url;
+                _loginaccount = loginAccount;
+                _password = password;
+            }
         }
 
         // Метод для обновления аккаунта
-        public void UpdateAccount(int idAccount, string loginUserAccount, string serviceName, string url, string loginAccount, string password)
+        public void UpdateAccount(int idAccount, string loginUser, string serviceName, string url, string loginAccount, string password)
         {
             OpenConnection();
 
             string query = @"UPDATE Accounts SET 
-                             LoginUserAccount = @LoginUserAccount,
+                             LoginUser = @LoginUser,
                              ServiceName = @ServiceName, 
                              URL = @URL, 
                              LoginAccount = @LoginAccount, 
                              Password = @Password 
                              WHERE IdAccount = @IdAccount;";
+            int affectedRows;
 
             using (var command = new SQLiteCommand(query, _connection))
             {
                 command.Parameters.AddWithValue("@IdAccount", idAccount);
-                command.Parameters.AddWithValue("@LoginUserAccount", loginUserAccount);
+                command.Parameters.AddWithValue("@LoginUser", loginUser);
                 command.Parameters.AddWithValue("@ServiceName", serviceName);
                 command.Parameters.AddWithValue("@URL", url);
                 command.Parameters.AddWithValue("@LoginAccount", loginAccount);
                 command.Parameters.AddWithValue("@Password", password);
 
-                command.ExecuteNonQuery();
+                affectedRows = command.ExecuteNonQuery();
             }
 
             CloseConnection();
+
+            // Обновляем поля класса, если обновление прошло успешно
+            if (affectedRows > 0)
+            {
+                _idaccount = idAccount;
+                _loginuser = loginUser;
+                _servicename = serviceName;
+                _url = url;
+                _loginaccount = loginAccount;
+                _password = password;
+            }
         }
 
         // Метод для удаления аккаунта
@@ -133,8 +160,9 @@ namespace mypass.Model
                 {
                     if (reader.Read())
                     {
-                        accountData["IdAccount"] = reader["IdAccount"].ToString();
-                        accountData["LoginUserAccount"] = reader["LoginUserAccount"].ToString();
+
+                        accountData["IdAccount"] = reader.GetInt32(reader.GetOrdinal("IdAccount")).ToString();
+                        accountData["LoginUser"] = reader["LoginUser"].ToString();
                         accountData["ServiceName"] = reader["ServiceName"].ToString();
                         accountData["URL"] = reader["URL"].ToString();
                         accountData["LoginAccount"] = reader["LoginAccount"].ToString();
@@ -152,7 +180,7 @@ namespace mypass.Model
         {
             OpenConnection();
             string query = "SELECT * FROM Accounts;";
-            var accountsList = new List<Dictionary<string, string>>();
+            var AccountsList = new List<Dictionary<string, string>>();
 
             using (var command = new SQLiteCommand(query, _connection))
             {
@@ -160,22 +188,22 @@ namespace mypass.Model
                 {
                     while (reader.Read())
                     {
-                        var accountData = new Dictionary<string, string>
+                        var AccountData = new Dictionary<string, string>
                         {
-                            ["IdAccount"] = reader["IdAccount"].ToString(),
-                            ["LoginUserAccount"] = reader["LoginUserAccount"].ToString(),
+                            ["IdAccount"] = reader.GetInt32(reader.GetOrdinal("IdAccount")).ToString(),
+                            ["LoginUser"] = reader["LoginUser"].ToString(),
                             ["ServiceName"] = reader["ServiceName"].ToString(),
                             ["URL"] = reader["URL"].ToString(),
                             ["LoginAccount"] = reader["LoginAccount"].ToString(),
                             ["Password"] = reader["Password"].ToString()
                         };
-                        accountsList.Add(accountData);
+                        AccountsList.Add(AccountData);
                     }
                 }
             }
 
             CloseConnection();
-            return accountsList;
+            return AccountsList;
         }
     }
 }

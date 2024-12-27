@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Data.SQLite;
-using System.Data;
+
 
 namespace mypass.Model
 {
@@ -15,19 +16,19 @@ namespace mypass.Model
         }
 
         private int _idaction;
-        public int IDAction
+        public int IdAction
         {
             get => _idaction;
             set => _idaction = value;
         }
         private int _idaccount;
-        public int IDAccount
+        public int IdAccount
         {
             get => _idaccount;
             set => _idaccount = value;
         }
         private int _idevent;
-        public int IDEvent
+        public int IdEvent
         {
             get => _idevent;
             set => _idevent = value;
@@ -44,6 +45,8 @@ namespace mypass.Model
             OpenConnection();
             string query = "INSERT INTO Actions (IdAccount, IdEvent, TimeEvent) VALUES (@IdAccount, @IdEvent, @TimeEvent);";
 
+            int affectedRows;
+
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = query;
@@ -51,9 +54,20 @@ namespace mypass.Model
                 command.Parameters.AddWithValue("@IdEvent", idEvent);
                 command.Parameters.AddWithValue("@TimeEvent", timeEvent);
 
-                command.ExecuteNonQuery();
+                affectedRows = command.ExecuteNonQuery();
             }
+
+            long idaction = _connection.LastInsertRowId;
+
             CloseConnection();
+
+            if (affectedRows > 0)
+            {
+                _idaction = (int)idaction;
+                _idaccount = idAccount;
+                _idevent = idEvent;
+                _timeevent = timeEvent;
+            }
         }
 
         // Метод для обновления записи
@@ -64,6 +78,8 @@ namespace mypass.Model
                              SET IdAccount = @IdAccount, IdEvent = @IdEvent, TimeEvent = @TimeEvent 
                              WHERE IdAction = @IdAction;";
 
+            int affectedRows;
+
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = query;
@@ -72,9 +88,18 @@ namespace mypass.Model
                 command.Parameters.AddWithValue("@IdEvent", idEvent);
                 command.Parameters.AddWithValue("@TimeEvent", timeEvent);
 
-                command.ExecuteNonQuery();
+                affectedRows = command.ExecuteNonQuery();
             }
+
             CloseConnection();
+
+            if (affectedRows > 0)
+            {
+                _idaction = idAction;
+                _idaccount = idAccount;
+                _idevent = idEvent;
+                _timeevent = timeEvent;
+            }
         }
 
         // Метод для удаления записи
@@ -109,19 +134,47 @@ namespace mypass.Model
                 {
                     if (reader.Read())
                     {
-                        result["IdAction"] = reader["IdAction"].ToString();
-                        result["IdAccount"] = reader["IdAccount"].ToString();
-                        result["IdEvent"] = reader["IdEvent"].ToString();
-                        result["TimeEvent"] = reader["TimeEvent"].ToString();
+                        result["IdAction"] = reader.GetInt32(reader.GetOrdinal("IdAction")).ToString();
+                        result["IdAccount"] = reader.GetInt32(reader.GetOrdinal("IdAccount")).ToString();
+                        result["IdEvent"] = reader.GetInt32(reader.GetOrdinal("IdEvent")).ToString();
+
+                        result["TimeEvent"] = reader.GetDateTime(4).ToString("o"); // ПРОТЕСТИТЕ ПОЖАЛУЙСТА ЕСЛИ НА СРАБОТАЕТ 3 ПОСТАВЬТЕ 4
                     }
                 }
             }
             CloseConnection();
             return result;
         }
-        public void LoadDataFromActionsDB()
-        {
 
+        public List<Dictionary<string, string>> GetAllActions()
+        {
+            OpenConnection();
+
+            var ActionsList = new List<Dictionary<string, string>>();
+
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT IdAction, IdAccount, IdEvent, TimeEvent FROM Actions;";
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var ActionsData = new Dictionary<string, string>
+                        {
+                            ["IdAction"] = reader.GetInt32(reader.GetOrdinal("IdAction")).ToString(),
+                            ["IdAccount"] = reader.GetInt32(reader.GetOrdinal("IdAccount")).ToString(),
+                            ["IdEvent"] = reader.GetInt32(reader.GetOrdinal("IdEvent")).ToString(),
+
+                            ["TimeEvent"] = reader.GetDateTime(4).ToString("o") // ТУТ ТАКАЯ ЖЕ ЗАЛУПА НАДО ПОМЕНЯТЬ НА 4 ЕСЛИ 3 НЕ РАБОТАЕТ
+                        };
+                        ActionsList.Add(ActionsData);
+                    }
+                }
+            }
+
+            CloseConnection();
+            return ActionsList;
         }
     }
 }

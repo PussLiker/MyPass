@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-
-// Зачем нужен: таблица для хранения типов событий
-// Наследование: от DataBase для работы с SQLite
-// Методы: работа с типами событий (добавление, обновление, удаление, получение)
+using System.Security.Policy;
 
 namespace mypass.Model
 {
@@ -34,23 +31,32 @@ namespace mypass.Model
         {
             OpenConnection();
 
+            int affectedRows;
+
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "INSERT INTO TypeEvents (TypeEvent) VALUES (@TypeEvent);";
                 command.Parameters.AddWithValue("@TypeEvent", typeEvent);
 
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    TypeEvent = typeEvent;
-                }
+                affectedRows = command.ExecuteNonQuery();
             }
 
+            long idtypeevent = _connection.LastInsertRowId;
+
             CloseConnection();
+
+            if (affectedRows > 0)
+            {
+                _idtypeevent = (int)idtypeevent;
+                _typeevent = typeEvent;
+            }
         }
 
         public void UpdateTypeEvent(int idTypeEvent, string newTypeEvent)
         {
             OpenConnection();
+
+            int affectedRows;
 
             using (var command = _connection.CreateCommand())
             {
@@ -58,14 +64,16 @@ namespace mypass.Model
                 command.Parameters.AddWithValue("@TypeEvent", newTypeEvent);
                 command.Parameters.AddWithValue("@IdTypeEvent", idTypeEvent);
 
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    IdTypeEvent = idTypeEvent;
-                    TypeEvent = newTypeEvent;
-                }
+                affectedRows = command.ExecuteNonQuery();
             }
 
             CloseConnection();
+
+            if (affectedRows > 0)
+            {
+                _idtypeevent = idTypeEvent;
+                _typeevent = newTypeEvent;
+            }
         }
 
         public void DeleteTypeEvent(int idTypeEvent)
@@ -76,12 +84,6 @@ namespace mypass.Model
             {
                 command.CommandText = "DELETE FROM TypeEvents WHERE IdTypeEvent = @IdTypeEvent;";
                 command.Parameters.AddWithValue("@IdTypeEvent", idTypeEvent);
-
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    IdTypeEvent = 0;
-                    TypeEvent = null;
-                }
             }
 
             CloseConnection();
@@ -102,11 +104,8 @@ namespace mypass.Model
                 {
                     if (reader.Read())
                     {
-                        IdTypeEvent = Convert.ToInt32(reader["IdTypeEvent"]);
-                        TypeEvent = reader["TypeEvent"].ToString();
-
-                        result["IdTypeEvent"] = IdTypeEvent.ToString();
-                        result["TypeEvent"] = TypeEvent;
+                        result["IdTypeEvent"] = reader.GetInt32(reader.GetOrdinal("IdTypeEvent")).ToString();
+                        result["TypeEvent"] = reader["TypeEvent"].ToString();
                     }
                 }
             }
@@ -119,7 +118,7 @@ namespace mypass.Model
         {
             OpenConnection();
 
-            var result = new List<Dictionary<string, string>>();
+            var TypeEventsList = new List<Dictionary<string, string>>();
 
             using (var command = _connection.CreateCommand())
             {
@@ -129,17 +128,18 @@ namespace mypass.Model
                 {
                     while (reader.Read())
                     {
-                        result.Add(new Dictionary<string, string>
+                        var TypeEventsData = new Dictionary<string, string>
                         {
-                            { "IdTypeEvent", reader["IdTypeEvent"].ToString() },
-                            { "TypeEvent", reader["TypeEvent"].ToString() }
-                        });
+                            ["IdTypeEvent"] = reader.GetInt32(reader.GetOrdinal("IdTypeEvent")).ToString(),
+                            ["TypeEvent"] = reader["TypeEvent"].ToString(),
+                        };
+                        TypeEventsList.Add(TypeEventsData);
                     }
                 }
             }
 
             CloseConnection();
-            return result;
+            return TypeEventsList;
         }
     }
 }
