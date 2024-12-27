@@ -3,11 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                          xmlns:vm="clr-namespace:mypass.ViewModel"
+             xmlns:vm="clr-namespace:mypass.ViewModel"
+                          xmlns:m="clr-namespace:mypass.Model"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="810"
              Style="{StaticResource PageStyle}">
 
+   
+
+    <!-- Установка контекста данных -->
     <UserControl.DataContext>
         <vm:MainMenuVM/>
     </UserControl.DataContext>
@@ -15,10 +20,85 @@
     <Grid>
 
         <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!-- Верхняя панель -->
+                <Grid Background="#1a1a1d" Margin="0,70,0,0" Height="70" VerticalAlignment="Center">
+                    <!-- Заголовок -->
+                    <TextBlock Grid.Row="0" Style="{StaticResource TextStyle}"
+                               Text="Ваша статистика:" FontSize="40" HorizontalAlignment="Center" 
+                               Margin="10" 
+                               />
 
-            <TextBlock Text="MainMenu" Style="{StaticResource TextStyle}" />
+                </Grid>
 
+                <Grid Grid.Row="1">
+
+
+
+                    <!-- Боксы для статистики -->
+                    <StackPanel Grid.Row="1" Orientation="Vertical" Margin="20"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" Height="420"
+                                Width="700" >
+                        <!-- Бокс для слабых паролей -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Height="120" Width="680">
+                            <Border HorizontalAlignment="Left" Background="#8b2f2f" CornerRadius="10,0,0,10" BorderThickness="0" Width="20" Height="120" />
+                            <Border Background="#202020" Width="660" Height="120" >
+                                
+                                <Grid>
+                                    <TextBlock Text="У вас плохих паролей: " Height="auto" Width="auto" HorizontalAlignment="Left"
+                                               Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center" Margin="16 0 0 0"/>
+                                    <TextBlock Text="{Binding WeakPasswordsCount}" Height="auto" Width="auto" Margin="530,0,0,0"
+                                               Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center"/>
+                                    <iconPacks:PackIconFeatherIcons Kind="AlertTriangle" VerticalAlignment="Center" Margin="0,0,20,0" HorizontalAlignment="Right"
+                                                Foreground="#8b2f2f" Height="50" Width="50" />
+
+                                </Grid>
+                            </Border>
+
+                        </StackPanel>
+
+                    <!-- Бокс для сильных паролей -->
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Height="120" Width="680">
+                            <Border HorizontalAlignment="Left" Background="#1f5539" CornerRadius="10,0,0,10" BorderThickness="0" Width="20" Height="120" />
+                            <Border Background="#202020" Width="660" Height="120" >
+                                <Grid>
+                                    <TextBlock Text="У вас хороших паролей: " Height="auto" Width="auto" HorizontalAlignment="Left"
+                                               Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center" Margin="16 0 0 0"/>
+                                    <TextBlock Text="{Binding StrongPasswordsCount}" Height="auto" Width="auto" Margin="530,0,0,0"
+                                               Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center"/>
+                                    <iconPacks:PackIconCoolicons Kind="CircleCheck" VerticalAlignment="Center" Margin="0,0,20,0" HorizontalAlignment="Right"
+                                        Foreground="#1f5539" Height="50" Width="50" />
+
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Бокс для повторяющихся паролей -->
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Height="120" Width="680">
+                            <Border HorizontalAlignment="Left" Background="#b08406" CornerRadius="10,0,0,10" BorderThickness="0" Width="20" Height="120" />
+                            <Border Background="#202020" Width="660" Height="120">
+                                <Grid>
+                                    <TextBlock Text="У вас повторяющихся паролей: " Height="auto" Width="auto" HorizontalAlignment="Left"
+                                               Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center" Margin="16 0 0 0"/>
+                                    <TextBlock Text="{Binding DuplicatePasswordsCount}" Height="auto" Width="auto" Margin="530,0,0,0"
+                                               Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center"/>
+                                    <iconPacks:PackIconMaterial Kind="CalendarRefreshOutline" VerticalAlignment="Center" Margin="0,0,20,0"
+                                        Foreground="#b08406" Height="50" Width="50" HorizontalAlignment="Right"/>
+
+                                </Grid>
+                            </Border>
+
+                        </StackPanel>
+
+                    </StackPanel>
+                </Grid>
+            </Grid>
         </Border>
-
     </Grid>
 </UserControl>

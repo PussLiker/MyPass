@@ -26,6 +26,7 @@ namespace mypass.ViewModel
             CloseCommand = new RelayCommand(Close);
             MainAuthWindowVM mainAuthWindowVM = new MainAuthWindowVM();
             _accountsDB = new AccountsDB(mainAuthWindowVM.FullBDPath);  // Укажите путь к вашей базе данных
+
         }
 
         private void AddAccount(object parameter)

@@ -27,7 +27,7 @@ namespace mypass.ViewModel
             MainAuthWindowVM mainAuthWindowVM = new MainAuthWindowVM();
             // Инициализация базы данных
             _accountsDB = new AccountsDB(mainAuthWindowVM.FullBDPath);  // Замените на путь к вашей базе данных
-            
+
             // Привязка команд
             CopyEmailCommand = new RelayCommand(CopyEmail);
             CopyPasswordCommand = new RelayCommand(CopyPassword);
@@ -93,6 +93,7 @@ namespace mypass.ViewModel
         {
             OpenLink.Open(url);
         }
+
         private void OpenAddAccountWindow(object parameter)
         {
             // Создаем экземпляр окна
@@ -104,5 +105,6 @@ namespace mypass.ViewModel
             // После того как окно закрыто, обновляем список аккаунтов
             LoadAccounts();
         }
+
     }
 }

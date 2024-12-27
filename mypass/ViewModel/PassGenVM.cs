@@ -54,7 +54,7 @@ namespace mypass.ViewModel
             get => _passwordLength;
             set
             {
-                if (_passwordLength != value && value > 3 && value <= 99) // Ограничение 4-99
+                if (_passwordLength != value && value > 0) // Ограничение 4-99
                 {
                     _passwordLength = value;
                     OnPropertyChanged(nameof(PasswordLength));
@@ -71,6 +71,7 @@ namespace mypass.ViewModel
                 {
                     _includeLowercase = value;
                     OnPropertyChanged(nameof(IncludeLowercase));
+                    EnsureAtLeastOneCheckboxIsSelected();
                 }
             }
         }
@@ -85,6 +86,7 @@ namespace mypass.ViewModel
                 {
                     _includeUppercase = value;
                     OnPropertyChanged(nameof(IncludeUppercase));
+                    EnsureAtLeastOneCheckboxIsSelected();
                 }
             }
         }
@@ -99,6 +101,7 @@ namespace mypass.ViewModel
                 {
                     _includeDigits = value;
                     OnPropertyChanged(nameof(IncludeDigits));
+                    EnsureAtLeastOneCheckboxIsSelected();
                 }
             }
         }
@@ -113,7 +116,33 @@ namespace mypass.ViewModel
                 {
                     _includeSpecialCharacters = value;
                     OnPropertyChanged(nameof(IncludeSpecialCharacters));
+                    EnsureAtLeastOneCheckboxIsSelected();
                 }
+            }
+        }
+
+        private bool _isCheckBoxEnabled = true;
+        public bool IsCheckBoxEnabled
+        {
+            get => _isCheckBoxEnabled;
+            set
+            {
+                if (_isCheckBoxEnabled != value)
+                {
+                    _isCheckBoxEnabled = value;
+                    OnPropertyChanged(nameof(IsCheckBoxEnabled));
+                    EnsureAtLeastOneCheckboxIsSelected();
+                }
+            }
+        }
+
+        // Метод для обновления состояния чекбокса
+        private void UpdateCheckBoxState()
+        {
+            IsCheckBoxEnabled = !string.IsNullOrWhiteSpace(SpecialCharacters);
+            if (!IsCheckBoxEnabled)
+            {
+                IncludeSpecialCharacters = false; // Если строка пуста, снимаем галочку
             }
         }
 
@@ -123,10 +152,12 @@ namespace mypass.ViewModel
             get => _specialCharacters;
             set
             {
-                if (_specialCharacters != value)
+                if (_specialCharacters != value )
                 {
                     _specialCharacters = value;
                     OnPropertyChanged(nameof(SpecialCharacters));
+                    UpdateCheckBoxState();
+                    EnsureAtLeastOneCheckboxIsSelected();
                 }
             }
         }
@@ -137,9 +168,8 @@ namespace mypass.ViewModel
         {
             // Создаем команду
             CopyTextCommand = new RelayCommand(CopyTextToClipboard);
-            PasswordGenerateCommand = new RelayCommand(SetPass);
             ExitCommand = new RelayCommand(Exit);
-            _pageModel = new PageModel();
+
 
             // Пример инициализации текста
             PasswordGenerateCommand = new RelayCommand(ExecutePasswordAnimation);
@@ -155,12 +185,7 @@ namespace mypass.ViewModel
             if (s is Window w)
             { w?.Close(); }
         }
-        private void SetPass(object sender)
-        {
-            // Пример инициализации текста
-            Text = PasswordGeneration.PasswordGenerate(10, true, false, true, false, "!");
 
-        }
 
         private async void ExecutePasswordAnimation(object obj)
         {
@@ -176,25 +201,37 @@ namespace mypass.ViewModel
 
             }
         }
+        private void EnsureAtLeastOneCheckboxIsSelected()
+        {
+            // Если ни один чекбокс не выбран, восстанавливаем последний
+            if (!IncludeLowercase && !IncludeUppercase && !IncludeDigits && !IncludeSpecialCharacters)
+            {
+                // Пример: Восстанавливаем последний снятый чекбокс
+                IncludeUppercase = true;
+            }
+        }
 
         private async Task AnimatePasswordGeneration(CancellationToken cancellationToken)
         {
-
-
-            for (int i = 0; i < 6; i++)
+            if (PasswordLength < 4)
+                Text = "Коротковат, бро";
+            else
             {
-                cancellationToken.ThrowIfCancellationRequested();
+                for (int i = 0; i < 6; i++)
+                {
+                    cancellationToken.ThrowIfCancellationRequested();
 
-                // Генерация случайного промежуточного пароля
+                    // Генерация случайного промежуточного пароля
+
+                    Text = PasswordGeneration.PasswordGenerate(PasswordLength, IncludeUppercase, IncludeLowercase, IncludeDigits, IncludeSpecialCharacters, SpecialCharacters);
+                    TextColor = Brushes.DarkGray;
+
+                    // Имитируем задержки между сменой паролей
+                    await Task.Delay(50, cancellationToken);
+                }
+                // Финальный белый пароль
                 Text = PasswordGeneration.PasswordGenerate(PasswordLength, IncludeUppercase, IncludeLowercase, IncludeDigits, IncludeSpecialCharacters, SpecialCharacters);
-                TextColor = Brushes.DarkGray;
-
-                // Имитируем задержки между сменой паролей
-                await Task.Delay(50, cancellationToken);
             }
-
-            // Финальный белый пароль
-            Text = PasswordGeneration.PasswordGenerate(PasswordLength, IncludeUppercase, IncludeLowercase, IncludeDigits, IncludeSpecialCharacters, SpecialCharacters);
             TextColor = Brushes.White;
         }
 
