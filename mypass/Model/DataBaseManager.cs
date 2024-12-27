@@ -80,7 +80,7 @@ namespace mypass.Model
 
                         @"CREATE TABLE IF NOT EXISTS Events (
                             IdEvent INTEGER PRIMARY KEY AUTOINCREMENT,
-                            IDTypeEvent INTEGER NOT NULL,
+                            IdTypeEvent INTEGER NOT NULL,
                             NameEvent VARCHAR(128) NOT NULL,
                             FOREIGN KEY(IDTypeEvent) REFERENCES TypeEvents(IdTypeEvent) ON UPDATE CASCADE ON DELETE RESTRICT
                         );",

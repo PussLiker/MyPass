@@ -160,7 +160,8 @@ namespace mypass.Model
                 {
                     if (reader.Read())
                     {
-                        accountData["IdAccount"] = reader["IdAccount"].ToString();
+
+                        accountData["IdAccount"] = reader.GetInt32(reader.GetOrdinal("IdAccount")).ToString();
                         accountData["LoginUser"] = reader["LoginUser"].ToString();
                         accountData["ServiceName"] = reader["ServiceName"].ToString();
                         accountData["URL"] = reader["URL"].ToString();
@@ -179,7 +180,7 @@ namespace mypass.Model
         {
             OpenConnection();
             string query = "SELECT * FROM Accounts;";
-            var accountsList = new List<Dictionary<string, string>>();
+            var AccountsList = new List<Dictionary<string, string>>();
 
             using (var command = new SQLiteCommand(query, _connection))
             {
@@ -187,22 +188,22 @@ namespace mypass.Model
                 {
                     while (reader.Read())
                     {
-                        var accountData = new Dictionary<string, string>
+                        var AccountData = new Dictionary<string, string>
                         {
-                            ["IdAccount"] = reader["IdAccount"].ToString(),
+                            ["IdAccount"] = reader.GetInt32(reader.GetOrdinal("IdAccount")).ToString(),
                             ["LoginUser"] = reader["LoginUser"].ToString(),
                             ["ServiceName"] = reader["ServiceName"].ToString(),
                             ["URL"] = reader["URL"].ToString(),
                             ["LoginAccount"] = reader["LoginAccount"].ToString(),
                             ["Password"] = reader["Password"].ToString()
                         };
-                        accountsList.Add(accountData);
+                        AccountsList.Add(AccountData);
                     }
                 }
             }
 
             CloseConnection();
-            return accountsList;
+            return AccountsList;
         }
     }
 }

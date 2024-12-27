@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
 using System.Data.SQLite;
+
 
 namespace mypass.Model
 {
@@ -33,15 +34,25 @@ namespace mypass.Model
         {
             OpenConnection();
 
+            int affectedRows;
+
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "INSERT INTO Tags (NameTag) VALUES (@NameTag);";
                 command.Parameters.AddWithValue("@NameTag", nameTag);
 
-                command.ExecuteNonQuery();
+                affectedRows = command.ExecuteNonQuery();
             }
 
+            long idtag = _connection.LastInsertRowId;
+
             CloseConnection();
+
+            if (affectedRows > 0)
+            {
+                _idtag = (int)idtag;
+                _nametag = nameTag;
+            }
         }
 
         // Метод для обновления тега
@@ -49,16 +60,24 @@ namespace mypass.Model
         {
             OpenConnection();
 
+            int affectedRows;
+
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "UPDATE Tags SET NameTag = @NameTag WHERE IdTag = @IdTag;";
                 command.Parameters.AddWithValue("@NameTag", nameTag);
                 command.Parameters.AddWithValue("@IdTag", idTag);
 
-                command.ExecuteNonQuery();
+                affectedRows = command.ExecuteNonQuery();
             }
 
             CloseConnection();
+
+            if (affectedRows > 0)
+            {
+                _idtag = idTag;
+                _nametag = nameTag;
+            }
         }
 
         // Метод для удаления тега
@@ -92,7 +111,7 @@ namespace mypass.Model
                 {
                     if (reader.Read())
                     {
-                        result["IdTag"] = reader["IdTag"].ToString();
+                        result["IdTag"] = reader.GetInt32(reader.GetOrdinal("IdAcIdTagtion")).ToString();
                         result["NameTag"] = reader["NameTag"].ToString();
                     }
                 }
@@ -106,29 +125,28 @@ namespace mypass.Model
         public List<Dictionary<string, string>> GetAllTags()
         {
             OpenConnection();
-            var tags = new List<Dictionary<string, string>>();
+            var TagsList = new List<Dictionary<string, string>>();
 
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "SELECT * FROM Tags;";
+                command.CommandText = "SELECT IdTag, NameTag FROM Tags;";
 
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var tag = new Dictionary<string, string>
+                        var TagsData = new Dictionary<string, string>
                         {
-                            ["IdTag"] = reader["IdTag"].ToString(),
-                            ["NameTag"] = reader["NameTag"].ToString()
+                            ["IdTag"] = reader.GetInt32(reader.GetOrdinal("IdTag")).ToString(),
+                            ["NameTag"] = reader["NameTag"].ToString(),
                         };
-
-                        tags.Add(tag);
+                        TagsList.Add(TagsData);
                     }
                 }
             }
 
             CloseConnection();
-            return tags;
+            return TagsList;
         }
     }
 }

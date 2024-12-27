@@ -12,14 +12,14 @@ namespace mypass.Model
             _connection = new SQLiteConnection(_connectionString);
         }
 
-        private int _idevents;
-        public int IdEvents
+        private int _idevent;
+        public int IdEvent
         {
-            get => _idevents;
-            set => _idevents = value;
+            get => _idevent;
+            set => _idevent = value;
         }
         private int _idtypeevent;
-        public int IdTypeEvents
+        public int IdTypeEvent
         {
             get => _idtypeevent;
             set => _idtypeevent = value;
@@ -34,36 +34,57 @@ namespace mypass.Model
         public void AddEvent(int idTypeEvent, string nameEvent)
         {
             OpenConnection();
-            string query = "INSERT INTO Events (IDTypeEvent, NameEvent) VALUES (@IDTypeEvent, @NameEvent);";
+            string query = "INSERT INTO Events (IdTypeEvent, NameEvent) VALUES (@IdTypeEvent, @NameEvent);";
+
+            int affectedRows;
 
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = query;
-                command.Parameters.AddWithValue("@IDTypeEvent", idTypeEvent);
+                command.Parameters.AddWithValue("@IdTypeEvent", idTypeEvent);
                 command.Parameters.AddWithValue("@NameEvent", nameEvent);
 
-                command.ExecuteNonQuery();
+                affectedRows = command.ExecuteNonQuery();
             }
+
+            long idevent = _connection.LastInsertRowId;
+
             CloseConnection();
+
+            if (affectedRows > 0)
+            {
+                _idtypeevent = (int)idevent;
+                _idtypeevent = idTypeEvent;
+                _nameevent = nameEvent;
+            }
         }
 
         public void UpdateEvent(int idEvent, int idTypeEvent, string nameEvent)
         {
             OpenConnection();
             string query = @"UPDATE Events 
-                             SET IDTypeEvent = @IDTypeEvent, NameEvent = @NameEvent 
+                             SET IDTypeEvent = @IdTypeEvent, NameEvent = @NameEvent 
                              WHERE IdEvent = @IdEvent;";
+
+            int affectedRows;
 
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = query;
                 command.Parameters.AddWithValue("@IdEvent", idEvent);
-                command.Parameters.AddWithValue("@IDTypeEvent", idTypeEvent);
+                command.Parameters.AddWithValue("@IdTypeEvent", idTypeEvent);
                 command.Parameters.AddWithValue("@NameEvent", nameEvent);
 
-                command.ExecuteNonQuery();
+                affectedRows = command.ExecuteNonQuery();
             }
             CloseConnection();
+
+            if (affectedRows > 0)
+            {
+                _idtypeevent = idEvent;
+                _idtypeevent = idTypeEvent;
+                _nameevent = nameEvent;
+            }
         }
 
         public void DeleteEvent(int idEvent)
@@ -96,8 +117,8 @@ namespace mypass.Model
                 {
                     if (reader.Read())
                     {
-                        result["IdEvent"] = reader["IdEvent"].ToString();
-                        result["IDTypeEvent"] = reader["IDTypeEvent"].ToString();
+                        result["IdEvent"] = reader.GetInt32(reader.GetOrdinal("IdEvent")).ToString();
+                        result["IdTypeEvent"] = reader.GetInt32(reader.GetOrdinal("IdTypeEvent")).ToString();
                         result["NameEvent"] = reader["NameEvent"].ToString();
                     }
                 }
@@ -105,9 +126,33 @@ namespace mypass.Model
             CloseConnection();
             return result;
         }
-        public void LoadDataFromEventsDB()
+        public List<Dictionary<string, string>> GetAllEvents()
         {
+            OpenConnection();
 
+            var EventsList = new List<Dictionary<string, string>>();
+
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT IdEvent, IdTypeEvent, NameEvent FROM Events;";
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var EventsData = new Dictionary<string, string>
+                        {
+                            ["IdEvent"] = reader.GetInt32(reader.GetOrdinal("IdEvent")).ToString(),
+                            ["IdTypeEvent"] = reader.GetInt32(reader.GetOrdinal("IdTypeEvent")).ToString(),
+                            ["NameEvent"] = reader["NameEvent"].ToString(),
+                        };
+                        EventsList.Add(EventsData);
+                    }
+                }
+            }
+
+            CloseConnection();
+            return EventsList;
         }
     }
 }
