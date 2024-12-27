@@ -14,17 +14,19 @@ namespace mypass.Model
     internal class MainAuthWindowClass
     {
         
-        public void Registration(string Login, string Password, string Username, string UserSecondName) {
+        public bool Registration(string Login, string Password, string Username, string UserSecondName) {
 
             var DB = new DataBase();
             if (DB.CreateDataBase(Login) == true)
             {
                 var user = new UsersDB(DB._databasePath);
                 user.AddUser(Login, Username, UserSecondName, Password, "asdmkojashdfoashdasij");
+                return true;
             }
             else
             {
                 ErrorWindow.ShowError("Такой пользователь уже существует!");
+                return false;
             }
         }
 

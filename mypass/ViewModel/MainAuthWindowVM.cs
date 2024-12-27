@@ -170,10 +170,13 @@ namespace mypass.ViewModel
                 switch (MainWinClass.IsPasswordNorm(PassReg, PassRegConf))
                 {
                     case 1:
-                        MainWinClass.Registration(LoginReg, PassRegConf, Username, UserSecondname);
-                        _bdName = $"{LoginReg}.db";
-                        FullBDPath = Path.Combine(MainWinClass.DBpath, DBName);
-                        SwitchWindow(obj);
+                        if (MainWinClass.Registration(LoginReg, PassRegConf, Username, UserSecondname))
+                        {
+                            _bdName = $"{LoginReg}.db";
+                            FullBDPath = Path.Combine(MainWinClass.DBpath, DBName);
+                            SwitchWindow(obj);
+                        }
+                       
                         break;
                     case 2:
                         MainWinClass.PassNotEquel();
