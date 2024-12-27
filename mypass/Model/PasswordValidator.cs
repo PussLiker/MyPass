@@ -12,7 +12,6 @@ namespace mypass.Model
             Medium,
             Strong
         }
-
         // Метод проверки с детализацией
         public static (PasswordStrength strength, List<string> feedback) CheckPasswordStrength(string password)
         {

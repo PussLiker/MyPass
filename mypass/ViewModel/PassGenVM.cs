@@ -71,6 +71,7 @@ namespace mypass.ViewModel
                 {
                     _includeLowercase = value;
                     OnPropertyChanged(nameof(IncludeLowercase));
+                    EnsureAtLeastOneCheckboxIsSelected();
                 }
             }
         }
@@ -85,6 +86,7 @@ namespace mypass.ViewModel
                 {
                     _includeUppercase = value;
                     OnPropertyChanged(nameof(IncludeUppercase));
+                    EnsureAtLeastOneCheckboxIsSelected();
                 }
             }
         }
@@ -99,6 +101,7 @@ namespace mypass.ViewModel
                 {
                     _includeDigits = value;
                     OnPropertyChanged(nameof(IncludeDigits));
+                    EnsureAtLeastOneCheckboxIsSelected();
                 }
             }
         }
@@ -113,6 +116,7 @@ namespace mypass.ViewModel
                 {
                     _includeSpecialCharacters = value;
                     OnPropertyChanged(nameof(IncludeSpecialCharacters));
+                    EnsureAtLeastOneCheckboxIsSelected();
                 }
             }
         }
@@ -127,6 +131,7 @@ namespace mypass.ViewModel
                 {
                     _isCheckBoxEnabled = value;
                     OnPropertyChanged(nameof(IsCheckBoxEnabled));
+                    EnsureAtLeastOneCheckboxIsSelected();
                 }
             }
         }
@@ -152,6 +157,7 @@ namespace mypass.ViewModel
                     _specialCharacters = value;
                     OnPropertyChanged(nameof(SpecialCharacters));
                     UpdateCheckBoxState();
+                    EnsureAtLeastOneCheckboxIsSelected();
                 }
             }
         }
@@ -193,6 +199,15 @@ namespace mypass.ViewModel
             catch (TaskCanceledException)
             {
 
+            }
+        }
+        private void EnsureAtLeastOneCheckboxIsSelected()
+        {
+            // Если ни один чекбокс не выбран, восстанавливаем последний
+            if (!IncludeLowercase && !IncludeUppercase && !IncludeDigits && !IncludeSpecialCharacters)
+            {
+                // Пример: Восстанавливаем последний снятый чекбокс
+                IncludeUppercase = true;
             }
         }
 

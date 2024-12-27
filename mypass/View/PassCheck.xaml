@@ -20,12 +20,12 @@
                          Style="{StaticResource TextBoxStyle}"
                          Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" 
                          FontSize="18"
-                         Margin="0 0 0 20"
+                         Margin="20"
                          Padding="12"
                          Background="#3C3C3F"
                          BorderBrush="#5A5A5D"
                          Foreground="PeachPuff"
-                         BorderThickness="1"
+                         BorderThickness="0"
                          VerticalAlignment="Center"/>
 
                 <!-- Кнопка проверки -->

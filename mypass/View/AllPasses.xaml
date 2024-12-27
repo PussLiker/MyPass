@@ -25,7 +25,7 @@
         <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
             <Grid>
                 <!-- Верхняя панель -->
-                <Grid Background="#2d2d30" Height="70" VerticalAlignment="Top" Margin="0,30,0,0">
+                <Grid Background="#1a1a1d" Height="70" VerticalAlignment="Top" Margin="0,30,0,0">
                     <!-- Кнопка "Добавить аккаунт" -->
                     <Button Content="Добавить аккаунт" 
                             Command="{Binding OpenAddAccountWindowCommand}" 
@@ -97,11 +97,11 @@
                                                                 Background="Transparent" 
                                                                 CornerRadius="5"/>
                                                                 <iconPacks:PackIconMaterial x:Name="Icon"
-                                                    Kind="ContentCopy"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="PeachPuff" 
-                                                    Width="8"/>
+                                                                                            Kind="ContentCopy"
+                                                                                            HorizontalAlignment="Center"
+                                                                                            VerticalAlignment="Center"
+                                                                                            Foreground="PeachPuff" 
+                                                                                            Width="8"/>
                                                             </Grid>
                                                             <ControlTemplate.Triggers>
                                                                 <Trigger Property="IsMouseOver" Value="True">

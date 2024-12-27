@@ -68,13 +68,13 @@
                     <Button Style="{StaticResource ButtonSimp}" Content="Добавить" Command="{Binding AddAccountCommand}" 
                         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" 
                         Margin="0,0,120,0"
-                        Height="20"
+                        Height="30"
                         Width="100"
                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Button Style="{StaticResource ButtonSimp}" Content="Закрыть"
                     Command="{Binding CloseCommand}" 
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" 
-                    Height="20"
+                    Height="30"
                     Width="100" Margin="120,0,0,0"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"/>
