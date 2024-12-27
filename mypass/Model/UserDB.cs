@@ -99,11 +99,12 @@ namespace mypass.Model
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = query;
-                command.Parameters.AddWithValue("@LoginUser", login);
+
                 command.Parameters.AddWithValue("@FirstName", newFirstname);
                 command.Parameters.AddWithValue("@SecondName", newSecondname);
                 command.Parameters.AddWithValue("@MasterPasswordHash", newMasterPasswordHash);
                 command.Parameters.AddWithValue("@Salt", newSalt);
+                command.Parameters.AddWithValue("@LoginUser", login);
 
                 affectedRows = command.ExecuteNonQuery();
             }

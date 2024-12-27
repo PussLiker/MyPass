@@ -92,7 +92,7 @@ namespace mypass.Model
         }
 
         // Метод для обновления аккаунта
-        public void UpdateAccount(int idAccount, string loginUser, string serviceName, string url, string loginAccount, string password)
+        public void UpdateAccount(int idAccount, string newloginUser, string newserviceName, string newurl, string newloginAccount, string newpassword)
         {
             OpenConnection();
 
@@ -107,12 +107,13 @@ namespace mypass.Model
 
             using (var command = new SQLiteCommand(query, _connection))
             {
+                
+                command.Parameters.AddWithValue("@LoginUser", newloginUser);
+                command.Parameters.AddWithValue("@ServiceName", newserviceName);
+                command.Parameters.AddWithValue("@URL", newurl);
+                command.Parameters.AddWithValue("@LoginAccount", newloginAccount);
+                command.Parameters.AddWithValue("@Password", newpassword);
                 command.Parameters.AddWithValue("@IdAccount", idAccount);
-                command.Parameters.AddWithValue("@LoginUser", loginUser);
-                command.Parameters.AddWithValue("@ServiceName", serviceName);
-                command.Parameters.AddWithValue("@URL", url);
-                command.Parameters.AddWithValue("@LoginAccount", loginAccount);
-                command.Parameters.AddWithValue("@Password", password);
 
                 affectedRows = command.ExecuteNonQuery();
             }
@@ -123,11 +124,11 @@ namespace mypass.Model
             if (affectedRows > 0)
             {
                 _idaccount = idAccount;
-                _loginuser = loginUser;
-                _servicename = serviceName;
-                _url = url;
-                _loginaccount = loginAccount;
-                _password = password;
+                _loginuser = newloginUser;
+                _servicename = newserviceName;
+                _url = newurl;
+                _loginaccount = newloginAccount;
+                _password = newpassword;
             }
         }
 

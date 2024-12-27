@@ -56,7 +56,7 @@ namespace mypass.Model
         }
 
         // Метод для обновления тега
-        public void UpdateTag(int idTag, string nameTag)
+        public void UpdateTag(int idTag, string newnameTag)
         {
             OpenConnection();
 
@@ -65,7 +65,7 @@ namespace mypass.Model
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "UPDATE Tags SET NameTag = @NameTag WHERE IdTag = @IdTag;";
-                command.Parameters.AddWithValue("@NameTag", nameTag);
+                command.Parameters.AddWithValue("@NameTag", newnameTag);
                 command.Parameters.AddWithValue("@IdTag", idTag);
 
                 affectedRows = command.ExecuteNonQuery();
@@ -76,7 +76,7 @@ namespace mypass.Model
             if (affectedRows > 0)
             {
                 _idtag = idTag;
-                _nametag = nameTag;
+                _nametag = newnameTag;
             }
         }
 

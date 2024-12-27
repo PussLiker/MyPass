@@ -70,7 +70,7 @@ namespace mypass.Model
         }
 
         // Метод для обновления связи
-        public void UpdateTagAccount(int idTagsAccounts, int idAccount, int idTag, DateTime TimeTagging)
+        public void UpdateTagAccount(int idTagsAccounts, int newidAccount, int newidTag, DateTime newTimeTagging)
         {
             OpenConnection();
 
@@ -79,9 +79,10 @@ namespace mypass.Model
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "UPDATE TagsAccounts SET IdAccount = @IdAccount, IdTag = @IdTag, TimeTagging = @TimeTagging WHERE IdTagsAccounts = @IdTagsAccounts;";
-                command.Parameters.AddWithValue("@IdAccount", idAccount);
-                command.Parameters.AddWithValue("@IdTag", idTag);
-                command.Parameters.AddWithValue("@TimeTagging", TimeTagging);
+
+                command.Parameters.AddWithValue("@IdAccount", newidAccount);
+                command.Parameters.AddWithValue("@IdTag", newidTag);
+                command.Parameters.AddWithValue("@TimeTagging", newTimeTagging);
                 command.Parameters.AddWithValue("@IdTagsAccounts", idTagsAccounts);
                 affectedRows = command.ExecuteNonQuery();
             }
@@ -90,9 +91,9 @@ namespace mypass.Model
             if (affectedRows > 0)
             {
                 _idtagsaccounts = idTagsAccounts;
-                _idaccount = idAccount;
-                _idtag = idTag;
-                _timetagging = TimeTagging;
+                _idaccount = newidAccount;
+                _idtag = newidTag;
+                _timetagging = newTimeTagging;
             }
         }
 

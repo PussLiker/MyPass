@@ -71,7 +71,7 @@ namespace mypass.Model
         }
 
         // Метод для обновления записи
-        public void UpdateAction(int idAction, int idAccount, int idEvent, DateTime timeEvent)
+        public void UpdateAction(int idAction, int newidAccount, int newidEvent, DateTime newtimeEvent)
         {
             OpenConnection();
             string query = @"UPDATE Actions 
@@ -83,10 +83,11 @@ namespace mypass.Model
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = query;
+                
+                command.Parameters.AddWithValue("@IdAccount", newidAccount);
+                command.Parameters.AddWithValue("@IdEvent", newidEvent);
+                command.Parameters.AddWithValue("@TimeEvent", newtimeEvent);
                 command.Parameters.AddWithValue("@IdAction", idAction);
-                command.Parameters.AddWithValue("@IdAccount", idAccount);
-                command.Parameters.AddWithValue("@IdEvent", idEvent);
-                command.Parameters.AddWithValue("@TimeEvent", timeEvent);
 
                 affectedRows = command.ExecuteNonQuery();
             }
@@ -96,9 +97,9 @@ namespace mypass.Model
             if (affectedRows > 0)
             {
                 _idaction = idAction;
-                _idaccount = idAccount;
-                _idevent = idEvent;
-                _timeevent = timeEvent;
+                _idaccount = newidAccount;
+                _idevent = newidEvent;
+                _timeevent = newtimeEvent;
             }
         }
 

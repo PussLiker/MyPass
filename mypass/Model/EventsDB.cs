@@ -59,7 +59,7 @@ namespace mypass.Model
             }
         }
 
-        public void UpdateEvent(int idEvent, int idTypeEvent, string nameEvent)
+        public void UpdateEvent(int idEvent, int newidTypeEvent, string newnameEvent)
         {
             OpenConnection();
             string query = @"UPDATE Events 
@@ -71,9 +71,10 @@ namespace mypass.Model
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = query;
+
+                command.Parameters.AddWithValue("@IdTypeEvent", newidTypeEvent);
+                command.Parameters.AddWithValue("@NameEvent", newnameEvent);
                 command.Parameters.AddWithValue("@IdEvent", idEvent);
-                command.Parameters.AddWithValue("@IdTypeEvent", idTypeEvent);
-                command.Parameters.AddWithValue("@NameEvent", nameEvent);
 
                 affectedRows = command.ExecuteNonQuery();
             }
@@ -82,8 +83,8 @@ namespace mypass.Model
             if (affectedRows > 0)
             {
                 _idtypeevent = idEvent;
-                _idtypeevent = idTypeEvent;
-                _nameevent = nameEvent;
+                _idtypeevent = newidTypeEvent;
+                _nameevent = newnameEvent;
             }
         }
 

@@ -61,6 +61,7 @@ namespace mypass.Model
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "UPDATE TypeEvents SET TypeEvent = @TypeEvent WHERE IdTypeEvent = @IdTypeEvent;";
+
                 command.Parameters.AddWithValue("@TypeEvent", newTypeEvent);
                 command.Parameters.AddWithValue("@IdTypeEvent", idTypeEvent);
 
