@@ -1,5 +1,6 @@
 ﻿using mypass.Model;
 using mypass.Utilities;
+using mypass.View;
 using System.Windows;
 using System.Windows.Input;
 
@@ -7,12 +8,13 @@ namespace mypass.ViewModel
 {
     internal class NewAccountVM : Utilities.ViewModelBase
     {
+        MainAuthWindowVM mainAuthWindowVM = new MainAuthWindowVM();
         public string ServiceName { get; set; }
         public string URL { get; set; }
         public string LoginAccount { get; set; }
         public string Password { get; set; }
         public ICommand AddAccountCommand { get; }
-        public ICommand CloseCommand {  get; }
+        public ICommand CloseCommand { get; }
 
         private AccountsDB _accountsDB; // База данных для работы с аккаунтами
         private string _loginUserAccount;
@@ -24,8 +26,10 @@ namespace mypass.ViewModel
 
             AddAccountCommand = new RelayCommand(AddAccount);
             CloseCommand = new RelayCommand(Close);
-            MainAuthWindowVM mainAuthWindowVM = new MainAuthWindowVM();
+            
             _accountsDB = new AccountsDB(mainAuthWindowVM.FullBDPath);  // Укажите путь к вашей базе данных
+
+            AddTagCommand = new RelayCommand(AddTag);   
 
         }
 
@@ -55,5 +59,43 @@ namespace mypass.ViewModel
                 window.Close();
             }
         }
+
+
+
+        //__________________________________________________________________________________________________________________________________
+        //РЕАЛИЗАЦИЯ БЕК + БД ДЛЯ ТЕГОВ, ЗАКОММЕНТИТЬ В СЛУЧАЕ ЧП
+        //__________________________________________________________________________________________________________________________________
+
+        public ICommand AddTagCommand { get; set; }
+        public ICommand ChangeTag {  get; set; }
+        private string _tagName;
+        
+        public string TagName
+        {
+            get => _tagName;
+            set
+            {
+                if (value != _tagName)
+                {
+                    _tagName = value;
+                    OnPropertyChanged(nameof(_tagName));
+                }
+            }
+        }
+
+        private void AddTag(object obj)
+        {
+            TagsDB tagsDB = new TagsDB(mainAuthWindowVM.DBName);
+            if (tagsDB != null)
+            {
+                tagsDB.AddTag(_tagName);
+            }
+            else
+            {
+                ErrorWindow.ShowError("Тег не может быть пустым!");
+            }
+        }
+
+
     }
 }

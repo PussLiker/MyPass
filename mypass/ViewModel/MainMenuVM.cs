@@ -57,7 +57,8 @@ namespace mypass.ViewModel
 
         public MainMenuVM()
         {
-            _accountsDB = new AccountsDB("D:\\App\\mypass\\bin\\Debug\\DataBase\\yadernijhuesos.db");
+            MainAuthWindowVM mainAuthWindowVM = new MainAuthWindowVM();
+            _accountsDB = new AccountsDB(mainAuthWindowVM.FullBDPath);
 
             // Загрузка данных из базы
             LoadAccounts();

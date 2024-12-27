@@ -261,6 +261,7 @@
     <Compile Include="Model\EventsDB.cs" />
     <Compile Include="Model\Logging.cs" />
     <Compile Include="Model\MainAuthWindowClass.cs" />
+    <Compile Include="Model\NewAccount.cs" />
     <Compile Include="Model\OpenLink.cs" />
     <Compile Include="Model\PasswordDoublicateChecker.cs" />
     <Compile Include="Model\PasswordCheckResult.cs" />

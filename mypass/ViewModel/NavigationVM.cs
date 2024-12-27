@@ -45,21 +45,7 @@ namespace mypass.ViewModel
         private void MainMenu(object obj) => CurrentView = new MainMenuVM();
         private void Notifications(object obj) => CurrentView = new NofiticationsVM();
         private void PassCheck(object obj) => CurrentView = new PassCheckVM();
-        private void VhodStart(object obj)
-        {
-            if (obj is Window window)
-            {
-                if (_mainWindow == null)
-                {
-                    _mainWindow = new MainWindow();
-                    _mainWindow.Closed += (s, args) => _mainWindow = null;
-                    _mainWindow.Show();
-                }
-                else
-                    _mainWindow = new MainWindow();
-                window?.Close();
-            }
-        }
+
         
         private void PassGen(object obj)
         {
@@ -69,12 +55,6 @@ namespace mypass.ViewModel
                 _passGenWindow.Closed += (s, args) => _passGenWindow = null;
                 _passGenWindow.Show();
 
-                // !!!!!!УДАЛИТЬ ПОСЛЕ ПРОВЕРКИ БД!!!!!!!
-                string dbclient = "Dima";
-
-                var DBM = new DataBaseManager();
-                DBM.CreateDataBase(dbclient);
-                DebugConfig.LoadConfig();
 
             }
             else
@@ -122,7 +102,6 @@ namespace mypass.ViewModel
             MinimizeCommand = new RelayCommand(Minimize);
             MaximizeCommand = new RelayCommand(Maximize);
             CloseCommand = new RelayCommand(Close);
-            VhodStartCommand = new RelayCommand(VhodStart);
             //начальная страница
             CurrentView = new MainMenuVM();
         }
