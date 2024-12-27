@@ -48,4 +48,8 @@
         <view:MainAuthWindow/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:ErrorWinVM}">
+        <view:ErrorWindow/>
+    </DataTemplate>
+    
 </ResourceDictionary>

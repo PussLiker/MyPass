@@ -20,15 +20,18 @@ namespace mypass.ViewModel
         private bool _isPasswordEmpty = true;
         private MainWindow _mainWindow;
 
-        RegistrationPage _registrationPage  ;
+        RegistrationPage _registrationPage ;
         MainAuthWindowClass MainWinClass = new MainAuthWindowClass();
         public string PassReg
         {
             get => _passReg;
             set
-            {               
-                    _passReg = value;
-                    OnPropertyChanged(nameof(PassReg));                
+            {
+                        if (value != _passRegConf)
+                        {
+                            _passReg = value;
+                            OnPropertyChanged(nameof(PassReg));
+                        }
             }
         }
         public string PassRegConf
@@ -121,9 +124,10 @@ namespace mypass.ViewModel
             }
         }
 
-        public void SwitchWindow(Object obj)
+        public void SwitchWindow(object obj)
         {
-            if(obj is Window window){
+            if (obj is Window window)
+            {
                 if (_mainWindow == null)
                 {
                     _mainWindow = new MainWindow();
@@ -132,7 +136,7 @@ namespace mypass.ViewModel
                 }
                 else
                     _mainWindow = new MainWindow();
-                window?.Close();                
+                window?.Close();
             }
         }
     
@@ -140,6 +144,7 @@ namespace mypass.ViewModel
         public ICommand RegPageCommand { get; set; }
         public ICommand LoginPageCommand { get; set; }
         public ICommand RegistrationToSystemCommand {  get; set; }
+        public ICommand ExitCommand { get; set; }
         public object PohujView
         {
             get { return _pohujView; }
@@ -149,7 +154,7 @@ namespace mypass.ViewModel
         public void Registration(object obj) { PohujView = new RegistrationPageVM(); }
         public void Login(object obj) => PohujView = new VhodVM();
         public void RegistrationToSystem(object obj) {
-            if (MainWinClass.GdePole(LoginReg) || MainWinClass.GdePole(Username) || MainWinClass.GdePole(UserSecondname))
+            if (MainWinClass.GdePole(LoginReg) && MainWinClass.GdePole(Username) && MainWinClass.GdePole(UserSecondname))
             {
                 switch (MainWinClass.IsPasswordNorm(PassReg, PassRegConf))
                 {
@@ -158,20 +163,27 @@ namespace mypass.ViewModel
                         SwitchWindow(obj);
                         break;
                     case 2:
-                        _registrationPage.PassNotNorm();
+                        MainWinClass.PassNotEquel();
                         break;
                     case 3:
-
+                        MainWinClass.PassNotNull();
                         break;
                 }
             }
-            else { }
+            else 
+            {
+            MainWinClass.GdePolaNull();
+            }
         }
-        
+        public void Exit(object obj)
+        {
+            if (obj is Window w)
+            { w?.Close(); }
+        }
 
         public MainAuthWindowVM()
         {
-
+            ExitCommand = new RelayCommand(Exit);
             RegPageCommand = new RelayCommand(Registration);
             LoginPageCommand = new RelayCommand(Login);
             RegistrationToSystemCommand = new RelayCommand(RegistrationToSystem);

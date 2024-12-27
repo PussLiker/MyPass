@@ -1,0 +1,41 @@
+﻿<Window x:Class="mypass.View.ErrorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:mypass.ViewModel"
+        Title="Ошибка"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
+        Topmost="True"
+        MinHeight="100" MinWidth="200"
+        WindowStyle="None" Background="Transparent" Icon="/2milniimolnii.jpg" 
+        AllowsTransparency="True" MaxHeight="300" MaxWidth="400" >
+
+    <Window.DataContext>
+        <vm:ErrorWinVM/>
+    </Window.DataContext>
+    <Grid MouseDown="Grid_MouseDown">
+    <Border Background="#151517" CornerRadius="3">
+        <Grid  Margin="10">
+        <StackPanel>
+            <TextBlock Text="{Binding ErrorMessage}" 
+                       Style="{StaticResource TextStyleText}"
+                       TextWrapping="WrapWithOverflow"
+                       
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Margin="0,10,0,5" TextAlignment="Center"
+                       />
+            <Button Style="{StaticResource ButtonSimp}"
+                    Margin="0,10,0,0"
+                    Width="80"
+                    Height="25"
+                    VerticalAlignment="Bottom"
+                    Content="Закрыть" 
+                    HorizontalAlignment="Center" 
+                    Command="{Binding CloseCommand}" />
+             </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
