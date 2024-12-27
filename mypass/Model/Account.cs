@@ -9,6 +9,8 @@ namespace mypass.Model
         public string Email { get; set; }
 
         private bool _isPasswordVisible;
+        internal string URL;
+
         public bool IsPasswordVisible
         {
             get { return _isPasswordVisible; }

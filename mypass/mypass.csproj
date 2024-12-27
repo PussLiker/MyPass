@@ -247,6 +247,9 @@
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountsDB.cs" />
     <Compile Include="Model\ActionsDB.cs" />
+    <Compile Include="Model\BindablePasswordBoxNorm.xaml.cs">
+      <DependentUpon>BindablePasswordBoxNorm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
@@ -262,6 +265,7 @@
     <Compile Include="Model\PasswordDoublicateChecker.cs" />
     <Compile Include="Model\PasswordCheckResult.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
+    <Compile Include="Model\PasswordHasher.cs" />
     <Compile Include="Model\PasswordToMaskedConverter.cs" />
     <Compile Include="Model\PasswordToMaskedMultiConverter.cs" />
     <Compile Include="Model\PasswordValidator.cs" />
@@ -283,11 +287,15 @@
     <Compile Include="ViewModel\MainAuthWindowVM.cs" />
     <Compile Include="ViewModel\MainMenuVM.cs" />
     <Compile Include="ViewModel\NavigationVM.cs" />
+    <Compile Include="ViewModel\NewAccountVM.cs" />
     <Compile Include="ViewModel\NofiticationsVM.cs" />
     <Compile Include="ViewModel\PassCheckVM.cs" />
     <Compile Include="ViewModel\PassGenVM.cs" />
     <Compile Include="ViewModel\RegistrationPageVM.cs" />
     <Compile Include="ViewModel\VhodVM.cs" />
+    <Compile Include="View\AddAccountWindow.xaml.cs">
+      <DependentUpon>AddAccountWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Cards.xaml.cs">
       <DependentUpon>Cards.xaml</DependentUpon>
     </Compile>
@@ -321,11 +329,19 @@
     <Compile Include="View\Vhod.xaml.cs">
       <DependentUpon>Vhod.xaml</DependentUpon>
     </Compile>
+    <Page Include="Model\BindablePasswordBoxNorm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Model\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Utilities\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddAccountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

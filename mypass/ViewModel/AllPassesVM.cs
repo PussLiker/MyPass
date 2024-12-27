@@ -1,50 +1,74 @@
-﻿using System.Collections.ObjectModel;
+﻿using mypass.Model;
+using mypass.Utilities;
+using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
-using mypass.Model;
-using mypass.Utilities;
 
 namespace mypass.ViewModel
 {
     internal class AllPassesVM : Utilities.ViewModelBase
     {
-        public ObservableCollection<Account> Accounts { get; set; }
+        // Инициализируем коллекцию Accounts при объявлении
+        public ObservableCollection<Account> Accounts { get; set; } = new ObservableCollection<Account>();
+
         public ICommand OpenLinkCommand { get; }
         public ICommand CopyEmailCommand { get; }
         public ICommand CopyPasswordCommand { get; }
         public ICommand TogglePasswordVisibilityCommand { get; }
+        public ICommand OpenAddAccountWindowCommand { get; }
+
+        private AccountsDB _accountsDB; // База данных для работы с аккаунтами
 
         public AllPassesVM()
         {
-            // Привязываем команды к методам с учетом параметров
+            OpenAddAccountWindowCommand = new RelayCommand(OpenAddAccountWindow);
+
+            // Инициализация базы данных
+            _accountsDB = new AccountsDB("C:\\project\\mypass\\bin\\Debug\\DataBase\\123.db");  // Замените на путь к вашей базе данных
+
+            // Привязка команд
             CopyEmailCommand = new RelayCommand(CopyEmail);
             CopyPasswordCommand = new RelayCommand(CopyPassword);
-            TogglePasswordVisibilityCommand = new RelayCommand(TogglePasswordVisibility); // Используем RelayCommand без параметра типа
+            TogglePasswordVisibilityCommand = new RelayCommand(TogglePasswordVisibility);
 
+            // Команда для открытия ссылки
             OpenLinkCommand = new RelayCommand(parameter =>
             {
                 if (parameter is Account account)
                 {
-                    account.OpenLink();
+                    OpenUrl(account.URL);
                 }
             });
 
-            Accounts = new ObservableCollection<Account>
+            // Загружаем данные из базы
+            LoadAccounts();
+        }
+
+        private void LoadAccounts()
+        {
+            // Загружаем все аккаунты из базы данных и обновляем коллекцию
+            var accountsFromDb = _accountsDB.LoadDataFromAccountsDB();
+            Accounts.Clear();
+
+            foreach (var accountData in accountsFromDb)
             {
-                new Account { Username = "vk.com", Email = "user1@example.com", Password = "password" },
-                new Account { Username = "not-a-url.ru", Email = "user2@example.com", Password = "password" },
-                new Account { Username = "", Email = "user1@example.com", Password = "password" },
-                new Account { Username = "https://not-a-url", Email = "user2@example.com", Password = "password" },
-                new Account { Username = "http://pornhub.com", Email = "user1@example.com", Password = "password" },
-                new Account { Username = "ghsd;l'kjsdfghladfgb;ljh", Email = "user2@example.com", Password = "password" }
-            };
+                Accounts.Add(new Account
+                {
+                    Username = accountData["ServiceName"],
+                    Email = accountData["LoginAccount"],
+                    Password = EncryptionModel.Decrypt(accountData["Password"], "123"),
+                    URL = accountData["URL"]
+                });
+            }
         }
 
         private void CopyEmail(object parameter)
         {
             if (parameter is Account account)
             {
-                Clipboard.SetText(account.Email); // Копирует Email в буфер обмена
+                Clipboard.SetText(account.Email);
             }
         }
 
@@ -52,7 +76,7 @@ namespace mypass.ViewModel
         {
             if (parameter is Account account)
             {
-                Clipboard.SetText(account.Password); // Копирует Password в буфер обмена
+                Clipboard.SetText(account.Password);
             }
         }
 
@@ -60,8 +84,25 @@ namespace mypass.ViewModel
         {
             if (parameter is Account account)
             {
-                account.IsPasswordVisible = !account.IsPasswordVisible; // Переключаем видимость пароля для конкретной учетной записи
+                account.IsPasswordVisible = !account.IsPasswordVisible;
             }
+        }
+
+        // Метод для открытия URL
+        private void OpenUrl(string url)
+        {
+            OpenLink.Open(url);
+        }
+        private void OpenAddAccountWindow(object parameter)
+        {
+            // Создаем экземпляр окна
+            var addAccountWindow = new AddAccountWindow();  // Убедитесь, что AddAccountWindow.xaml.cs существует
+
+            // Открываем окно модально
+            addAccountWindow.ShowDialog();  // Показываем окно модально
+
+            // После того как окно закрыто, обновляем список аккаунтов
+            LoadAccounts();
         }
     }
 }
