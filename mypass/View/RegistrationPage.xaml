@@ -4,6 +4,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="clr-namespace:mypass.ViewModel"
+      xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:local="clr-namespace:mypass.Model"
       Height="450" Width="400"
       mc:Ignorable="d"
@@ -20,10 +22,48 @@
 
 
     <Grid>
-           <Border Background="{DynamicResource Background}" CornerRadius="10" Padding="20" Grid.RowSpan="2">
+        <Border Background="{DynamicResource Background}" CornerRadius="10" Padding="20" Grid.RowSpan="2">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="-10,-10,-10,-10" Height="30">
+
+                <Button Height="30" Width="30" Margin="0,0,0,0" BorderThickness="0" Background="Transparent"
+            HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding ExitCommand}" 
+            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <!-- Граница кнопки -->
+                                <Border x:Name="exitBorder" 
+                        Height="30" Width="30" 
+                        Style="{StaticResource ForBorderPassLen}" 
+                        Background="Transparent">
+                                </Border>
+                                <!-- Иконка кнопки -->
+                                <iconPacks:PackIconMaterial x:Name="exitButton" 
+                        Kind="Close" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        Foreground="#3f3f40" />
+                            </Grid>
+                            <!-- Триггеры для кнопки -->
+                            <ControlTemplate.Triggers>
+                                <!-- Наведение -->
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="exitBorder" Property="Background" Value="#202020"/>
+                                    <Setter TargetName="exitButton" Property="Foreground" Value="#636364"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="exitBorder" Property="Background" Value="#636364"/>
+                                    <Setter TargetName="exitButton" Property="Foreground" Value="#202020"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10">
                 <TextBlock Text="Регистрация" Style="{StaticResource TextStyle}" HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,20"/>
-
+              
                 <!-- Поле для имени -->
                 <Grid Margin="0,10,0,0">
                     <TextBox Text="{Binding Username}" x:Name="FirstNameTextBox" Width="250" Height="30" Style="{StaticResource TextBoxStyle}" />
@@ -76,10 +116,9 @@
                 </TextBlock>    
 
                 <!-- Кнопка регистрации -->
-                <Button Content="Зарегистрироваться" Width="250" Height="40" Style="{StaticResource ButtonSimp}" Command="{Binding RegistrationToSystemCommand}" Margin="0,0,0,0" />
-
-
+                <Button Content="Зарегистрироваться" Width="250" Height="40" Style="{StaticResource ButtonSimp}" Command="{Binding RegistrationToSystemCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Margin="0,0,0,0" />
             </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

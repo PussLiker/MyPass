@@ -12,7 +12,6 @@ namespace mypass.View
     public partial class RegistrationPage : UserControl
     {
 
-        MainAuthWindowVM authWindow = new MainAuthWindowVM();
 
         public RegistrationPage()
 
@@ -21,9 +20,6 @@ namespace mypass.View
 
         }
 
-        public void PassNotNorm()
-        {
-            Console.WriteLine("Пароль не одинаковый");
-        }
+
     }
 }

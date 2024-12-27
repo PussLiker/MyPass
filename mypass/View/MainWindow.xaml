@@ -10,7 +10,7 @@
         WindowStyle="None"
         Title="MainWindow" Height="680" Width="1080" 
         WindowStartupLocation="CenterScreen" Background="Transparent"
-        AllowsTransparency="True" Icon="/2milniimolnii.jpg" 
+        AllowsTransparency="True" Icon="/2 Мыльные Молнии(App).jpeg" 
         >
     <Window.Resources>
 

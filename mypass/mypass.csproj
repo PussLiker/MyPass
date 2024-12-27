@@ -284,6 +284,7 @@
     <Compile Include="ViewModel\AllPassesVM.cs" />
     <Compile Include="ViewModel\CardsVM.cs" />
     <Compile Include="ViewModel\EmailsVM.cs" />
+    <Compile Include="ViewModel\ErrorWinVM.cs" />
     <Compile Include="ViewModel\MainAuthWindowVM.cs" />
     <Compile Include="ViewModel\MainMenuVM.cs" />
     <Compile Include="ViewModel\NavigationVM.cs" />
@@ -301,6 +302,9 @@
     </Compile>
     <Compile Include="View\Emails.xaml.cs">
       <DependentUpon>Emails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ErrorWindow.xaml.cs">
+      <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainAuthWindow.xaml.cs">
       <DependentUpon>MainAuthWindow.xaml</DependentUpon>
@@ -350,6 +354,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Cards.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ErrorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -512,7 +520,9 @@
   <ItemGroup>
     <Resource Include="2milniimolnii.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="2 Мыльные Молнии%28App%29.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
