@@ -49,7 +49,7 @@
                             <Border Background="#202020" Width="660" Height="120" >
                                 
                                 <Grid>
-                                    <TextBlock Text="У вас плохих паролей: " Height="auto" Width="auto" HorizontalAlignment="Left"
+                                    <TextBlock Text="Плохих паролей: " Height="auto" Width="auto" HorizontalAlignment="Left"
                                                Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center" Margin="16 0 0 0"/>
                                     <TextBlock Text="{Binding WeakPasswordsCount}" Height="auto" Width="auto" Margin="530,0,0,0"
                                                Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center"/>
@@ -67,7 +67,7 @@
                             <Border HorizontalAlignment="Left" Background="#1f5539" CornerRadius="10,0,0,10" BorderThickness="0" Width="20" Height="120" />
                             <Border Background="#202020" Width="660" Height="120" >
                                 <Grid>
-                                    <TextBlock Text="У вас хороших паролей: " Height="auto" Width="auto" HorizontalAlignment="Left"
+                                    <TextBlock Text="Хороших паролей: " Height="auto" Width="auto" HorizontalAlignment="Left"
                                                Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center" Margin="16 0 0 0"/>
                                     <TextBlock Text="{Binding StrongPasswordsCount}" Height="auto" Width="auto" Margin="530,0,0,0"
                                                Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center"/>
@@ -84,7 +84,7 @@
                             <Border HorizontalAlignment="Left" Background="#b08406" CornerRadius="10,0,0,10" BorderThickness="0" Width="20" Height="120" />
                             <Border Background="#202020" Width="660" Height="120">
                                 <Grid>
-                                    <TextBlock Text="У вас повторяющихся паролей: " Height="auto" Width="auto" HorizontalAlignment="Left"
+                                    <TextBlock Text="Повторяющихся паролей: " Height="auto" Width="auto" HorizontalAlignment="Left"
                                                Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center" Margin="16 0 0 0"/>
                                     <TextBlock Text="{Binding DuplicatePasswordsCount}" Height="auto" Width="auto" Margin="530,0,0,0"
                                                Style="{StaticResource TextStyle}" FontSize="35" TextAlignment="Center"/>

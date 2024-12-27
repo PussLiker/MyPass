@@ -18,7 +18,7 @@
 
     <!-- Установка контекста данных -->
     <UserControl.DataContext>
-        <vm:AllPassesVM/>
+        <vm:AllPassesVM />
     </UserControl.DataContext>
 
     <Grid>
@@ -26,7 +26,7 @@
             <Grid>
                 <!-- Верхняя панель -->
 
-                <Grid Background="#2d2d30" Height="70" VerticalAlignment="Top" Margin="0,30,0,0">
+                <Grid Background="#1a1a1d" Height="70" VerticalAlignment="Top" Margin="0,30,0,0">
 
                     <!-- Кнопка "Добавить аккаунт" -->
                     <Button Content="Добавить аккаунт" 
@@ -210,9 +210,7 @@
                                         </Border>
 
 
-                                        <!-- Сообщение об ошибке -->
-                                        <TextBlock Text="⚠ Проблемы с паролем" Foreground="Red" FontSize="10" Grid.Row="3" Margin="5,10,0,32"/>
-
+                                        
                                         <!-- Кнопка перехода -->
                                         <Border Style="{StaticResource AnimatedButtonStyleAllPasses}" Background="#404040" Grid.Row="4" CornerRadius="10" Width="180">
                                             <Button Command="{Binding DataContext.OpenLinkCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 

@@ -19,7 +19,7 @@
 
     <Window.Resources>
         <!-- Стиль для фона -->
-        <SolidColorBrush x:Key="Background" Color="#1a1a1d" />
+        <SolidColorBrush x:Key="Background" Color="#151517" />
         <!-- Стиль для полей ввода -->
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="Background" Value="#2a2a2d"/>

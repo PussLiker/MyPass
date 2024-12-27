@@ -73,19 +73,7 @@
 
                                    
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding NotificationsCommand}"
-                              >
-
-                        <Grid>
-                            <iconPacks:PackIconMaterial Kind="Bell"
-                                Style="{StaticResource ImageStyle}" 
-                                HorizontalAlignment="Left"/>
-                            <TextBlock Text="Уведомления"
-                                Style="{StaticResource TextStyle}" 
-                                HorizontalAlignment="Left"/>
-                        </Grid>
-                    </Menu:Btn>
+                    
                     <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding PassCheckCommand}"
                               >
