@@ -25,8 +25,22 @@
         <Border CornerRadius="0,20,20,0" Background="#1a1a1d">
             <Grid>
                 <!-- Верхняя панель -->
-                <StackPanel Orientation="Horizontal" Background="#2d2d30" Height="70" VerticalAlignment="Top" Margin="0,30,0,0">
-                </StackPanel>
+                <Grid Background="#2d2d30" Height="70" VerticalAlignment="Top" Margin="0,30,0,0">
+                    <!-- Кнопка "Добавить аккаунт" -->
+                    <Button Content="Добавить аккаунт" 
+                            Command="{Binding OpenAddAccountWindowCommand}" 
+                            Background="#404040"
+                            Foreground="PeachPuff" 
+                            BorderBrush="Transparent" 
+                            Width="170" 
+                            Height="35" 
+                            Margin="10,10,60,0" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            FontWeight="Bold"
+                            Style="{StaticResource ButtonSimp}" 
+                            Cursor="Hand"/>
+                </Grid>
 
                 <!-- Область с прокруткой -->
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" 

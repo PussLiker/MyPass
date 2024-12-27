@@ -9,6 +9,7 @@ using mypass.Utilities;
 using mypass.View;
 using mypass.Model;
 using System.Data.SqlClient;
+using System.Web.UI.WebControls;
 
 namespace mypass.ViewModel
 {
@@ -105,8 +106,7 @@ namespace mypass.ViewModel
         }
         private void Close(object obj)
         {
-            if (obj is Window window)
-            { window?.Close(); }
+            ((Window)obj).Close();
         }
 
         public NavigationVM()

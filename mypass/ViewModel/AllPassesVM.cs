@@ -23,10 +23,12 @@ namespace mypass.ViewModel
 
         public AllPassesVM()
         {
-            //OpenAddAccountWindowCommand = new RelayCommand(OpenAddAccountWindow);
 
             // Инициализация базы данных
             _accountsDB = new AccountsDB("D:\\App\\mypass\\bin\\Debug\\DataBase\\yadernijhuesos.db");  // Замените на путь к вашей базе данных
+
+            OpenAddAccountWindowCommand = new RelayCommand(OpenAddAccountWindow);
+
 
             // Привязка команд
             CopyEmailCommand = new RelayCommand(CopyEmail);
@@ -93,6 +95,20 @@ namespace mypass.ViewModel
         {
             OpenLink.Open(url);
         }
+
         
+
+        private void OpenAddAccountWindow(object parameter)
+        {
+            // Создаем экземпляр окна
+            var addAccountWindow = new AddAccountWindow();  // Убедитесь, что AddAccountWindow.xaml.cs существует
+
+            // Открываем окно модально
+            addAccountWindow.ShowDialog();  // Показываем окно модально
+
+            // После того как окно закрыто, обновляем список аккаунтов
+            LoadAccounts();
+        }
+
     }
 }
