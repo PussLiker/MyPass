@@ -75,7 +75,7 @@ namespace mypass.ViewModel
                 {
                     Username = accountData["ServiceName"],
                     Email = accountData["LoginAccount"],
-                    Password = EncryptionModel.Decrypt(accountData["Password"], "123"),
+                    Password = EncryptionModel.Decrypt(accountData["Password"], PageModel.masterPassword),
                     URL = accountData["URL"]
                 };
                 Accounts.Add(account);

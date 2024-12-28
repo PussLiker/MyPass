@@ -219,7 +219,7 @@ namespace mypass.ViewModel
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
+
 
                     // Генерация случайного промежуточного пароля
 

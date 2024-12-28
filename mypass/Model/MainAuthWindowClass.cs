@@ -22,6 +22,8 @@ namespace mypass.Model
                 var user = new UsersDB(DB._databasePath);
                 string salt = PasswordHasher.GenerateSalt();
                 user.AddUser(Login, Username, UserSecondName, PasswordHasher.HashPassword(Password, salt), salt);
+                PageModel.login = Login;
+                PageModel.masterPassword = Password;
                 return true;
             }
             else
@@ -75,8 +77,10 @@ namespace mypass.Model
 
         public bool Vhodim(string Login, string Password)
         {            
-            if (UserAuth.Authenticate(Login, Password)== true)
+            if (UserAuth.Authenticate(Login, Password))
             {
+                PageModel.login = Login;
+                PageModel.masterPassword = Password;
                 return true;
             }
             return false;

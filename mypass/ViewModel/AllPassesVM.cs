@@ -34,8 +34,8 @@ namespace mypass.ViewModel
         {
             MainAuthWindowVM mainAuthWindowVM = new MainAuthWindowVM();
             // Инициализация базы данных
-            //_accountsDB = new AccountsDB(mainAuthWindowVM.FullBDPath);
-            _accountsDB = new AccountsDB("D:\\Repositorys\\MyPass\\mypass\\bin\\Debug\\DataBase\\123.db");
+            _accountsDB = new AccountsDB(mainAuthWindowVM.FullBDPath);
+
             // Привязка команд
             CopyEmailCommand = new RelayCommand(CopyEmail);
             CopyPasswordCommand = new RelayCommand(CopyPassword);
@@ -76,7 +76,7 @@ namespace mypass.ViewModel
                     ID = int.Parse(accountData["IdAccount"]),
                     Username = accountData["ServiceName"],
                     Email = accountData["LoginAccount"],
-                    Password = EncryptionModel.Decrypt(accountData["Password"], "123"),
+                    Password = EncryptionModel.Decrypt(accountData["Password"], PageModel.masterPassword),
                     URL = accountData["URL"]
                 });
             }

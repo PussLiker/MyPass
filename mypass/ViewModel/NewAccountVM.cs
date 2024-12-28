@@ -17,7 +17,7 @@ namespace mypass.ViewModel
         public string NewServiceName { get; set; }
         public string NewURL { get; set; }
         public string NewLoginAccount { get; set; }
-        public string NewPassword { get; set; } = "123";
+        public string NewPassword { get; set; }
         private static int _id;
         
         public int ID { get => _id; set
@@ -39,7 +39,7 @@ namespace mypass.ViewModel
         public NewAccountVM()
         {
             // Пример автоматического получения логина пользователя
-            _loginUserAccount = "user1"; // Здесь будет логика для получения текущего логина пользователя
+            _loginUserAccount = PageModel.login; 
 
             AddAccountCommand = new RelayCommand(AddAccount);
             CloseCommand = new RelayCommand(Close);
@@ -59,7 +59,7 @@ namespace mypass.ViewModel
             }
 
             // Добавление аккаунта в базу данных
-            _accountsDB.AddAccount(_loginUserAccount, ServiceName, URL, LoginAccount, EncryptionModel.Enscrypt(Password, "123"));
+            _accountsDB.AddAccount(_loginUserAccount, ServiceName, URL, LoginAccount, EncryptionModel.Enscrypt(Password, PageModel.masterPassword));
 
             // Закрытие окна после добавления записи
             // Предполагается, что окно будет закрываться из кода
@@ -78,7 +78,7 @@ namespace mypass.ViewModel
                 return;
             }
             AllPassesVM allPassesVM = new AllPassesVM();
-                _accountsDB.UpdateAccount(PageModel.ID, _loginUserAccount, NewServiceName, NewURL, NewLoginAccount, EncryptionModel.Enscrypt(NewPassword, "123"));
+                _accountsDB.UpdateAccount(PageModel.ID, _loginUserAccount, NewServiceName, NewURL, NewLoginAccount, EncryptionModel.Enscrypt(NewPassword, PageModel.masterPassword));
 
 
             

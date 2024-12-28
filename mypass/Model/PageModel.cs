@@ -4,5 +4,9 @@
     {
         public static int ID;
 
+        public static string masterPassword;
+
+        public static string login;
+
     }
 }
