@@ -262,10 +262,7 @@
     <Compile Include="Model\EventsDB.cs" />
     <Compile Include="Model\Logging.cs" />
     <Compile Include="Model\MainAuthWindowClass.cs" />
-    <Compile Include="Model\NewAccount.cs" />
     <Compile Include="Model\OpenLink.cs" />
-    <Compile Include="Model\PasswordDoublicateChecker.cs" />
-    <Compile Include="Model\PasswordCheckResult.cs" />
     <Compile Include="Model\PasswordGeneration.cs" />
     <Compile Include="Model\PasswordHasher.cs" />
     <Compile Include="Model\PasswordToMaskedConverter.cs" />
@@ -276,7 +273,6 @@
     <Compile Include="Model\TextToVisibilityConverter.cs" />
     <Compile Include="Model\TypeEventsDB.cs" />
     <Compile Include="Model\UserAuthentication.cs" />
-    <Compile Include="Model\Vhod.cs" />
     <Compile Include="Model\TypeEventsDB.cs" />
     <Compile Include="Model\UserDB.cs" />
     <Compile Include="Model\BoolToVisibilityConverter.cs" />
@@ -285,8 +281,6 @@
     <Compile Include="Utilities\ViewModelBase.cs" />
     <Compile Include="ViewModel\AccountsVM.cs" />
     <Compile Include="ViewModel\AllPassesVM.cs" />
-    <Compile Include="ViewModel\CardsVM.cs" />
-    <Compile Include="ViewModel\EmailsVM.cs" />
     <Compile Include="ViewModel\ErrorWinVM.cs" />
     <Compile Include="ViewModel\MainAuthWindowVM.cs" />
     <Compile Include="ViewModel\MainMenuVM.cs" />
@@ -300,14 +294,8 @@
     <Compile Include="View\AddAccountWindow.xaml.cs">
       <DependentUpon>AddAccountWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Cards.xaml.cs">
-      <DependentUpon>Cards.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\EditAccountWindow.xaml.cs">
       <DependentUpon>EditAccountWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Emails.xaml.cs">
-      <DependentUpon>Emails.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
@@ -359,10 +347,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Cards.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\EditAccountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -391,10 +375,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Emails.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -485,35 +465,7 @@
     <Resource Include="View\Resource\Images\pictures\photo_6_2024-11-18_20-02-52.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resource\Images\icons\account.png" />
-    <Resource Include="View\Resource\Images\icons\all.png" />
-    <Resource Include="View\Resource\Images\icons\card.png" />
-    <Resource Include="View\Resource\Images\icons\checkpass.png" />
-    <Resource Include="View\Resource\Images\icons\emails.png" />
-    <Resource Include="View\Resource\Images\icons\home.png" />
-    <Resource Include="View\Resource\Images\icons\keyinhand.png" />
-    <Resource Include="View\Resource\Images\icons\lamp.png" />
-    <Resource Include="View\Resource\Images\icons\loupe.png" />
-    <Resource Include="View\Resource\Images\icons\pass.png" />
-    <Resource Include="View\Resource\Images\icons\passgen.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="View\Resource\Images\pictures\photo_1_2024-11-18_20-07-10.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\Resource\Images\inverted\account.png" />
-    <Resource Include="View\Resource\Images\inverted\all.png" />
-    <Resource Include="View\Resource\Images\inverted\card.png" />
-    <Resource Include="View\Resource\Images\inverted\checkpass.png" />
-    <Resource Include="View\Resource\Images\inverted\emails.png" />
-    <Resource Include="View\Resource\Images\inverted\home.png" />
-    <Resource Include="View\Resource\Images\inverted\lamp.png" />
-    <Resource Include="View\Resource\Images\inverted\loupe.png" />
-    <Resource Include="View\Resource\Images\inverted\notific.png" />
-    <Resource Include="View\Resource\Images\inverted\pass.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\Resource\Images\icons\notific.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resource\Images\inverted\стрелка_влево.png" />

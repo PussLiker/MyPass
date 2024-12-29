@@ -12,10 +12,6 @@
         <view:AllPasses/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:CardsVM}">
-        <view:Cards/>
-    </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:MainMenuVM}">
         <view:MainMenu/>
     </DataTemplate>
@@ -26,10 +22,6 @@
 
     <DataTemplate DataType="{x:Type vm:PassGenVM}">
         <view:PassGen/>
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type vm:EmailsVM}">
-        <view:Emails />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:NofiticationsVM}">
