@@ -24,7 +24,6 @@ namespace mypass.ViewModel
         private MainWindow _mainWindow;
         private static string _fullBDPath;
         private string _bdName;
-        RegistrationPage _registrationPage ;
         MainAuthWindowClass MainWinClass = new MainAuthWindowClass();
         public string DBName { get => _bdName; set { _bdName = value; } }
         public string PassReg

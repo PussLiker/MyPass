@@ -273,7 +273,6 @@
     <Compile Include="Model\TextToVisibilityConverter.cs" />
     <Compile Include="Model\TypeEventsDB.cs" />
     <Compile Include="Model\UserAuthentication.cs" />
-    <Compile Include="Model\TypeEventsDB.cs" />
     <Compile Include="Model\UserDB.cs" />
     <Compile Include="Model\BoolToVisibilityConverter.cs" />
     <Compile Include="Utilities\Btn.cs" />
