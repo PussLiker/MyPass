@@ -16,7 +16,6 @@ namespace mypass.ViewModel
     class NavigationVM : ViewModelBase
     {
         private object _currentView;
-        private MainWindow _mainWindow;
         private PassGenWindow _passGenWindow; // Поле для хранения ссылки на окно
         public object CurrentView
         {
@@ -40,8 +39,6 @@ namespace mypass.ViewModel
 
         private void Accounts(object obj) => CurrentView = new AccountsVM();
         private void AllPasses(object obj) => CurrentView = new AllPassesVM();
-        private void Cards(object obj) => CurrentView = new CardsVM();
-        private void Emails(object obj) => CurrentView = new EmailsVM();
         private void MainMenu(object obj) => CurrentView = new MainMenuVM();
         private void Notifications(object obj) => CurrentView = new NofiticationsVM();
         private void PassCheck(object obj) => CurrentView = new PassCheckVM();
@@ -92,9 +89,7 @@ namespace mypass.ViewModel
         public NavigationVM()
         {
             AccountsCommand = new RelayCommand(Accounts);
-            CardsCommand = new RelayCommand(Cards);
             AllPassesCommand = new RelayCommand(AllPasses);
-            EmailsCommand = new RelayCommand(Emails);
             MainMenuCommand = new RelayCommand(MainMenu);
             NotificationsCommand = new RelayCommand(Notifications);
             PassCheckCommand = new RelayCommand(PassCheck);
