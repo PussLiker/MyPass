@@ -40,8 +40,6 @@ namespace mypass.ViewModel
 
         private void Accounts(object obj) => CurrentView = new AccountsVM();
         private void AllPasses(object obj) => CurrentView = new AllPassesVM();
-        private void Cards(object obj) => CurrentView = new CardsVM();
-        private void Emails(object obj) => CurrentView = new EmailsVM();
         private void MainMenu(object obj) => CurrentView = new MainMenuVM();
         private void Notifications(object obj) => CurrentView = new NofiticationsVM();
         private void PassCheck(object obj) => CurrentView = new PassCheckVM();
@@ -92,9 +90,8 @@ namespace mypass.ViewModel
         public NavigationVM()
         {
             AccountsCommand = new RelayCommand(Accounts);
-            CardsCommand = new RelayCommand(Cards);
             AllPassesCommand = new RelayCommand(AllPasses);
-            EmailsCommand = new RelayCommand(Emails);
+           
             MainMenuCommand = new RelayCommand(MainMenu);
             NotificationsCommand = new RelayCommand(Notifications);
             PassCheckCommand = new RelayCommand(PassCheck);
